@@ -1,0 +1,259 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString />
+      </ConnectionProperties>
+      <rd:SecurityType>None</rd:SecurityType>
+    </DataSource>
+  </DataSources>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <Height>2in</Height>
+        <Style />
+      </Body>
+      <Width>6.5in</Width>
+      <Page>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParameters>
+    <ReportParameter Name="SO">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>SO</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>SO</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="OrdDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>OrdDate</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>OrdDate</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ShipDate">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ShipDate</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ShipDate</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CustName">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CustName</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CustName</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ItemCode">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ItemCode</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ItemCode</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="OrderQty">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>OrderQty</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>OrderQty</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Balance">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Balance</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Balance</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="OnHand">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>OnHand</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>OnHand</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="POQty">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>POQty</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>POQty</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Div">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Div</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Div</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="CustPoNo">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>CustPoNo</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>CustPoNo</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ShipVia">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ShipVia</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ShipVia</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="Whse">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>Whse</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>Whse</Prompt>
+    </ReportParameter>
+    <ReportParameter Name="ItmDescrtxt">
+      <DataType>String</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>ItmDescrtxt</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>ItmDescrtxt</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <Code>Public Function BlankZero(ByVal Value As Decimal)
+    if Value = 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankPos(ByVal Value As Decimal)
+    if Value &gt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankZeroAndPos(ByVal Value As Decimal)
+    if Value &gt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNeg(ByVal Value As Decimal)
+    if Value &lt; 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+
+Public Function BlankNegAndZero(ByVal Value As Decimal)
+    if Value &lt;= 0 then
+        Return ""
+    end if
+    Return Value
+End Function
+</Code>
+  <Language>=User!Language</Language>
+  <ConsumeContainerWhitespace>true</ConsumeContainerWhitespace>
+  <rd:ReportUnitType>Inch</rd:ReportUnitType>
+  <rd:ReportID>0eeb6585-38ae-40f1-885b-8d50088d51b4</rd:ReportID>
+  <DataSets>
+    <DataSet Name="DataSet_Result">
+      <Fields>
+        <Field Name="SalesHeader_No">
+          <DataField>SalesHeader_No</DataField>
+        </Field>
+        <Field Name="SalesHeader_OrderDate">
+          <DataField>SalesHeader_OrderDate</DataField>
+        </Field>
+        <Field Name="SalesHeader_BiltoNane">
+          <DataField>SalesHeader_BiltoNane</DataField>
+        </Field>
+        <Field Name="SalesHeader_ExternalDocumentNo">
+          <DataField>SalesHeader_ExternalDocumentNo</DataField>
+        </Field>
+        <Field Name="SalesHeader_ShippingAgentCode">
+          <DataField>SalesHeader_ShippingAgentCode</DataField>
+        </Field>
+        <Field Name="SalesLine_ReqDate">
+          <DataField>SalesLine_ReqDate</DataField>
+        </Field>
+        <Field Name="SalesLine_No">
+          <DataField>SalesLine_No</DataField>
+        </Field>
+        <Field Name="SalesLine_Quantity">
+          <DataField>SalesLine_Quantity</DataField>
+        </Field>
+        <Field Name="SalesLine_QuantityFormat">
+          <DataField>SalesLine_QuantityFormat</DataField>
+        </Field>
+        <Field Name="SalesLine_OutstandingQty_Base">
+          <DataField>SalesLine_OutstandingQty_Base</DataField>
+        </Field>
+        <Field Name="SalesLine_OutstandingQty_BaseFormat">
+          <DataField>SalesLine_OutstandingQty_BaseFormat</DataField>
+        </Field>
+        <Field Name="TotalInv">
+          <DataField>TotalInv</DataField>
+        </Field>
+        <Field Name="TotalInvFormat">
+          <DataField>TotalInvFormat</DataField>
+        </Field>
+        <Field Name="POQuantity">
+          <DataField>POQuantity</DataField>
+        </Field>
+        <Field Name="POQuantityFormat">
+          <DataField>POQuantityFormat</DataField>
+        </Field>
+        <Field Name="Divi">
+          <DataField>Divi</DataField>
+        </Field>
+        <Field Name="Total">
+          <DataField>Total</DataField>
+        </Field>
+        <Field Name="itemDesc">
+          <DataField>itemDesc</DataField>
+        </Field>
+        <Field Name="SalesHeader_LocationCode">
+          <DataField>SalesHeader_LocationCode</DataField>
+        </Field>
+      </Fields>
+      <Query>
+        <DataSourceName>DataSource</DataSourceName>
+        <CommandText />
+      </Query>
+    </DataSet>
+  </DataSets>
+</Report>
