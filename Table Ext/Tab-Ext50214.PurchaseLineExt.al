@@ -63,6 +63,18 @@ tableextension 50214 PurchaseLine_Ext extends "Purchase Line"
 
             AccessByPermission = TableData "Purch. Rcpt. Header" = R;
         }
+        field(50060; "Priority Qty 2"; Decimal)
+        {
+        }
+        field(50061; "Priority Date 2"; Date)
+        {
+        }
+        field(50062; "Priority Qty 3"; Decimal)
+        {
+        }
+        field(50063; "Priority Date 3"; Date)
+        {
+        }
 
     }
 }
