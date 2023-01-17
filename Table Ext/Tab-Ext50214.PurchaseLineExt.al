@@ -75,6 +75,8 @@ tableextension 50214 PurchaseLine_Ext extends "Purchase Line"
         field(50063; "Priority Date 3"; Date)
         {
         }
-
+        field(50064; "Comment for Vendor"; Text[250])
+        {
+        }
     }
 }

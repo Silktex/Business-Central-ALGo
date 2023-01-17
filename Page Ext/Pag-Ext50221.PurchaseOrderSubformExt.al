@@ -114,6 +114,10 @@ pageextension 50221 "Purchase Order Subform_Ext" extends "Purchase Order Subform
             {
                 ApplicationArea = all;
             }
+            field("Comment for Vendor"; Rec."Comment for Vendor")
+            {
+                ApplicationArea = all;
+            }
         }
     }
 }

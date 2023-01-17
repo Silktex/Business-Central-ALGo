@@ -143,6 +143,9 @@ report 50011 "Open PO Report"
                 column(PriorityDate3_PurchaseLine; FORMAT("Priority Date 3"))
                 {
                 }
+                column(Comment_for_Vendor; "Comment for Vendor")
+                {
+                }
                 column(ThreeM_REQ_Qty1; (((SYOSSETQTY + SAMPLINGQTY + GASTONIAQTY + ACFQTY + TRANSITQTY + ItemQtyOnPO("Purchase Line") - SalesOrderQty) - (SalesOrderQty + ((-1 * (MonthSales0To6)) + MasMonthSales0To6))) / 2))
                 {
                 }

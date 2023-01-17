@@ -2021,7 +2021,6 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
-                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                     <TablixCell>
@@ -2348,14 +2347,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="Comment">
+                        <Textbox Name="Comment_for_Vendor">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!Comment.Value</Value>
+                                  <Value>=Fields!Comment_for_Vendor.Value</Value>
                                   <Style>
                                     <FontSize>8pt</FontSize>
                                   </Style>
@@ -2364,7 +2363,7 @@
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>Comment</rd:DefaultName>
+                          <rd:DefaultName>Comment_for_Vendor</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -2376,6 +2375,7 @@
                             <PaddingBottom>2pt</PaddingBottom>
                           </Style>
                         </Textbox>
+                        <rd:Selected>true</rd:Selected>
                       </CellContents>
                     </TablixCell>
                   </TablixCells>
@@ -3070,6 +3070,9 @@ End Function
         </Field>
         <Field Name="PriorityDate3_PurchaseLine">
           <DataField>PriorityDate3_PurchaseLine</DataField>
+        </Field>
+        <Field Name="Comment_for_Vendor">
+          <DataField>Comment_for_Vendor</DataField>
         </Field>
         <Field Name="ThreeM_REQ_Qty1">
           <DataField>ThreeM_REQ_Qty1</DataField>

@@ -1339,7 +1339,15 @@ codeunit 50005 "Portal CU"
     end;
 
 
-    procedure InsertTrackingSpecificationPurNAV(DocNo: Code[20]; DocLineNo: Integer; Qty: Decimal; SerialNo: Code[20]; LotNo: Code[20]; DocketNo: Text[50]; ShipVia: Text[30])
+    procedure InsertTrackingSpecificationPurNAV(DocNo: Code[20];
+                                                DocLineNo: Integer;
+                                                Qty: Decimal;
+                                                SerialNo: Code[20];
+                                                LotNo: Code[20];
+                                                DocketNo: Text[50];
+                                                ShipVia: Text[30];
+                                                PostingDate: Date;
+                                                ETADate: Date)
     var
         recReservationEntry: Record "Reservation Entry";
         EntryNo: Integer;
@@ -1442,6 +1450,9 @@ codeunit 50005 "Portal CU"
                     recReservationEntry.INSERT;
                     recPurchHeader."Consignment No." := DocketNo;
                     recPurchHeader."Ship Via" := ShipVia;
+                    recPurchHeader.Validate("Posting Date", PostingDate);
+                    recPurchHeader.Validate("ETA Date", ETADate);
+                    recPurchHeader.MODIFY(FALSE);
                     recPurchHeader.MODIFY(FALSE);
 
                 END;
@@ -1469,13 +1480,18 @@ codeunit 50005 "Portal CU"
         InvtSetup: Record "Inventory Setup";
         cuNoSeries: Codeunit NoSeriesManagement;
         ILE: Record "Item Ledger Entry";
-        TOSRE: Record "Reservation Entry";
+        //TORRE: Record "Reservation Entry";
         TORRE: Record "Reservation Entry";
+        EntryNo: Integer;
     begin
         PurchRcptHeader.RESET;
         PurchRcptHeader.SETRANGE("Consignment No.", DocketNo);
         IF PurchRcptHeader.FIND('-') THEN BEGIN
             REPEAT
+                TORRE.Reset();
+                if TORRE.FindLast() then
+                    EntryNo := TORRE."Entry No.";
+
                 PurchRcptLine.RESET;
                 PurchRcptLine.SETRANGE("Document No.", PurchRcptHeader."No.");
                 PurchRcptLine.SETFILTER(Quantity, '>%1', 0);
@@ -1493,6 +1509,7 @@ codeunit 50005 "Portal CU"
                             TransferHeader.VALIDATE("Posting Date", TODAY);
                             TransferHeader.VALIDATE("Consignment No.", DocketNo);
                             TransferHeader.VALIDATE("Ship Via", ShipVia);
+                            TransferHeader.Validate("Expected Receipt Date", PurchRcptHeader."ETA Date");
                             TransferHeader.MODIFY;
 
                             TransferLine.RESET;
@@ -1513,6 +1530,7 @@ codeunit 50005 "Portal CU"
                             TransferLine.VALIDATE("Purchase Receipt No.", PurchRcptLine."Document No.");
                             TransferLine.VALIDATE("Purchase Receipt Line No.", PurchRcptLine."Line No.");
                             TransferLine.INSERT;
+
                             //END;
                             ILE.RESET;
                             ILE.SETRANGE("Document Type", ILE."Document Type"::"Purchase Receipt");
@@ -1520,33 +1538,40 @@ codeunit 50005 "Portal CU"
                             ILE.SETRANGE("Document Line No.", TransferLine."Purchase Receipt Line No.");
                             IF ILE.FINDFIRST THEN BEGIN
                                 REPEAT
-                                    TOSRE.INIT;
-                                    TOSRE.VALIDATE("Source ID", TransferLine."Document No.");
-                                    TOSRE.VALIDATE("Source Ref. No.", TransferLine."Purchase Receipt Line No.");
-                                    TOSRE.VALIDATE(Positive, false);
-                                    TOSRE.VALIDATE("Source Type", 5741);
-                                    TOSRE.VALIDATE("Source Subtype", 0);
-                                    TOSRE.VALIDATE("Reservation Status", TOSRE."Reservation Status"::Surplus);
-                                    TOSRE.VALIDATE("Item No.", TransferLine."Item No.");
-                                    TOSRE.VALIDATE("Location Code", TransferHeader."Transfer-from Code");
-                                    TOSRE.VALIDATE(Quantity, -ILE.Quantity);
-                                    TOSRE.VALIDATE("Lot No.", ILE."Lot No.");
-                                    TOSRE.Validate("Shipment Date", TransferLine."Shipment Date");
-                                    TOSRE.Insert;
+                                    TORRE.INIT;
+                                    EntryNo += 1;
+                                    TORRE."Entry No." := EntryNo;
+                                    TORRE.VALIDATE(Positive, false);
+                                    TORRE.Insert();
+                                    TORRE.VALIDATE("Source ID", TransferLine."Document No.");
+                                    TORRE.VALIDATE("Source Ref. No.", TransferLine."Line No.");
+                                    TORRE.VALIDATE("Source Type", 5741);
+                                    TORRE.VALIDATE("Source Subtype", 0);
+                                    TORRE.VALIDATE("Reservation Status", TORRE."Reservation Status"::Surplus);
+                                    TORRE.VALIDATE("Item No.", TransferLine."Item No.");
+                                    TORRE.VALIDATE("Location Code", TransferHeader."Transfer-from Code");
+                                    TORRE.VALIDATE("Quantity (Base)", -ILE.Quantity);
+                                    TORRE.VALIDATE("Lot No.", ILE."Lot No.");
+                                    TORRE.Validate("Shipment Date", TransferLine."Shipment Date");
+                                    TORRE.Modify();
 
                                     TORRE.INIT;
+                                    EntryNo += 1;
+                                    TORRE."Entry No." := EntryNo;
+                                    TORRE.VALIDATE(Positive, true);
+                                    TORRE.Insert();
                                     TORRE.VALIDATE("Source ID", TransferLine."Document No.");
-                                    TORRE.VALIDATE("Source Ref. No.", TransferLine."Purchase Receipt Line No.");
+                                    TORRE.VALIDATE("Source Ref. No.", TransferLine."Line No.");
                                     TORRE.VALIDATE(Positive, true);
                                     TORRE.VALIDATE("Source Type", 5741);
                                     TORRE.VALIDATE("Source Subtype", 1);
                                     TORRE.VALIDATE("Reservation Status", TORRE."Reservation Status"::Surplus);
                                     TORRE.VALIDATE("Item No.", TransferLine."Item No.");
                                     TORRE.VALIDATE("Location Code", TransferHeader."Transfer-to Code");
-                                    TORRE.VALIDATE(Quantity, ILE.Quantity);
+                                    TORRE.VALIDATE("Quantity (Base)", ILE.Quantity);
                                     TORRE.VALIDATE("Lot No.", ILE."Lot No.");
                                     TORRE.VALIDATE("Expected Receipt Date", TransferLine."Receipt Date");
-                                    TORRE.Insert;
+                                    TORRE.Modify();
                                 UNTIL ILE.NEXT = 0;
                             END;
                         END ELSE BEGIN
@@ -1574,33 +1599,40 @@ codeunit 50005 "Portal CU"
                             ILE.SETRANGE("Document Line No.", TransferLine."Purchase Receipt Line No.");
                             IF ILE.FINDFIRST THEN BEGIN
                                 REPEAT
-                                    TOSRE.INIT;
-                                    TOSRE.VALIDATE("Source ID", TransferLine."Document No.");
-                                    TOSRE.VALIDATE("Source Ref. No.", TransferLine."Purchase Receipt Line No.");
-                                    TOSRE.VALIDATE(Positive, false);
-                                    TOSRE.VALIDATE("Source Type", 5741);
-                                    TOSRE.VALIDATE("Source Subtype", 0);
-                                    TOSRE.VALIDATE("Reservation Status", TOSRE."Reservation Status"::Surplus);
-                                    TOSRE.VALIDATE("Item No.", TransferLine."Item No.");
-                                    TOSRE.VALIDATE("Location Code", TransferHeader."Transfer-from Code");
-                                    TOSRE.VALIDATE(Quantity, -ILE.Quantity);
-                                    TOSRE.VALIDATE("Lot No.", ILE."Lot No.");
-                                    TOSRE.Validate("Shipment Date", TransferLine."Shipment Date");
-                                    TOSRE.Insert;
+                                    TORRE.INIT;
+                                    EntryNo += 1;
+                                    TORRE."Entry No." := EntryNo;
+                                    TORRE.VALIDATE(Positive, false);
+                                    TORRE.Insert();
+                                    TORRE.VALIDATE("Source ID", TransferLine."Document No.");
+                                    TORRE.VALIDATE("Source Ref. No.", TransferLine."Line No.");
+                                    TORRE.VALIDATE("Source Type", 5741);
+                                    TORRE.VALIDATE("Source Subtype", 0);
+                                    TORRE.VALIDATE("Reservation Status", TORRE."Reservation Status"::Surplus);
+                                    TORRE.VALIDATE("Item No.", TransferLine."Item No.");
+                                    TORRE.VALIDATE("Location Code", TransferHeader."Transfer-from Code");
+                                    TORRE.VALIDATE("Quantity (Base)", -ILE.Quantity);
+                                    TORRE.VALIDATE("Lot No.", ILE."Lot No.");
+                                    TORRE.Validate("Shipment Date", TransferLine."Shipment Date");
+                                    TORRE.Modify();
 
                                     TORRE.INIT;
+                                    EntryNo += 1;
+                                    TORRE."Entry No." := EntryNo;
+                                    TORRE.VALIDATE(Positive, true);
+                                    TORRE.Insert();
                                     TORRE.VALIDATE("Source ID", TransferLine."Document No.");
-                                    TORRE.VALIDATE("Source Ref. No.", TransferLine."Purchase Receipt Line No.");
+                                    TORRE.VALIDATE("Source Ref. No.", TransferLine."Line No.");
                                     TORRE.VALIDATE(Positive, true);
                                     TORRE.VALIDATE("Source Type", 5741);
                                     TORRE.VALIDATE("Source Subtype", 1);
                                     TORRE.VALIDATE("Reservation Status", TORRE."Reservation Status"::Surplus);
                                     TORRE.VALIDATE("Item No.", TransferLine."Item No.");
                                     TORRE.VALIDATE("Location Code", TransferHeader."Transfer-to Code");
-                                    TORRE.VALIDATE(Quantity, ILE.Quantity);
+                                    TORRE.VALIDATE("Quantity (Base)", ILE.Quantity);
                                     TORRE.VALIDATE("Lot No.", ILE."Lot No.");
                                     TORRE.VALIDATE("Expected Receipt Date", TransferLine."Receipt Date");
-                                    TORRE.Insert;
+                                    TORRE.Modify();
                                 UNTIL ILE.NEXT = 0;
                             END;
                         END;
