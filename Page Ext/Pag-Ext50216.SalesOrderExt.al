@@ -131,6 +131,26 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
                 ApplicationArea = all;
             }
         }
+
+        addlast(General)
+        {
+            field("Project Type"; Rec."Project Type")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
+            field("Project Phase"; Rec."Project Phase")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
+            field("Project Description"; Rec."Project Description")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+                MultiLine = true;
+            }
+        }
     }
     actions
     {
@@ -798,6 +818,9 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
 
     trigger OnOpenPage()
     begin
+        SRSetup.Get();
+        ShowProjectInfo := SRSetup."Show Project Info";
+
         Rec.SETRANGE("Date Filter", 0D, WORKDATE - 1);
         Rec.SetRange("Short Close", false);
         IF Rec."Commission Override" THEN
@@ -815,6 +838,8 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
     end;
 
     var
+        SRSetup: Record "Sales & Receivables Setup";
+        ShowProjectInfo: Boolean;
         recSalesCommentLine: Record "Sales Comment Line";
         recSalesCommentLine1: Record "Sales Comment Line";
         recStandardComment: Record "Standard Comment";

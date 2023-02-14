@@ -93,7 +93,8 @@ report 50008 "Back Order Fill Report New"
                 recILE.RESET();
                 recILE.SETRANGE(recILE."Item No.", "Item No.");
                 recILE.SETRANGE(recILE."Posting Date", GETRANGEMIN("Posting Date"), GETRANGEMAX("Posting Date"));
-                recILE.SETRANGE(recILE."Location Code", "Location Code");
+                if LocFilter <> '' then
+                    recILE.SETRANGE(recILE."Location Code", "Location Code");
                 recILE.SETRANGE(recILE."ETA Date", "ETA Date");
                 recILE.SETFILTER(recILE."Remaining Quantity", '<>%1', 0);
                 IF recILE.FINDFIRST THEN BEGIN
@@ -115,6 +116,7 @@ report 50008 "Back Order Fill Report New"
                 END;
             end;
         }
+
     }
 
     requestpage
@@ -128,6 +130,8 @@ report 50008 "Back Order Fill Report New"
         {
         }
     }
+
+
 
     labels
     {
@@ -144,6 +148,11 @@ report 50008 "Back Order Fill Report New"
         lblTotal = 'Total';
     }
 
+    trigger OnPreReport()
+    begin
+        LocFilter := "Item Ledger Entry".GetFilter("Location Code");
+    end;
+
     var
         recItem: Record Item;
         recCustomer: Record Customer;
@@ -154,5 +163,6 @@ report 50008 "Back Order Fill Report New"
         ILETotal: Decimal;
         SOLTotal: Decimal;
         recSH: Record "Sales Header";
+        LocFilter: Text;
 }
 

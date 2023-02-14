@@ -579,7 +579,7 @@ report 60505 "Aged Accounts Payable Ext"
 
                     InvoiceDate := 0D;
                     PPIH.RESET;
-                    PPIH.SETRANGE(PPIH."No.", DocNo);
+                    PPIH.SETRANGE(PPIH."No.", "Vendor Ledger Entry"."Document No.");
                     IF PPIH.FINDFIRST THEN
                         InvoiceDate := PPIH."Posting Date";
 

@@ -29,5 +29,13 @@ pageextension 50244 "Sales & Receivables Setup_Ext" extends "Sales & Receivables
                 ApplicationArea = all;
             }
         }
+
+        addlast(General)
+        {
+            field("Show Project Info"; Rec."Show Project Info")
+            {
+                ApplicationArea = All;
+            }
+        }
     }
 }

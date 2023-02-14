@@ -98,6 +98,9 @@ report 50011 "Open PO Report"
                 column(ReadyGoodsComment; "Purchase Line"."Ready Goods Comment")
                 {
                 }
+                column(ReadyGoodsDate; "Ready Goods Date")
+                {
+                }
                 column(ShippingComment; "Purchase Line"."Shipping Comment")
                 {
                 }
@@ -105,6 +108,9 @@ report 50011 "Open PO Report"
                 {
                 }
                 column(Balance_Qty; "Balance Qty")
+                {
+                }
+                column(Balance_Qty_Date; "Balance Qty Date")
                 {
                 }
                 column(Shipped_Air; "Shipped Air")

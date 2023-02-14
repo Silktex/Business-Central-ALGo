@@ -438,6 +438,9 @@ codeunit 50100 ProcessDevelopment
 
     [EventSubscriber(ObjectType::Report, report::"Get Source Documents", 'OnBeforeWhseShptHeaderInsert', '', false, false)]
     local procedure OnBeforeWhseShptHeaderInsert(var WarehouseShipmentHeader: Record "Warehouse Shipment Header"; var WarehouseRequest: Record "Warehouse Request"; SalesLine: Record "Sales Line"; TransferLine: Record "Transfer Line"; SalesHeader: Record "Sales Header")
+    var
+        UserSetup: Record "User Setup";
+        WarehouseEmployee: Record "Warehouse Employee";
     begin
         //Handheld Fix BEGIN
         IF WarehouseRequest."Shipping Agent Code" = 'STAMPS' THEN
@@ -450,7 +453,14 @@ codeunit 50100 ProcessDevelopment
         WarehouseShipmentHeader."Third Party" := WarehouseRequest."Third Party";   //SPD MS 070815
         WarehouseShipmentHeader.VALIDATE("Third Party Account No.", WarehouseRequest."Third Party Account No.");
         WarehouseShipmentHeader.VALIDATE("Track On Header", TRUE); //Ashwini
-        WarehouseShipmentHeader.VALIDATE("Assigned User ID", USERID); //Ashwini
+        if UserSetup.get(UserId) then
+            WarehouseShipmentHeader.VALIDATE("Assigned User ID", USERID)  //; //Ashwini
+        else begin
+            WarehouseEmployee.Reset();
+            WarehouseEmployee.SetRange("Location Code", SalesHeader."Location Code");
+            if WarehouseEmployee.FindFirst() then
+                WarehouseShipmentHeader.VALIDATE("Assigned User ID", WarehouseEmployee."User ID");
+        end;
     end;
 
     [EventSubscriber(ObjectType::Codeunit, codeunit::"Whse. Jnl.-Register Line", 'OnInitWhseEntryCopyFromWhseJnlLine', '', false, false)]

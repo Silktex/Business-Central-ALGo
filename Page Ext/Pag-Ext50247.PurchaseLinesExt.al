@@ -33,6 +33,10 @@ pageextension 50247 "Purchase Lines_Ext" extends "Purchase Lines"
             {
                 ApplicationArea = all;
             }
+            field("Ready Goods Date"; Rec."Ready Goods Date")
+            {
+                ApplicationArea = all;
+            }
             field("Shipped Air"; Rec."Shipped Air")
             {
                 ApplicationArea = all;
@@ -49,9 +53,37 @@ pageextension 50247 "Purchase Lines_Ext" extends "Purchase Lines"
             {
                 ApplicationArea = all;
             }
+            field("Balance Qty Date"; Rec."Balance Qty Date")
+            {
+                ApplicationArea = all;
+            }
             field("Priority Qty"; Rec."Priority Qty")
             {
                 ApplicationArea = all;
+            }
+            field("Priority Date"; Rec."Priority Date")
+            {
+                ApplicationArea = All;
+            }
+            field("Priority Qty 2"; Rec."Priority Qty 2")
+            {
+                ApplicationArea = All;
+            }
+            field("Priority Date 2"; Rec."Priority Date 2")
+            {
+                ApplicationArea = All;
+            }
+            field("Priority Qty 3"; Rec."Priority Qty 3")
+            {
+                ApplicationArea = All;
+            }
+            field("Priority Date 3"; Rec."Priority Date 3")
+            {
+                ApplicationArea = All;
+            }
+            field("Comment for Vendor"; Rec."Comment for Vendor")
+            {
+                ApplicationArea = All;
             }
         }
     }

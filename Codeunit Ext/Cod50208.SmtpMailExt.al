@@ -997,6 +997,10 @@ codeunit 50208 SmtpMail_Ext
         END;
         //ToFile := DownloadToClientFileName(FileName, ToFile);
 
+        //Tix issue Id - 73
+        if not Tempblob.HasValue() then
+            exit;
+
         txtReceipient := '';
         ContactBusinessRelation.RESET;
         ContactBusinessRelation.SETRANGE(ContactBusinessRelation."No.", recCustomer."No.");

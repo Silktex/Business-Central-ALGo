@@ -127,6 +127,21 @@ tableextension 50222 "Sales Invoice Header_Ext" extends "Sales Invoice Header"
             begin
             end;
         }
+        field(50500; "Project Type"; Text[50])
+        {
+            Caption = 'Project Type';
+            DataClassification = ToBeClassified;
+        }
+        field(50501; "Project Phase"; Text[100])
+        {
+            Caption = 'Project Phase';
+            DataClassification = ToBeClassified;
+        }
+        field(50502; "Project Description"; Text[500])
+        {
+            Caption = 'Project Description';
+            DataClassification = ToBeClassified;
+        }
         field(60001; "Credit Card No."; Code[20])
         {
             Caption = 'Credit Card No.';

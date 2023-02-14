@@ -41,6 +41,14 @@ page 50034 "Purchase Lines New"
                 {
                     ApplicationArea = All;
                 }
+                field("Ready Goods Date"; Rec."Ready Goods Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Ready Goods Comment"; Rec."Ready Goods Comment")
+                {
+                    ApplicationArea = All;
+                }
                 field("Last Change"; Rec."Last Change")
                 {
                     ApplicationArea = All;
@@ -51,6 +59,7 @@ page 50034 "Purchase Lines New"
                 }
                 field("Shipped Boat"; Rec."Shipped Boat")
                 {
+
                     ApplicationArea = All;
                 }
                 field("Shipping Hold"; Rec."Shipping Hold")
@@ -58,6 +67,10 @@ page 50034 "Purchase Lines New"
                     ApplicationArea = All;
                 }
                 field("Balance Qty"; Rec."Balance Qty")
+                {
+                    ApplicationArea = All;
+                }
+                field("Balance Qty Date"; Rec."Balance Qty Date")
                 {
                     ApplicationArea = All;
                 }
@@ -69,7 +82,27 @@ page 50034 "Purchase Lines New"
                 {
                     ApplicationArea = All;
                 }
-                field("Ready Goods Comment"; Rec."Ready Goods Comment")
+                field("Priority Date"; Rec."Priority Date")
+                {
+                    ApplicationArea = All;
+                }
+                field("Priority Qty 2"; Rec."Priority Qty 2")
+                {
+                    ApplicationArea = All;
+                }
+                field("Priority Date 2"; Rec."Priority Date 2")
+                {
+                    ApplicationArea = All;
+                }
+                field("Priority Qty 3"; Rec."Priority Qty 3")
+                {
+                    ApplicationArea = All;
+                }
+                field("Priority Date 3"; Rec."Priority Date 3")
+                {
+                    ApplicationArea = All;
+                }
+                field("Comment for Vendor"; Rec."Comment for Vendor")
                 {
                     ApplicationArea = All;
                 }
