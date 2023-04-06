@@ -25,6 +25,7 @@ tableextension 50214 PurchaseLine_Ext extends "Purchase Line"
         }
         field(50026; "Ready Goods Comment"; Text[200])
         {
+            Caption = 'Mill Comments/ Dtd.Dt.';
         }
         field(50027; "ETA Date"; Date)
         {
@@ -75,6 +76,15 @@ tableextension 50214 PurchaseLine_Ext extends "Purchase Line"
         field(50063; "Priority Date 3"; Date)
         {
         }
-
+        field(50064; "Comment for Vendor"; Text[250])
+        {
+            Caption = 'Silk crafts comments dtd.';
+        }
+        field(50100; "Ready Goods Date"; Date)
+        {
+        }
+        field(50101; "Balance Qty Date"; Date)
+        {
+        }
     }
 }

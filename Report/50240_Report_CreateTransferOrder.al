@@ -163,6 +163,8 @@ report 50240 "Create Transfer Order"
         ItemTrackingCheck: Record Item;
         recPurchHeader: Record "Purchase Header";
         cuSalesRelease: Codeunit "Release Purchase Document";
+        PostingDate: Date;
+        ETADate: Date;
     begin
         Qty := 0;
         DocNo := GetValueAtCell(RowNo, 1);
@@ -172,9 +174,14 @@ report 50240 "Create Transfer Order"
         LotNo := GetValueAtCell(RowNo, 11);
         DocketNo := GetValueAtCell(RowNo, 12);
         ShipVia := GetValueAtCell(RowNo, 13);
-
-
-
+        PostingDate := 0D;
+        Evaluate(PostingDate, GetValueAtCell(RowNo, 14));
+        ETADate := 0D;
+        Evaluate(ETADate, GetValueAtCell(RowNo, 15));
+        if PostingDate = 0D then
+            Error('Please enter Posting Date in excel.');
+        if ETADate = 0D then
+            Error('Please enter ETA Date in excel.');
         /*
         recPurchLine.RESET;
         recPurchLine.SETRANGE("Document Type",recPurchLine."Document Type"::Order);
@@ -195,7 +202,7 @@ report 50240 "Create Transfer Order"
         IF recPurchLine.FIND('-') THEN BEGIN
             ItemTrackingCheck.GET(recPurchLine."No.");
             IF (ItemTrackingCheck."Item Tracking Code" <> '') THEN BEGIN
-                CuPortal.InsertTrackingSpecificationPurNAV(DocNo, DocLineNo, Qty, SerialNo, LotNo, DocketNo, ShipVia);
+                CuPortal.InsertTrackingSpecificationPurNAV(DocNo, DocLineNo, Qty, SerialNo, LotNo, DocketNo, ShipVia, PostingDate, ETADate);
             END ELSE BEGIN
                 recPurchLine.VALIDATE("Qty. to Receive", Qty / recPurchLine."Qty. per Unit of Measure");
                 recPurchLine.MODIFY;
@@ -208,6 +215,8 @@ report 50240 "Create Transfer Order"
                     cuSalesRelease.Reopen(recPurchHeader);
                     recPurchHeader."Consignment No." := DocketNo;
                     recPurchHeader."Ship Via" := ShipVia;
+                    recPurchHeader.Validate("Posting Date", PostingDate);
+                    recPurchHeader.Validate("ETA Date", ETADate);
                     recPurchHeader.MODIFY(FALSE);
                     recPurchHeader.SetHideValidationDialog(TRUE);
                     cuSalesRelease.RUN(recPurchHeader);

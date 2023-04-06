@@ -18,6 +18,8 @@ tableextension 50234 "Sales & Receivables Setup_Ext" extends "Sales & Receivable
         field(50004; "End Date"; Date)
         {
         }
-
+        field(50005; "Show Project Info"; Boolean)
+        {
+        }
     }
 }

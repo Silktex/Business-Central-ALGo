@@ -55,6 +55,25 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                 ApplicationArea = all;
             }
         }
+        addlast(General)
+        {
+            field("Project Type"; Rec."Project Type")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
+            field("Project Phase"; Rec."Project Phase")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
+            field("Project Description"; Rec."Project Description")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+                MultiLine = true;
+            }
+        }
     }
     actions
     {
@@ -160,10 +179,14 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                 end;
             }
         }
+
     }
 
     trigger OnOpenPage()
     begin
+        SRSetup.Get();
+        ShowProjectInfo := SRSetup."Show Project Info";
+
         IF Rec."Commission Override" THEN
             blnOverride := TRUE
         ELSE
@@ -179,6 +202,8 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
     end;
 
     var
+        SRSetup: Record "Sales & Receivables Setup";
+        ShowProjectInfo: Boolean;
         recCLE: Record "Cust. Ledger Entry";
         recSalesLine: Record "Sales Line";
         AuthenticationID: Text[30];
