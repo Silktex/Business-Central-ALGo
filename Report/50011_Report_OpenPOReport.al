@@ -1,8 +1,11 @@
 report 50011 "Open PO Report"
 {
+    Caption = 'Open PO Report';
     DefaultLayout = RDLC;
     RDLCLayout = './Report/50011_Report_OpenPOReport.rdlc';
     EnableHyperlinks = true;
+    UsageCategory = ReportsAndAnalysis;
+    ApplicationArea = all;
 
     dataset
     {
@@ -22,6 +25,9 @@ report 50011 "Open PO Report"
             {
             }
             column(BuyfromVendorName_PurchaseHeader; "Purchase Header"."Buy-from Vendor Name")
+            {
+            }
+            column(ForVendor; ForVendor)
             {
             }
             dataitem("Purchase Line"; "Purchase Line")
@@ -92,6 +98,24 @@ report 50011 "Open PO Report"
                 column(ReadyGoodsComment; "Purchase Line"."Ready Goods Comment")
                 {
                 }
+                column(ShippingComment; "Purchase Line"."Shipping Comment")
+                {
+                }
+                column(Comment; "Purchase Line".Comment)
+                {
+                }
+                column(Balance_Qty; "Balance Qty")
+                {
+                }
+                column(Shipped_Air; "Shipped Air")
+                {
+                }
+                column(Shipped_Boat; "Shipped Boat")
+                {
+                }
+                column(Shipping_Hold; "Shipping Hold")
+                {
+                }
                 column(NegativeQty; (TRANSITQTY + SYOSSETQTY + SAMPLINGQTY + GASTONIAQTY + ACFQTY) - SalesOrderQty)
                 {
                 }
@@ -105,6 +129,18 @@ report 50011 "Open PO Report"
                 {
                 }
                 column(PriorityDate_PurchaseLine; FORMAT("Priority Date"))
+                {
+                }
+                column(PriorityQty2_PurchaseLine; "Priority Qty 2")
+                {
+                }
+                column(PriorityDate2_PurchaseLine; FORMAT("Priority Date 2"))
+                {
+                }
+                column(PriorityQty3_PurchaseLine; "Priority Qty 3")
+                {
+                }
+                column(PriorityDate3_PurchaseLine; FORMAT("Priority Date 3"))
                 {
                 }
                 column(ThreeM_REQ_Qty1; (((SYOSSETQTY + SAMPLINGQTY + GASTONIAQTY + ACFQTY + TRANSITQTY + ItemQtyOnPO("Purchase Line") - SalesOrderQty) - (SalesOrderQty + ((-1 * (MonthSales0To6)) + MasMonthSales0To6))) / 2))
@@ -339,8 +375,15 @@ report 50011 "Open PO Report"
                         Visible = false;
                         ApplicationArea = all;
                     }
+                    field(ForVendor; ForVendor)
+                    {
+                        Caption = 'Generate for Vendor';
+                        ApplicationArea = All;
+                    }
                 }
             }
+
+
         }
 
         actions
@@ -351,6 +394,7 @@ report 50011 "Open PO Report"
         begin
             ExpShortPcs := TRUE;
             Explocation := 'DAMAGED SY';
+            ForVendor := false;
         end;
     }
 
@@ -422,6 +466,8 @@ report 50011 "Open PO Report"
         StrText: Text[5];
         ItemCrossReference: Record "Item Reference";
         ItemCrossReferenceNo: Code[20];
+        [InDataSet]
+        ForVendor: Boolean;
 
 
     procedure QuantityOnPO(PoNo: Code[20]; ItemNo: Code[20]; VarrientCode: Code[20]; LocationCode: Code[20]): Decimal
@@ -590,6 +636,11 @@ report 50011 "Open PO Report"
         L_PurchaseLine.SETRANGE(L_PurchaseLine."Location Code", PurchLine."Location Code");
         L_PurchaseLine.CALCSUMS(L_PurchaseLine."Outstanding Qty. (Base)");
         EXIT(L_PurchaseLine."Outstanding Qty. (Base)");
+    end;
+
+    procedure SetReportForVendor()
+    begin
+        ForVendor := true;
     end;
 }
 

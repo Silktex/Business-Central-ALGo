@@ -39,39 +39,55 @@ pageextension 50221 "Purchase Order Subform_Ext" extends "Purchase Order Subform
             {
                 ApplicationArea = all;
             }
+            field("Priority Qty 2"; Rec."Priority Qty 2")
+            {
+                ApplicationArea = all;
+            }
+            field("Priority Date 2"; Rec."Priority Date 2")
+            {
+                ApplicationArea = all;
+            }
+            field("Priority Qty 3"; Rec."Priority Qty 3")
+            {
+                ApplicationArea = all;
+            }
+            field("Priority Date 3"; Rec."Priority Date 3")
+            {
+                ApplicationArea = all;
+            }
             field("Balance Qty"; Rec."Balance Qty")
             {
-                Visible = false;
+                //Visible = false;
                 ApplicationArea = all;
             }
             field("Ready Goods Qty"; Rec."Ready Goods Qty")
             {
-                Visible = false;
+                //Visible = false;
                 ApplicationArea = all;
             }
             field("Ready Goods Comment"; Rec."Ready Goods Comment")
             {
-                Visible = false;
+                //Visible = false;
                 ApplicationArea = all;
             }
             field("Shipped Air"; Rec."Shipped Air")
             {
-                Visible = false;
+                //Visible = false;
                 ApplicationArea = all;
             }
             field("Shipped Boat"; Rec."Shipped Boat")
             {
-                Visible = false;
+                //Visible = false;
                 ApplicationArea = all;
             }
             field("Shipping Hold"; Rec."Shipping Hold")
             {
-                Visible = false;
+                //Visible = false;
                 ApplicationArea = all;
             }
             field("Shipping Comment"; Rec."Shipping Comment")
             {
-                Visible = false;
+                //Visible = false;
                 ApplicationArea = all;
             }
             field(Amount; Rec.Amount)
