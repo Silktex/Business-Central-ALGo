@@ -10,6 +10,8 @@ report 70004 "Reorder Report New POSH"
     {
         dataitem(Item; Item)
         {
+            column(COMPANYNAME; COMPANYNAME)
+            { }
             column(ReOrder_Tab; Item."ReOrder Tab")
             {
             }

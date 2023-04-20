@@ -97,7 +97,7 @@ tableextension 50209 Item_Ext extends Item
         field(50106; Backing; Option)
         {
             Caption = 'Backing';
-            OptionMembers = " ",Prebacked,"To be Backed","TO BE BACKED+C6";
+            OptionMembers = " ",Prebacked,"To be Backed","TO BE BACKED+C6","Alta is Required";
         }
         field(50107; "Reorder Calculation Year"; Integer)
         {

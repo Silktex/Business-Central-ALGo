@@ -137,7 +137,7 @@ tableextension 50222 "Sales Invoice Header_Ext" extends "Sales Invoice Header"
             Caption = 'Project Phase';
             DataClassification = ToBeClassified;
         }
-        field(50502; "Project Description"; Text[500])
+        field(50502; "Project Description"; Text[100])
         {
             Caption = 'Project Description';
             DataClassification = ToBeClassified;

@@ -342,6 +342,9 @@ report 60505 "Aged Accounts Payable Ext"
                 column(Vendor_Ledger_Entry_Invoice_Date; InvoiceDate)
                 {
                 }
+                column(DocumentDate; "Vendor Ledger Entry"."Document Date")
+                {
+                }
                 column(DocNo; DocNo)
                 {
                 }

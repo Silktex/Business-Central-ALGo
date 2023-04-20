@@ -17,6 +17,8 @@ report 70006 "Open SO Report POSH"
             column(SalesHeader_No; "Sales Header"."No.")
             {
             }
+            column(COMPANYNAME; COMPANYNAME)
+            { }
             column(SalesHeader_OrderDate; FORMAT("Sales Header"."Order Date"))
             {
             }

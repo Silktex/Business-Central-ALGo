@@ -18,4 +18,13 @@ tableextension 50223 "Sales Invoice Line_Ext" extends "Sales Invoice Line"
         }
 
     }
+
+    keys
+    {
+        key(Custom1; "Sell-to Customer No.", "Posting Date")
+        {
+            MaintainSQLIndex = false;
+            SumIndexFields = Amount, "Amount Including VAT", "Inv. Discount Amount";
+        }
+    }
 }

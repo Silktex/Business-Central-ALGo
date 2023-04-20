@@ -17,6 +17,8 @@ report 50021 "Open SO Report"
             column(SalesHeader_No; "Sales Header"."No.")
             {
             }
+            column(COMPANYNAME; COMPANYNAME)
+            { }
             column(SalesHeader_OrderDate; FORMAT("Sales Header"."Order Date"))
             {
             }
