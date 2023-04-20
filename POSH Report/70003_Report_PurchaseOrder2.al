@@ -48,6 +48,8 @@ report 70003 "Purchase Order2 POSH"
             column(CompanyInformation_PhoneNo; Company."Phone No.")
             {
             }
+
+
             dataitem(CopyLoop; "Integer")
             {
                 DataItemTableView = SORTING(Number);
@@ -253,6 +255,9 @@ report 70003 "Purchase Order2 POSH"
                     {
                     }
                     column(recCountry2_Name; recCountry2.Name)
+                    {
+                    }
+                    column(Vendor_Order_No_; "Purchase Header"."Vendor Order No.")
                     {
                     }
                     dataitem("Purchase Line"; "Purchase Line")

@@ -1354,7 +1354,7 @@
                           <ActionInfo>
                             <Actions>
                               <Action>
-                                <Hyperlink>="dynamicsnav://silk4.silkcrafts.local:7050/sc/SILK%20CRAFTS%2C%20INC./runpage?page=516&amp;$filter=%27Sales%20Line%27.%27Document%20Type%27%20IS%20%271%27%20AND%20%27Sales%20Line%27.Type%20IS%20%272%27%20AND%20%27Sales%20Line%27.%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27%20AND%20%27Sales%20Line%27.%27Outstanding%20Quantity%27%20IS%20%27%3C%3E0%27%20AND%20%27Sales%20Line%27.%27Document%20No.%27%20IS%20%27"+Fields!SalesHeader_No.Value+"%27&amp;mode=View"</Hyperlink>
+                                <Hyperlink>="https://businesscentral.dynamics.com/Production?company="+Fields!COMPANYNAME.Value+"&amp;page=516&amp;filter=%27Document%20Type%27%20IS%20%271%27%20AND%20Type%20IS%20%272%27%20AND%20%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27%20AND%20%27Outstanding%20Quantity%27%20IS%20%27%3C%3E0%27%20AND%20%27Document%20No.%27%20IS%20%27"+Fields!SalesHeader_No.Value+"%27"</Hyperlink>
                               </Action>
                             </Actions>
                           </ActionInfo>
@@ -1394,7 +1394,7 @@
                           <ActionInfo>
                             <Actions>
                               <Action>
-                                <Hyperlink>="dynamicsnav://silk4.silkcrafts.local:7050/sc/SILK%20CRAFTS%2C%20INC./runpage?page=516&amp;$filter=%27Sales%20Line%27.%27Document%20Type%27%20IS%20%271%27%20AND%20%27Sales%20Line%27.Type%20IS%20%272%27%20AND%20%27Sales%20Line%27.%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27%20AND%20%27Sales%20Line%27.%27Outstanding%20Quantity%27%20IS%20%27%3C%3E0%27%20AND%20%27Sales%20Line%27.%27Document%20No.%27%20IS%20%27"+Fields!SalesHeader_No.Value+"%27&amp;mode=View"</Hyperlink>
+                                <Hyperlink>="https://businesscentral.dynamics.com/Production?company="+Fields!COMPANYNAME.Value+"&amp;page=516&amp;filter=%27Document%20Type%27%20IS%20%271%27%20AND%20Type%20IS%20%272%27%20AND%20%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27%20AND%20%27Outstanding%20Quantity%27%20IS%20%27%3C%3E0%27%20AND%20%27Document%20No.%27%20IS%20%27"+Fields!SalesHeader_No.Value+"%27"</Hyperlink>
                               </Action>
                             </Actions>
                           </ActionInfo>
@@ -1434,7 +1434,7 @@
                           <ActionInfo>
                             <Actions>
                               <Action>
-                                <Hyperlink>="dynamicsnav://silk4.silkcrafts.local:7050/sc/SILK%20CRAFTS%2C%20INC./runpage?page=492&amp;$filter=Item.%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27&amp;mode=Edit"</Hyperlink>
+                                <Hyperlink>="https://businesscentral.dynamics.com/Production?company="+Fields!COMPANYNAME.Value+"&amp;page=492&amp;filter=%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27"</Hyperlink>
                               </Action>
                             </Actions>
                           </ActionInfo>
@@ -1474,7 +1474,7 @@
                           <ActionInfo>
                             <Actions>
                               <Action>
-                                <Hyperlink>="dynamicsnav://silk4.silkcrafts.local:7050/sc/SILK%20CRAFTS%2C%20INC./runpage?page=492&amp;$filter=Item.%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27&amp;mode=Edit"</Hyperlink>
+                                <Hyperlink>="https://businesscentral.dynamics.com/Production?company="+Fields!COMPANYNAME.Value+"&amp;page=492&amp;filter=%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27"</Hyperlink>
                               </Action>
                             </Actions>
                           </ActionInfo>
@@ -1514,7 +1514,7 @@
                           <ActionInfo>
                             <Actions>
                               <Action>
-                                <Hyperlink>="dynamicsnav://silk4.silkcrafts.local:7050/sc/SILK%20CRAFTS%2C%20INC./runpage?page=492&amp;$filter=Item.%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27&amp;mode=Edit"</Hyperlink>
+                                <Hyperlink>="https://businesscentral.dynamics.com/Production?company="+Fields!COMPANYNAME.Value+"&amp;page=492&amp;filter=%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27"</Hyperlink>
                               </Action>
                             </Actions>
                           </ActionInfo>
@@ -1554,7 +1554,7 @@
                           <ActionInfo>
                             <Actions>
                               <Action>
-                                <Hyperlink>="dynamicsnav://silk4.silkcrafts.local:7050/sc/SILK%20CRAFTS%2C%20INC./runpage?page=518&amp;$filter=%27Purchase%20Line%27.%27Document%20Type%27%20IS%20%271%27%20AND%20%27Purchase%20Line%27.Type%20IS%20%272%27%20AND%20%27Purchase%20Line%27.%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27%20AND%20%27Purchase%20Line%27.%27Outstanding%20Quantity%27%20IS%20%27%3C%3E0%27&amp;mode=View"</Hyperlink>
+                                <Hyperlink>="https://businesscentral.dynamics.com/Production?company="+Fields!COMPANYNAME.Value+"&amp;page=518&amp;filter=%27Document%20Type%27%20IS%20%271%27%20AND%20Type%20IS%20%272%27%20AND%20%27No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27%20AND%20%27Outstanding%20Quantity%27%20IS%20%27%3C%3E0%27"</Hyperlink>
                               </Action>
                             </Actions>
                           </ActionInfo>
@@ -1785,7 +1785,7 @@
                           <ActionInfo>
                             <Actions>
                               <Action>
-                                <Hyperlink>="dynamicsnav://silk4:7050/sc/SILK%20CRAFTS%2C%20INC./runpage?page=38&amp;$filter=%27Item%20Ledger%20Entry%27.%27Item%20No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27%20AND%20%27Item%20Ledger%20Entry%27.Open%20IS%20%271%27%20AND%20%27Item%20Ledger%20Entry%27.%27Location%20Code%27%20IS%20%27TRANSIT2%27&amp;mode=View"</Hyperlink>
+                                <Hyperlink>="https://businesscentral.dynamics.com/Production?company="+Fields!COMPANYNAME.Value+"&amp;page=38&amp;filter=%27Item%20No.%27%20IS%20%27"+Fields!SalesLine_No.Value+"%27%20AND%20Open%20IS%20%271%27%20AND%20%27Location%20Code%27%20IS%20%27TRANSIT2%27"</Hyperlink>
                               </Action>
                             </Actions>
                           </ActionInfo>
@@ -4524,6 +4524,9 @@ End Function
       <Fields>
         <Field Name="SalesHeader_No">
           <DataField>SalesHeader_No</DataField>
+        </Field>
+        <Field Name="COMPANYNAME">
+          <DataField>COMPANYNAME</DataField>
         </Field>
         <Field Name="SalesHeader_OrderDate">
           <DataField>SalesHeader_OrderDate</DataField>

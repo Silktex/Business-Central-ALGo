@@ -21,6 +21,12 @@ report 50011 "Open PO Report"
             column(No_PurchaseHeader; "Purchase Header"."No.")
             {
             }
+            column(COMPANYNAME; COMPANYNAME)
+            { }
+
+            column(baseUrl; baseUrl)
+            { }
+
             column(VendorOrderNo_PurchaseHeader; "Purchase Header"."Vendor Order No.")
             {
             }
@@ -351,10 +357,13 @@ report 50011 "Open PO Report"
 
             trigger OnPreDataItem()
             begin
+
                 //SETRANGE("Purchase Header"."Document Type",DocType);
                 SETFILTER("Purchase Header"."No.", '<>%1', 'PO2277');
             end;
         }
+
+
     }
 
     requestpage
@@ -404,6 +413,7 @@ report 50011 "Open PO Report"
             ExpShortPcs := TRUE;
             Explocation := 'DAMAGED SY';
             ForVendor := false;
+
         end;
     }
 
@@ -434,7 +444,9 @@ report 50011 "Open PO Report"
         iblPriorityDate = 'Priority Date';
     }
 
+
     var
+        baseUrl: text;
         Vendor: Record Vendor;
         recItem: Record Item;
         QtyOnHand: Decimal;

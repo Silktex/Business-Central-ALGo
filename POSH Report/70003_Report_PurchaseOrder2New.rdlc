@@ -131,7 +131,8 @@ Cstr(Fields!recVendor_City.Value) + Chr(177) +
 Cstr(Fields!recVendor_County.Value) + Chr(177) +
 Cstr(Fields!recVendor_PostCode.Value) + Chr(177) +
 Cstr(Fields!recCountry2_Name.Value) + Chr(177) +
-Cstr(Fields!ContactToLbl_CAption.Value)
+Cstr(Fields!ContactToLbl_CAption.Value) + Chr(177) +
+Cstr(Fields!Vendor_Order_No_.Value)
 , 1)</Hidden>
                           </Visibility>
                           <Style>
@@ -2126,7 +2127,7 @@ First(Fields!LineAmtTaxAmtInvDiscountAmtFormat.Value)</Value>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.18173in</Top>
+              <Top>1.35673in</Top>
               <Left>4.82224in</Left>
               <Height>11pt</Height>
               <Width>0.94695in</Width>
@@ -2153,7 +2154,7 @@ First(Fields!LineAmtTaxAmtInvDiscountAmtFormat.Value)</Value>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.02365in</Top>
+              <Top>1.19865in</Top>
               <Left>4.82224in</Left>
               <Height>11pt</Height>
               <Width>0.94695in</Width>
@@ -2368,7 +2369,7 @@ First(Fields!LineAmtTaxAmtInvDiscountAmtFormat.Value)</Value>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.18173in</Top>
+              <Top>1.35673in</Top>
               <Left>5.97116in</Left>
               <Height>11pt</Height>
               <Width>1.29615in</Width>
@@ -2393,7 +2394,7 @@ First(Fields!LineAmtTaxAmtInvDiscountAmtFormat.Value)</Value>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.02365in</Top>
+              <Top>1.19865in</Top>
               <Left>5.97116in</Left>
               <Height>11pt</Height>
               <Width>1.29615in</Width>
@@ -3130,6 +3131,61 @@ First(Fields!LineAmtTaxAmtInvDiscountAmtFormat.Value)</Value>
               <Height>17.3pt</Height>
               <Width>3.35176in</Width>
               <ZIndex>35</ZIndex>
+              <Style>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="VendorIDCaption2">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Vendor Order No."</Value>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>8pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>1.03308in</Top>
+              <Left>4.81675in</Left>
+              <Height>11pt</Height>
+              <Width>0.95244in</Width>
+              <ZIndex>36</ZIndex>
+              <Style>
+                <VerticalAlign>Middle</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="PurchaseHeaderBuyfromVendorNo2">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Code.GetData(65,1)</Value>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>8pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>1.03309in</Top>
+              <Left>5.96567in</Left>
+              <Height>11pt</Height>
+              <Width>1.29615in</Width>
+              <ZIndex>37</ZIndex>
               <Style>
                 <VerticalAlign>Middle</VerticalAlign>
               </Style>
@@ -4211,6 +4267,9 @@ End Function
         </Field>
         <Field Name="recCountry2_Name">
           <DataField>recCountry2_Name</DataField>
+        </Field>
+        <Field Name="Vendor_Order_No_">
+          <DataField>Vendor_Order_No_</DataField>
         </Field>
         <Field Name="LineNo_PurchaseLine">
           <DataField>LineNo_PurchaseLine</DataField>

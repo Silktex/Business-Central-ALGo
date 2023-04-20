@@ -34,7 +34,14 @@ report 70015 "Shipped Samples Report Weekly"
         Outstream: OutStream;
         InStream: InStream;
         AddRecipients: List of [text];
+        FromDate: date;
+        ToDate: Date;
+        WeeKStart: Date;
     begin
+        WeeKStart := CalcDate('-CW', WorkDate());
+        FromDate := CalcDate('-7D', WeeKStart);
+        ToDate := CalcDate('-3D', WeeKStart);
+
         SalesPerson.RESET;
         SalesPerson.SetRange("Active MIS", true);
         IF SalesPerson.FINDFIRST THEN BEGIN
@@ -49,7 +56,8 @@ report 70015 "Shipped Samples Report Weekly"
 
                 SalesHeader.RESET;
                 //SalesHeader.SETRANGE("Shipment Date", WORKDATE - 7, WORKDATE - 1);
-                SalesHeader.SETRANGE("Posting Date", WORKDATE - 7, WORKDATE - 1);
+                //SalesHeader.SETRANGE("Posting Date", WORKDATE - 7, WORKDATE - 1);
+                SalesHeader.SETRANGE("Posting Date", FromDate, ToDate);
                 SalesHeader.SETRANGE(SalesHeader."Salesperson Code", SalesPerson.Code);
                 IF SalesHeader.FINDSET THEN BEGIN
 

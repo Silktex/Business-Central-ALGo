@@ -13,6 +13,8 @@ report 50030 "Reorder Report New"
             column(ReOrder_Tab; Item."ReOrder Tab")
             {
             }
+            column(COMPANYNAME; COMPANYNAME)
+            { }
             column(Warp_Color; Item."Warp Color")
             {
             }

@@ -118,6 +118,7 @@ report 70000 "Sales Invoice Com POSH"
                     TempSalesInvoiceLine.INSERT;
                 end;
             }
+
             dataitem(CopyLoop; "Integer")
             {
                 DataItemTableView = SORTING(Number);
@@ -280,6 +281,27 @@ report 70000 "Sales Invoice Com POSH"
                     column(recCustomer_BilltoCountryRegionCode; "Sales Invoice Header"."Bill-to Country/Region Code")
                     {
                     }
+                    column(BillToPhone; recCustomer."Phone No.")
+                    {
+                    }
+                    column(BillToEmail; recCustomer."E-Mail")
+                    {
+                    }
+                    column(ShipToPhone; ShipToPhone)
+                    {
+                    }
+                    column(ShipToEmail; ShipToEmail)
+                    {
+                    }
+                    column(Specifier_Name; SpecifierName)
+                    {
+                    }
+                    column(ProjectOwner1; ProjectOwner1)
+                    {
+                    }
+                    column(ProjectOwner2; ProjectOwner2)
+                    {
+                    }
                     column(PmtTerms; recPmtTerms.Description)
                     {
                     }
@@ -361,7 +383,7 @@ report 70000 "Sales Invoice Com POSH"
                     column(CopyNo; CopyNo)
                     {
                     }
-                    column(CustTaxIdentificationType; FORMAT(Cust."Tax Identification Type"))
+                    column(CustTaxIdentificationType; FORMAT(recCustomer."Tax Identification Type"))
                     {
                     }
                     column(BillCaption; BillCaptionLbl)
@@ -1074,6 +1096,24 @@ report 70000 "Sales Invoice Com POSH"
                 FormatAddress.SalesInvBillTo(BillToAddress, "Sales Invoice Header");
                 FormatAddress.SalesInvShipTo(ShipToAddress, ShipToAddress, "Sales Invoice Header");
 
+                ShipToPhone := '';
+                ShipToEmail := '';
+                if "Sales Invoice Header"."Ship-to Code" <> '' then begin
+                    ShipToAddCode.Get("Sales Invoice Header"."Sell-to Customer No.", "Sales Invoice Header"."Ship-to Code");
+                    ShipToPhone := ShipToAddCode."Phone No.";
+                    ShipToEmail := ShipToAddCode."E-Mail";
+                end;
+
+                SpecifierName := '';
+                if "Sales Invoice Header".Specifier <> '' then
+                    if Cust.get("Sales Invoice Header".Specifier) then
+                        SpecifierName := Cust.Name;
+
+                ProjectOwner1 := '';
+                ProjectOwner2 := '';
+                ProjectOwner1 := "Sales Invoice Header"."Proj Owner 1";
+                ProjectOwner2 := "Sales Invoice Header"."Proj Owner 2";
+
                 IF "Payment Terms Code" = '' THEN
                     CLEAR(PaymentTerms)
                 ELSE
@@ -1083,7 +1123,6 @@ report 70000 "Sales Invoice Com POSH"
                     CLEAR(ShipmentMethod)
                 ELSE
                     ShipmentMethod.GET("Shipment Method Code");
-
 
                 IF LogInteraction THEN
                     IF NOT CurrReport.PREVIEW THEN BEGIN
@@ -1300,6 +1339,9 @@ report 70000 "Sales Invoice Com POSH"
         CompanyAddress: array[8] of Text[50];
         BillToAddress: array[8] of Text[50];
         ShipToAddress: array[8] of Text[50];
+        ShipToAddCode: Record "Ship-to Address";
+        ShipToPhone: Text[30];
+        ShipToEmail: Text[100];
         CopyTxt: Text[10];
         DescriptionToPrint: Text[210];
         HighDescriptionToPrint: Text[210];
@@ -1405,6 +1447,9 @@ report 70000 "Sales Invoice Com POSH"
         INLINEN: Integer;
         ShowEmbLogo: Boolean;
         GLAccountPrint: Boolean;
+        SpecifierName: Text[100];
+        ProjectOwner2: Text[100];
+        ProjectOwner1: Text[100];
 
 
     procedure InitLogInteraction()

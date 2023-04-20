@@ -60,7 +60,7 @@ tableextension 50214 PurchaseLine_Ext extends "Purchase Line"
             FieldClass = FlowField;
             CalcFormula = lookup(Item.Backing WHERE("No." = Field("No.")));
             Caption = 'Backing';
-            OptionMembers = " ",Prebacked,"To be Backed","TO BE BACKED+C6";
+            OptionMembers = " ",Prebacked,"To be Backed","TO BE BACKED+C6","Alta is Required";
 
             AccessByPermission = TableData "Purch. Rcpt. Header" = R;
         }

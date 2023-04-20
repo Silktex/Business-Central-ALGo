@@ -2175,7 +2175,7 @@ Cstr(Fields!DiscountAmount.Value)
       <Width>7.04476in</Width>
       <Page>
         <PageHeader>
-          <Height>3.14458in</Height>
+          <Height>3.99874in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2213,20 +2213,20 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.61289in</Top>
-              <Left>4.10292in</Left>
+              <Top>0.45039in</Top>
+              <Left>3.82792in</Left>
               <Height>11pt</Height>
-              <Width>1.15849in</Width>
+              <Width>0.97099in</Width>
               <ZIndex>1</ZIndex>
               <Style />
             </Textbox>
@@ -2240,20 +2240,20 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.46011in</Top>
-              <Left>4.10292in</Left>
+              <Top>0.29761in</Top>
+              <Left>3.82792in</Left>
               <Height>11pt</Height>
-              <Width>1.15849in</Width>
+              <Width>0.97099in</Width>
               <ZIndex>2</ZIndex>
               <Style />
             </Textbox>
@@ -2267,7 +2267,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -2275,10 +2275,10 @@ Cstr(Fields!DiscountAmount.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.58789in</Top>
-              <Left>4.01315in</Left>
-              <Height>11pt</Height>
-              <Width>0.49606in</Width>
+              <Top>1.66289in</Top>
+              <Left>3.63815in</Left>
+              <Height>11.9pt</Height>
+              <Width>1.11917in</Width>
               <ZIndex>3</ZIndex>
               <Style />
             </Textbox>
@@ -2292,20 +2292,20 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.224in</Top>
-              <Left>4.10292in</Left>
+              <Top>1.0615in</Top>
+              <Left>3.82792in</Left>
               <Height>11pt</Height>
-              <Width>1.15849in</Width>
+              <Width>0.97099in</Width>
               <ZIndex>4</ZIndex>
               <Style />
             </Textbox>
@@ -2319,20 +2319,20 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.91844in</Top>
-              <Left>4.10292in</Left>
+              <Top>0.75594in</Top>
+              <Left>3.82792in</Left>
               <Height>11pt</Height>
-              <Width>1.15849in</Width>
+              <Width>0.97099in</Width>
               <ZIndex>5</ZIndex>
               <Style />
             </Textbox>
@@ -2346,20 +2346,20 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.07122in</Top>
-              <Left>4.10292in</Left>
+              <Top>0.90872in</Top>
+              <Left>3.82792in</Left>
               <Height>11pt</Height>
-              <Width>1.15849in</Width>
+              <Width>0.97099in</Width>
               <ZIndex>6</ZIndex>
               <Style />
             </Textbox>
@@ -2373,20 +2373,20 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.76567in</Top>
-              <Left>4.10292in</Left>
+              <Top>0.60317in</Top>
+              <Left>3.82792in</Left>
               <Height>11pt</Height>
-              <Width>1.15849in</Width>
+              <Width>0.97099in</Width>
               <ZIndex>7</ZIndex>
               <Style />
             </Textbox>
@@ -2400,7 +2400,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -2408,9 +2408,9 @@ Cstr(Fields!DiscountAmount.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.52539in</Top>
+              <Top>1.57539in</Top>
               <Left>0.07494in</Left>
-              <Height>10.25pt</Height>
+              <Height>12.05pt</Height>
               <Width>0.49734in</Width>
               <ZIndex>8</ZIndex>
               <Style />
@@ -2456,17 +2456,17 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.54484in</Top>
-              <Left>0.07494in</Left>
-              <Height>11pt</Height>
-              <Width>3.65682in</Width>
+              <Top>3.14484in</Top>
+              <Left>1.04369in</Left>
+              <Height>10.79984pt</Height>
+              <Width>2.52382in</Width>
               <ZIndex>10</ZIndex>
               <Style />
             </Textbox>
@@ -2480,7 +2480,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2494,7 +2494,14 @@ Cstr(Fields!DiscountAmount.Value)
               <Height>11pt</Height>
               <Width>3.49257in</Width>
               <ZIndex>11</ZIndex>
-              <Style />
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
             </Textbox>
             <Textbox Name="SalesInvoiceHeaderNo1">
               <KeepTogether>true</KeepTogether>
@@ -2506,7 +2513,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2515,10 +2522,10 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.46011in</Top>
-              <Left>5.34891in</Left>
+              <Top>0.29761in</Top>
+              <Left>4.84891in</Left>
               <Height>11pt</Height>
-              <Width>1.47875in</Width>
+              <Width>1.97875in</Width>
               <ZIndex>12</ZIndex>
               <Style />
             </Textbox>
@@ -2532,7 +2539,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2541,10 +2548,10 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.224in</Top>
-              <Left>5.3489in</Left>
+              <Top>1.0615in</Top>
+              <Left>4.8489in</Left>
               <Height>11pt</Height>
-              <Width>1.64428in</Width>
+              <Width>2.14428in</Width>
               <ZIndex>13</ZIndex>
               <Style />
             </Textbox>
@@ -2558,7 +2565,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2567,10 +2574,10 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.91844in</Top>
-              <Left>5.3489in</Left>
+              <Top>0.75594in</Top>
+              <Left>4.8489in</Left>
               <Height>11pt</Height>
-              <Width>1.64428in</Width>
+              <Width>2.14428in</Width>
               <ZIndex>14</ZIndex>
               <Style />
             </Textbox>
@@ -2584,7 +2591,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <Format>d</Format>
                       </Style>
                     </TextRun>
@@ -2594,10 +2601,10 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.07122in</Top>
-              <Left>5.3489in</Left>
+              <Top>0.90872in</Top>
+              <Left>4.8489in</Left>
               <Height>11pt</Height>
-              <Width>1.64428in</Width>
+              <Width>2.14428in</Width>
               <ZIndex>15</ZIndex>
               <Style />
             </Textbox>
@@ -2611,7 +2618,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2620,12 +2627,19 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.52539in</Top>
+              <Top>1.57539in</Top>
               <Left>0.56463in</Left>
-              <Height>10.35032pt</Height>
+              <Height>12.15032pt</Height>
               <Width>1.57166in</Width>
               <ZIndex>16</ZIndex>
-              <Style />
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
             </Textbox>
             <Textbox Name="ShipToAddress21">
               <KeepTogether>true</KeepTogether>
@@ -2637,7 +2651,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>7.5pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2646,10 +2660,10 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.74067in</Top>
-              <Left>4.00917in</Left>
-              <Height>42.95008pt</Height>
-              <Width>2.98401in</Width>
+              <Top>1.82817in</Top>
+              <Left>3.63417in</Left>
+              <Height>90.65008pt</Height>
+              <Width>3.35901in</Width>
               <ZIndex>17</ZIndex>
               <Style>
                 <Border>
@@ -2667,7 +2681,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2676,12 +2690,19 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.58789in</Top>
-              <Left>4.50921in</Left>
-              <Height>11pt</Height>
-              <Width>2.48397in</Width>
+              <Top>1.66289in</Top>
+              <Left>4.8489in</Left>
+              <Height>11.9pt</Height>
+              <Width>2.14428in</Width>
               <ZIndex>18</ZIndex>
-              <Style />
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
             </Textbox>
             <Textbox Name="SalesInvoiceHeaderDueDate1">
               <KeepTogether>true</KeepTogether>
@@ -2693,7 +2714,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2702,10 +2723,10 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.76567in</Top>
-              <Left>5.3489in</Left>
+              <Top>0.60317in</Top>
+              <Left>4.8489in</Left>
               <Height>11pt</Height>
-              <Width>1.64428in</Width>
+              <Width>2.14428in</Width>
               <ZIndex>19</ZIndex>
               <Style />
             </Textbox>
@@ -2720,7 +2741,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -2728,10 +2749,10 @@ Cstr(Fields!DiscountAmount.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.39206in</Top>
+              <Top>3.14206in</Top>
               <Left>0.07494in</Left>
               <Height>11pt</Height>
-              <Width>1.34683in</Width>
+              <Width>0.83956in</Width>
               <ZIndex>20</ZIndex>
               <Style />
             </Textbox>
@@ -2741,20 +2762,20 @@ Cstr(Fields!DiscountAmount.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=Code.GetData(11,1) +chr(10)+ Code.GetData(13,1)+ Chr(10)+ Code.GetData(14,1) +chr(10)+Code.GetData(15,1) + chr(10)+ Code.GetData(16,1)+Chr(10) + Code.GetData(17,1) + Chr(10)+Code.Getdata(18,1)</Value>
+                      <Value>=IIF(First(Fields!ProjectOwner1.Value, "DataSet_Result")="","",First(Fields!ProjectOwner1.Value, "DataSet_Result")+Chr(10))+IIF(First(Fields!ProjectOwner2.Value, "DataSet_Result")="","",First(Fields!ProjectOwner2.Value, "DataSet_Result")+Chr(10))+Code.GetData(11,1) +chr(10)+ Code.GetData(13,1)+ Chr(10)+ Code.GetData(14,1) +chr(10)+Code.GetData(15,1) + chr(10)+ Code.GetData(16,1)+Chr(10) + Code.GetData(17,1) + Chr(10)+Code.Getdata(18,1)</Value>
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>7.5pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.73442in</Top>
+              <Top>1.74692in</Top>
               <Left>0.07494in</Left>
-              <Height>43.40008pt</Height>
+              <Height>98.30008pt</Height>
               <Width>3.49257in</Width>
               <ZIndex>21</ZIndex>
               <Style />
@@ -2769,7 +2790,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -2783,7 +2804,14 @@ Cstr(Fields!DiscountAmount.Value)
               <Height>11pt</Height>
               <Width>3.49257in</Width>
               <ZIndex>22</ZIndex>
-              <Style />
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
             </Textbox>
             <Textbox Name="ExecutionTimeTextBox">
               <KeepTogether>true</KeepTogether>
@@ -2795,7 +2823,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <Format>d</Format>
                       </Style>
                     </TextRun>
@@ -2805,10 +2833,10 @@ Cstr(Fields!DiscountAmount.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.61289in</Top>
-              <Left>5.3489in</Left>
+              <Top>0.45039in</Top>
+              <Left>4.8489in</Left>
               <Height>11pt</Height>
-              <Width>1.64428in</Width>
+              <Width>2.14428in</Width>
               <ZIndex>23</ZIndex>
               <Style />
             </Textbox>
@@ -2824,7 +2852,7 @@ Cstr(Fields!DiscountAmount.Value)
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -2849,7 +2877,7 @@ Cstr(Fields!DiscountAmount.Value)
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -2873,7 +2901,7 @@ Cstr(Fields!DiscountAmount.Value)
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -2899,7 +2927,7 @@ Cstr(Fields!DiscountAmount.Value)
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -2925,7 +2953,7 @@ Cstr(Fields!DiscountAmount.Value)
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                             <FontWeight>Bold</FontWeight>
                           </Style>
                         </TextRun>
@@ -2950,7 +2978,7 @@ Cstr(Fields!DiscountAmount.Value)
                           <Style>
                             <FontStyle>Normal</FontStyle>
                             <FontFamily>Segoe UI</FontFamily>
-                            <FontSize>8pt</FontSize>
+                            <FontSize>9pt</FontSize>
                           </Style>
                         </TextRun>
                       </TextRuns>
@@ -2964,9 +2992,37 @@ Cstr(Fields!DiscountAmount.Value)
                   <ZIndex>5</ZIndex>
                   <Style />
                 </Textbox>
+                <Textbox Name="ShipmentMethodDescription2">
+                  <KeepTogether>true</KeepTogether>
+                  <Paragraphs>
+                    <Paragraph>
+                      <TextRuns>
+                        <TextRun>
+                          <Value>="Tracking No. :" +Chr(10)+ Code.GetData(93,1)
+'Fields!PackageTrackingNo.Value</Value>
+                          <Style>
+                            <FontStyle>Normal</FontStyle>
+                            <FontFamily>Segoe UI</FontFamily>
+                            <FontSize>9pt</FontSize>
+                            <FontWeight>Bold</FontWeight>
+                          </Style>
+                        </TextRun>
+                      </TextRuns>
+                      <Style>
+                        <TextAlign>Left</TextAlign>
+                      </Style>
+                    </Paragraph>
+                  </Paragraphs>
+                  <Top>0.0125in</Top>
+                  <Left>5.14943in</Left>
+                  <Height>22.09952pt</Height>
+                  <Width>1.78381in</Width>
+                  <ZIndex>6</ZIndex>
+                  <Style />
+                </Textbox>
               </ReportItems>
               <KeepTogether>true</KeepTogether>
-              <Top>2.77167in</Top>
+              <Top>3.64667in</Top>
               <Left>0.03101in</Left>
               <Height>0.34375in</Height>
               <Width>6.97191in</Width>
@@ -2991,7 +3047,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
@@ -2999,10 +3055,10 @@ Cstr(Fields!DiscountAmount.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.39206in</Top>
-              <Left>4.00917in</Left>
+              <Top>3.14206in</Top>
+              <Left>3.63417in</Left>
               <Height>11pt</Height>
-              <Width>1.34683in</Width>
+              <Width>0.75224in</Width>
               <ZIndex>25</ZIndex>
               <Style />
             </Textbox>
@@ -3017,17 +3073,17 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.54484in</Top>
-              <Left>4.00917in</Left>
-              <Height>11pt</Height>
-              <Width>2.46306in</Width>
+              <Top>3.14484in</Top>
+              <Left>4.47391in</Left>
+              <Height>10.79984pt</Height>
+              <Width>2.51927in</Width>
               <ZIndex>26</ZIndex>
               <Style />
             </Textbox>
@@ -3041,7 +3097,7 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
@@ -3055,7 +3111,14 @@ Cstr(Fields!DiscountAmount.Value)
               <Height>11pt</Height>
               <Width>3.49257in</Width>
               <ZIndex>27</ZIndex>
-              <Style />
+              <Visibility>
+                <Hidden>true</Hidden>
+              </Visibility>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
             </Textbox>
             <Textbox Name="BillToAddress74">
               <KeepTogether>true</KeepTogether>
@@ -3067,20 +3130,20 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                         <FontWeight>Bold</FontWeight>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style>
-                    <TextAlign>Right</TextAlign>
+                    <TextAlign>Left</TextAlign>
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.3709in</Top>
-              <Left>4.10292in</Left>
+              <Top>1.2084in</Top>
+              <Left>3.82792in</Left>
               <Height>11pt</Height>
-              <Width>1.15849in</Width>
+              <Width>0.97099in</Width>
               <ZIndex>28</ZIndex>
               <Style />
             </Textbox>
@@ -3094,17 +3157,17 @@ Cstr(Fields!DiscountAmount.Value)
                       <Style>
                         <FontStyle>Normal</FontStyle>
                         <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
+                        <FontSize>9pt</FontSize>
                       </Style>
                     </TextRun>
                   </TextRuns>
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.3709in</Top>
-              <Left>5.34891in</Left>
+              <Top>1.2084in</Top>
+              <Left>4.84891in</Left>
               <Height>11pt</Height>
-              <Width>1.64427in</Width>
+              <Width>2.14427in</Width>
               <ZIndex>29</ZIndex>
               <Style />
             </Textbox>
@@ -3124,6 +3187,267 @@ Cstr(Fields!DiscountAmount.Value)
                 </Border>
               </Style>
             </Image>
+            <Textbox Name="BillToAddress82">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=""</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.31118in</Top>
+              <Left>1.03651in</Left>
+              <Height>10.79984pt</Height>
+              <Width>2.52382in</Width>
+              <ZIndex>31</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+              </Style>
+            </Textbox>
+            <Textbox Name="BillToAddress76">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Phone No."</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.3084in</Top>
+              <Left>0.06776in</Left>
+              <Height>11pt</Height>
+              <Width>0.83956in</Width>
+              <ZIndex>32</ZIndex>
+              <Style />
+            </Textbox>
+            <Textbox Name="BillToAddress83">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!BillToEmail.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.46118in</Top>
+              <Left>1.03651in</Left>
+              <Height>10.79984pt</Height>
+              <Width>2.52382in</Width>
+              <ZIndex>33</ZIndex>
+              <Style />
+            </Textbox>
+            <Textbox Name="BillToAddress77">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="E-Mail"</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.4584in</Top>
+              <Left>0.06776in</Left>
+              <Height>11pt</Height>
+              <Width>0.83956in</Width>
+              <ZIndex>34</ZIndex>
+              <Style />
+            </Textbox>
+            <Textbox Name="BillToAddress84">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!ShipToPhone.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.29868in</Top>
+              <Left>4.47401in</Left>
+              <Height>10.79984pt</Height>
+              <Width>2.51132in</Width>
+              <ZIndex>35</ZIndex>
+              <Style />
+            </Textbox>
+            <Textbox Name="BillToAddress78">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="Phone No."</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.2959in</Top>
+              <Left>3.63026in</Left>
+              <Height>11pt</Height>
+              <Width>0.75206in</Width>
+              <ZIndex>36</ZIndex>
+              <Style />
+            </Textbox>
+            <Textbox Name="BillToAddress85">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!ShipToEmail.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.44868in</Top>
+              <Left>4.47401in</Left>
+              <Height>10.79984pt</Height>
+              <Width>2.51132in</Width>
+              <ZIndex>37</ZIndex>
+              <Style />
+            </Textbox>
+            <Textbox Name="BillToAddress79">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>="E-Mail"</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style />
+                </Paragraph>
+              </Paragraphs>
+              <Top>3.4459in</Top>
+              <Left>3.63026in</Left>
+              <Height>11pt</Height>
+              <Width>0.75206in</Width>
+              <ZIndex>38</ZIndex>
+              <Style />
+            </Textbox>
+            <Textbox Name="CompanyAddr53">
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=First(Fields!Specifier_Name.Value, "DataSet_Result")</Value>
+                      <Style>
+                        <FontStyle>Normal</FontStyle>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <Top>1.36815in</Top>
+              <Left>4.8489in</Left>
+              <Height>10.65pt</Height>
+              <Width>2.14586in</Width>
+              <ZIndex>39</ZIndex>
+              <Style>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </Textbox>
+            <Textbox Name="Textbox19">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>Specifier Name:</Value>
+                      <Style>
+                        <FontFamily>Segoe UI</FontFamily>
+                        <FontSize>9pt</FontSize>
+                        <FontWeight>Bold</FontWeight>
+                      </Style>
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>Textbox2</rd:DefaultName>
+              <Top>1.36815in</Top>
+              <Left>3.82792in</Left>
+              <Height>12.00016pt</Height>
+              <Width>0.9669in</Width>
+              <ZIndex>40</ZIndex>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <VerticalAlign>Top</VerticalAlign>
+              </Style>
+            </Textbox>
           </ReportItems>
           <Style />
         </PageHeader>
@@ -3393,31 +3717,6 @@ Cstr(Fields!DiscountAmount.Value)
                   <Style>Solid</Style>
                 </TopBorder>
               </Style>
-            </Textbox>
-            <Textbox Name="ShipmentMethodDescription2">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>="Tracking No. :" + Code.GetData(93,1)
-'Fields!PackageTrackingNo.Value</Value>
-                      <Style>
-                        <FontStyle>Normal</FontStyle>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <Top>0.30187in</Top>
-              <Left>0.0416in</Left>
-              <Height>11pt</Height>
-              <Width>2.64457in</Width>
-              <ZIndex>8</ZIndex>
-              <Style />
             </Textbox>
           </ReportItems>
           <Style>
@@ -4452,6 +4751,27 @@ kIrGPfuc2xC8bdNdAWB3kQ864J+yq+a5J/lQQyF3+Nrd65ZaeY5lkYMhCcdhWODzVJ+fmI2jvNPNHV/e
         </Field>
         <Field Name="recCustomer_BilltoCountryRegionCode">
           <DataField>recCustomer_BilltoCountryRegionCode</DataField>
+        </Field>
+        <Field Name="BillToPhone">
+          <DataField>BillToPhone</DataField>
+        </Field>
+        <Field Name="BillToEmail">
+          <DataField>BillToEmail</DataField>
+        </Field>
+        <Field Name="ShipToPhone">
+          <DataField>ShipToPhone</DataField>
+        </Field>
+        <Field Name="ShipToEmail">
+          <DataField>ShipToEmail</DataField>
+        </Field>
+        <Field Name="Specifier_Name">
+          <DataField>Specifier_Name</DataField>
+        </Field>
+        <Field Name="ProjectOwner1">
+          <DataField>ProjectOwner1</DataField>
+        </Field>
+        <Field Name="ProjectOwner2">
+          <DataField>ProjectOwner2</DataField>
         </Field>
         <Field Name="PmtTerms">
           <DataField>PmtTerms</DataField>

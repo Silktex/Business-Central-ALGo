@@ -29,7 +29,7 @@ report 70016 "Shipped Samples Report"
             column(CompanyAddr5; CompanyAddr[5])
             {
             }
-            column("Filter"; 'Sample from ' + FORMAT(WORKDATE - 7) + ' to ' + FORMAT(WORKDATE - 1))
+            column("Filter"; 'Sample from ' + FORMAT(FromDate) + ' to ' + FORMAT(ToDate))
             {
             }
             column(SalesHeader_Salesperson_Code; "Sales Invoice Header"."Salesperson Code")
@@ -75,6 +75,15 @@ report 70016 "Shipped Samples Report"
             {
             }
             column(SalesHeader_Tracking_No; "Sales Invoice Header"."Package Tracking No.")
+            {
+            }
+            column(Project_Type; "Project Type")
+            {
+            }
+            column(Project_Name; "Project Description")
+            {
+            }
+            column(Project_Phase; "Project Phase")
             {
             }
             dataitem("Sales Invoice Line"; "Sales Invoice Line")
@@ -143,8 +152,14 @@ report 70016 "Shipped Samples Report"
 
             trigger OnPreDataItem()
             begin
+
+                WeeKStart := CalcDate('-CW', WorkDate());
+                FromDate := CalcDate('-7D', WeeKStart);
+                ToDate := CalcDate('-3D', WeeKStart);
+
                 //SETRANGE("Shipment Date", WORKDATE - 7, WORKDATE - 1);
-                SETRANGE("Posting Date", WORKDATE - 7, WORKDATE - 1);
+                //SETRANGE("Posting Date", WORKDATE - 7, WORKDATE - 1);
+                SETRANGE("Posting Date", FromDate, ToDate);
             end;
         }
     }
@@ -177,6 +192,8 @@ report 70016 "Shipped Samples Report"
         ShipVia = 'Ship Via';
         Whse = 'Whse';
         ItmDescrtxt = 'Description';
+
+
     }
 
     trigger OnPreReport()
@@ -207,7 +224,9 @@ report 70016 "Shipped Samples Report"
         contact: Record Contact;
         customer: Record Customer;
         SelltocustomerEmail: Text[100];
-
+        FromDate: date;
+        ToDate: Date;
+        WeeKStart: Date;
 
     procedure QuantityOnSO(DocNo: Code[20]; ItemNo: Code[20]; VarrientCode: Code[20]; LocationCode: Code[20]): Decimal
     var

@@ -79,6 +79,15 @@ report 70008 "Shipped Samples Report Manual"
             column(SalesHeader_Tracking_No; "Sales Invoice Header"."Package Tracking No.")
             {
             }
+            column(Project_Type; "Project Type")
+            {
+            }
+            column(Project_Name; "Project Description")
+            {
+            }
+            column(Project_Phase; "Project Phase")
+            {
+            }
             dataitem("Sales Invoice Line"; "Sales Invoice Line")
             {
                 DataItemLink = "Document No." = FIELD("No.");
@@ -118,6 +127,7 @@ report 70008 "Shipped Samples Report Manual"
 
             trigger OnAfterGetRecord()
             begin
+
 
                 SalespersonName := '';
                 recSalesperson.RESET;
@@ -223,7 +233,6 @@ report 70008 "Shipped Samples Report Manual"
         customer: Record Customer;
         SelltocustomerEmail: Text[100];
         PrintDeatils: Boolean;
-
 
     procedure QuantityOnSO(DocNo: Code[20]; ItemNo: Code[20]; VarrientCode: Code[20]; LocationCode: Code[20]): Decimal
     var
