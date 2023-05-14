@@ -168,10 +168,10 @@ pageextension 70005 PriceListLineReviewExt extends "Price List Line Review"
         Expired: Boolean;
         ContinuityStartDate: Date;
         ContinuityEndDate: Date;
-        ItemCrossReference: Record "Item Cross Reference";
+        ItemCrossReference: Record "Item Reference";
         recItem: Record Item;
         RecordFound: Boolean;
-        ItemCrossReference1: Record "Item Cross Reference";
+        ItemCrossReference1: Record "Item Reference";
 
 
 }

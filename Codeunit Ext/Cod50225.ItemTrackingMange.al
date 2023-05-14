@@ -1401,14 +1401,15 @@ codeunit 50225 "Item Tracking Management New"
     end;
 
 #if not CLEAN19
-    [Obsolete('Replaced by InitItemTrackingForTempWhseWorksheetLine().', '19.0')]
-    procedure InitItemTrkgForTempWkshLine(WhseDocType: Option; WhseDocNo: Code[20]; WhseDocLineNo: Integer; SourceType: Integer; SourceSubtype: Integer; SourceNo: Code[20]; SourceLineNo: Integer; SourceSublineNo: Integer)
-    begin
-        InitItemTrackingForTempWhseWorksheetLine(
-            "Warehouse Worksheet Document Type".FromInteger(WhseDocType), WhseDocNo, WhseDocLineNo,
-            SourceType, SourceSubtype, SourceNo, SourceLineNo, SourceSublineNo);
-    end;
+    // [Obsolete('Replaced by InitItemTrackingForTempWhseWorksheetLine().', '19.0')]
+    // procedure InitItemTrkgForTempWkshLine(WhseDocType: Option; WhseDocNo: Code[20]; WhseDocLineNo: Integer; SourceType: Integer; SourceSubtype: Integer; SourceNo: Code[20]; SourceLineNo: Integer; SourceSublineNo: Integer)
+    // begin
+    //     InitItemTrackingForTempWhseWorksheetLine(
+    //         "Warehouse Worksheet Document Type".FromInteger(WhseDocType), WhseDocNo, WhseDocLineNo,
+    //         SourceType, SourceSubtype, SourceNo, SourceLineNo, SourceSublineNo);
+    // end;
 #endif
+
 
     procedure InitItemTrackingForTempWhseWorksheetLine(WhseDocType: Enum "Warehouse Worksheet Document Type"; WhseDocNo: Code[20]; WhseDocLineNo: Integer; SourceType: Integer; SourceSubtype: Integer; SourceNo: Code[20]; SourceLineNo: Integer; SourceSublineNo: Integer)
     var
@@ -1660,26 +1661,26 @@ codeunit 50225 "Item Tracking Management New"
     end;
 
 #if not CLEAN19
-    [Obsolete('Replaced by GetWhseItemTrkgSetup or CheckWhseItemTrkgSetup(ItemNo: Code[20])', '16.0')]
-    procedure CheckWhseItemTrkgSetup(ItemNo: Code[20]; var SNRequired: Boolean; var LNRequired: Boolean; ShowError: Boolean)
-    var
-        ItemTrackingCode: Record "Item Tracking Code";
-        Item: Record Item;
-    begin
-        SNRequired := false;
-        LNRequired := false;
-        if Item."No." <> ItemNo then
-            Item.Get(ItemNo);
-        if Item."Item Tracking Code" <> '' then begin
-            if ItemTrackingCode.Code <> Item."Item Tracking Code" then
-                ItemTrackingCode.Get(Item."Item Tracking Code");
-            SNRequired := ItemTrackingCode."SN Warehouse Tracking";
-            LNRequired := ItemTrackingCode."Lot Warehouse Tracking";
-            OnCheckWhseItemTrkgSetupOnAfterItemTrackingCodeGet(ItemTrackingCode);
-        end;
-        if not (SNRequired or LNRequired) and ShowError then
-            Error(Text005, Item.FieldCaption("No."), ItemNo);
-    end;
+    // [Obsolete('Replaced by GetWhseItemTrkgSetup or CheckWhseItemTrkgSetup(ItemNo: Code[20])', '16.0')]
+    // procedure CheckWhseItemTrkgSetup(ItemNo: Code[20]; var SNRequired: Boolean; var LNRequired: Boolean; ShowError: Boolean)
+    // var
+    //     ItemTrackingCode: Record "Item Tracking Code";
+    //     Item: Record Item;
+    // begin
+    //     SNRequired := false;
+    //     LNRequired := false;
+    //     if Item."No." <> ItemNo then
+    //         Item.Get(ItemNo);
+    //     if Item."Item Tracking Code" <> '' then begin
+    //         if ItemTrackingCode.Code <> Item."Item Tracking Code" then
+    //             ItemTrackingCode.Get(Item."Item Tracking Code");
+    //         SNRequired := ItemTrackingCode."SN Warehouse Tracking";
+    //         LNRequired := ItemTrackingCode."Lot Warehouse Tracking";
+    //         OnCheckWhseItemTrkgSetupOnAfterItemTrackingCodeGet(ItemTrackingCode);
+    //     end;
+    //     if not (SNRequired or LNRequired) and ShowError then
+    //         Error(Text005, Item.FieldCaption("No."), ItemNo);
+    // end;
 #endif
 
     procedure SetGlobalParameters(SourceSpecification2: Record "Tracking Specification" temporary; var TempTrackingSpecification2: Record "Tracking Specification" temporary; DueDate2: Date)
@@ -2145,48 +2146,6 @@ codeunit 50225 "Item Tracking Management New"
         end;
     end;
 
-#if not CLEAN19
-    [Obsolete('Replaced by procedure ExistingExpirationDate with parameter Item Tracking Setup.', '19.0')]
-    procedure ExistingExpirationDate(ItemNo: Code[20]; VariantCode: Code[20]; LotNo: Code[50]; SerialNo: Code[50]; TestMultiple: Boolean; var EntriesExist: Boolean) ExpiryDate: Date
-    var
-        ItemTrackingSetup: Record "Item Tracking Setup";
-    begin
-        ItemTrackingSetup."Serial No." := SerialNo;
-        ItemTrackingSetup."Lot No." := LotNo;
-        exit(ExistingExpirationDate(ItemNo, VariantCode, ItemTrackingSetup, TestMultiple, EntriesExist));
-
-    end;
-#endif
-
-    procedure ExistingExpirationDate(ItemNo: Code[20]; VariantCode: Code[20]; ItemTrackingSetup: Record "Item Tracking Setup"; TestMultiple: Boolean; var EntriesExist: Boolean) ExpiryDate: Date
-    var
-        ItemLedgEntry: Record "Item Ledger Entry";
-        ItemTracingMgt: Codeunit "Item Tracing Mgt.";
-        IsHandled: Boolean;
-    begin
-        IsHandled := false;
-        OnBeforeExistingExpirationDate(
-            ItemNo, VariantCode, ItemTrackingSetup."Lot No.", ItemTrackingSetup."Serial No.",
-            TestMultiple, EntriesExist, ExpiryDate, IsHandled, ItemLedgEntry);
-        if IsHandled then
-            exit(ExpiryDate);
-
-        if not FindLastItemLedgerEntry(ItemNo, VariantCode, ItemTrackingSetup, ItemLedgEntry) then begin
-            EntriesExist := false;
-            exit;
-        end;
-
-        EntriesExist := true;
-        ExpiryDate := ItemLedgEntry."Expiration Date";
-
-        if TestMultiple and ItemTracingMgt.IsSpecificTracking(ItemNo, ItemTrackingSetup) then begin
-            ItemLedgEntry.SetFilter("Expiration Date", '<>%1', ItemLedgEntry."Expiration Date");
-            ItemLedgEntry.SetRange(Open, true);
-            if not ItemLedgEntry.IsEmpty() then
-                Error(Text007, ItemTrackingSetup."Lot No.");
-        end;
-    end;
-
     procedure ExistingExpirationDate(WarehouseActivityLine: Record "Warehouse Activity Line"; TestMultiple: Boolean; var EntriesExist: Boolean) ExpiryDate: Date
     var
         ItemTrackingSetup: Record "Item Tracking Setup";
@@ -2218,15 +2177,58 @@ codeunit 50225 "Item Tracking Management New"
     end;
 
 #if not CLEAN19
-    [Obsolete('Replaced by ExistingExpirationDateAndQty() with parameter Item Tracking Setup.', '19.0')]
-    procedure ExistingExpirationDateAndQty(ItemNo: Code[20]; VariantCode: Code[20]; LotNo: Code[50]; SerialNo: Code[50]; var SumOfEntries: Decimal): Date
+    // [Obsolete('Replaced by procedure ExistingExpirationDate with parameter Item Tracking Setup.', '19.0')]
+    // procedure ExistingExpirationDate(ItemNo: Code[20]; VariantCode: Code[20]; LotNo: Code[50]; SerialNo: Code[50]; TestMultiple: Boolean; var EntriesExist: Boolean) ExpiryDate: Date
+    // var
+    //     ItemTrackingSetup: Record "Item Tracking Setup";
+    // begin
+    //     ItemTrackingSetup."Serial No." := SerialNo;
+    //     ItemTrackingSetup."Lot No." := LotNo;
+    //     exit(ExistingExpirationDate(ItemNo, VariantCode, ItemTrackingSetup, TestMultiple, EntriesExist));
+
+    // end;
+#endif
+
+    procedure ExistingExpirationDate(ItemNo: Code[20]; VariantCode: Code[20]; ItemTrackingSetup: Record "Item Tracking Setup"; TestMultiple: Boolean; var EntriesExist: Boolean) ExpiryDate: Date
     var
-        ItemTrackingSetup: Record "Item Tracking Setup";
+        ItemLedgEntry: Record "Item Ledger Entry";
+        ItemTracingMgt: Codeunit "Item Tracing Mgt.";
+        IsHandled: Boolean;
     begin
-        ItemTrackingSetup."Serial No." := SerialNo;
-        ItemTrackingSetup."Lot No." := LotNo;
-        exit(ExistingExpirationDateAndQty(ItemNo, VariantCode, ItemTrackingSetup, SumOfEntries));
+        IsHandled := false;
+        OnBeforeExistingExpirationDate(
+            ItemNo, VariantCode, ItemTrackingSetup."Lot No.", ItemTrackingSetup."Serial No.",
+            TestMultiple, EntriesExist, ExpiryDate, IsHandled, ItemLedgEntry);
+        if IsHandled then
+            exit(ExpiryDate);
+
+        if not FindLastItemLedgerEntry(ItemNo, VariantCode, ItemTrackingSetup, ItemLedgEntry) then begin
+            EntriesExist := false;
+            exit;
+        end;
+
+        EntriesExist := true;
+        ExpiryDate := ItemLedgEntry."Expiration Date";
+
+        if TestMultiple and ItemTracingMgt.IsSpecificTracking(ItemNo, ItemTrackingSetup) then begin
+            ItemLedgEntry.SetFilter("Expiration Date", '<>%1', ItemLedgEntry."Expiration Date");
+            ItemLedgEntry.SetRange(Open, true);
+            if not ItemLedgEntry.IsEmpty() then
+                Error(Text007, ItemTrackingSetup."Lot No.");
+        end;
     end;
+
+
+#if not CLEAN19
+    // [Obsolete('Replaced by ExistingExpirationDateAndQty() with parameter Item Tracking Setup.', '19.0')]
+    // procedure ExistingExpirationDateAndQty(ItemNo: Code[20]; VariantCode: Code[20]; LotNo: Code[50]; SerialNo: Code[50]; var SumOfEntries: Decimal): Date
+    // var
+    //     ItemTrackingSetup: Record "Item Tracking Setup";
+    // begin
+    //     ItemTrackingSetup."Serial No." := SerialNo;
+    //     ItemTrackingSetup."Lot No." := LotNo;
+    //     exit(ExistingExpirationDateAndQty(ItemNo, VariantCode, ItemTrackingSetup, SumOfEntries));
+    // end;
 #endif
 
     procedure ExistingExpirationDateAndQty(ItemNo: Code[20]; VariantCode: Code[20]; ItemTrackingSetup: Record "Item Tracking Setup"; var SumOfEntries: Decimal) ExpDate: Date
@@ -2252,15 +2254,15 @@ codeunit 50225 "Item Tracking Management New"
     end;
 
 #if not CLEAN19
-    [Obsolete('Replaced by procedure ExistingWarrantyDate().', '19.0')]
-    procedure ExistingWarrantyDate(ItemNo: Code[20]; VariantCode: Code[20]; LotNo: Code[50]; SerialNo: Code[50]; var EntriesExist: Boolean) WarDate: Date
-    var
-        ItemTrackingSetup: Record "Item Tracking Setup";
-    begin
-        ItemTrackingSetup."Serial No." := SerialNo;
-        ItemTrackingSetup."Lot No." := LotNo;
-        exit(ExistingWarrantyDate(ItemNo, VariantCode, ItemTrackingSetup, EntriesExist));
-    end;
+    // [Obsolete('Replaced by procedure ExistingWarrantyDate().', '19.0')]
+    // procedure ExistingWarrantyDate(ItemNo: Code[20]; VariantCode: Code[20]; LotNo: Code[50]; SerialNo: Code[50]; var EntriesExist: Boolean) WarDate: Date
+    // var
+    //     ItemTrackingSetup: Record "Item Tracking Setup";
+    // begin
+    //     ItemTrackingSetup."Serial No." := SerialNo;
+    //     ItemTrackingSetup."Lot No." := LotNo;
+    //     exit(ExistingWarrantyDate(ItemNo, VariantCode, ItemTrackingSetup, EntriesExist));
+    // end;
 #endif
 
     procedure ExistingWarrantyDate(ItemNo: Code[20]; VariantCode: Code[20]; ItemTrackingSetup: Record "Item Tracking Setup"; var EntriesExist: Boolean) WarrantyDate: Date
@@ -2356,15 +2358,15 @@ codeunit 50225 "Item Tracking Management New"
     end;
 
 #if not CLEAN19
-    [Obsolete('Replaced by GetWhseExpirationDate() with parameter Item Tracking Setup.', '19.0')]
-    procedure GetWhseExpirationDate(ItemNo: Code[20]; VariantCode: Code[20]; Location: Record Location; LotNo: Code[50]; SerialNo: Code[50]; var ExpiryDate: Date) ExpDateFound: Boolean
-    var
-        ItemTrackingSetup: Record "Item Tracking Setup";
-    begin
-        ItemTrackingSetup."Serial No." := SerialNo;
-        ItemTrackingSetup."Lot No." := LotNo;
-        exit(GetWhseExpirationDate(ItemNo, VariantCode, Location, ItemTrackingSetup, ExpiryDate));
-    end;
+    // [Obsolete('Replaced by GetWhseExpirationDate() with parameter Item Tracking Setup.', '19.0')]
+    // procedure GetWhseExpirationDate(ItemNo: Code[20]; VariantCode: Code[20]; Location: Record Location; LotNo: Code[50]; SerialNo: Code[50]; var ExpiryDate: Date) ExpDateFound: Boolean
+    // var
+    //     ItemTrackingSetup: Record "Item Tracking Setup";
+    // begin
+    //     ItemTrackingSetup."Serial No." := SerialNo;
+    //     ItemTrackingSetup."Lot No." := LotNo;
+    //     exit(GetWhseExpirationDate(ItemNo, VariantCode, Location, ItemTrackingSetup, ExpiryDate));
+    // end;
 #endif
 
     procedure GetWhseExpirationDate(ItemNo: Code[20]; VariantCode: Code[20]; Location: Record Location; ItemTrackingSetup: Record "Item Tracking Setup"; var ExpiryDate: Date) ExpiryDateFound: Boolean
@@ -2388,15 +2390,15 @@ codeunit 50225 "Item Tracking Management New"
     end;
 
 #if not CLEAN19
-    [Obsolete('Replaced by procedure GetWhseWarrantyDate() with parameter Item Tracking Setup.', '19.0')]
-    procedure GetWhseWarrantyDate(ItemNo: Code[20]; VariantCode: Code[20]; Location: Record Location; LotNo: Code[50]; SerialNo: Code[50]; var WarrantyDate: Date): Boolean
-    var
-        ItemTrackingSetup: Record "Item Tracking Setup";
-    begin
-        ItemTrackingSetup."Serial No." := SerialNo;
-        ItemTrackingSetup."Lot No." := LotNo;
-        exit(GetWhseWarrantyDate(ItemNo, VariantCode, Location, ItemTrackingSetup, WarrantyDate));
-    end;
+    // [Obsolete('Replaced by procedure GetWhseWarrantyDate() with parameter Item Tracking Setup.', '19.0')]
+    // procedure GetWhseWarrantyDate(ItemNo: Code[20]; VariantCode: Code[20]; Location: Record Location; LotNo: Code[50]; SerialNo: Code[50]; var WarrantyDate: Date): Boolean
+    // var
+    //     ItemTrackingSetup: Record "Item Tracking Setup";
+    // begin
+    //     ItemTrackingSetup."Serial No." := SerialNo;
+    //     ItemTrackingSetup."Lot No." := LotNo;
+    //     exit(GetWhseWarrantyDate(ItemNo, VariantCode, Location, ItemTrackingSetup, WarrantyDate));
+    // end;
 #endif
 
     procedure GetWhseWarrantyDate(ItemNo: Code[20]; VariantCode: Code[20]; Location: Record Location; ItemTrackingSetup: Record "Item Tracking Setup"; var Warrantydate: Date): Boolean

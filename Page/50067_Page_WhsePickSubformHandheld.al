@@ -464,8 +464,10 @@ page 50067 "Whse. Pick Subform Handheld"
 
     procedure ShowWhseLine()
     begin
-        WMSMgt.ShowWhseDocLine(
-         Rec."Whse. Document Type".AsInteger(), Rec."Whse. Document No.", Rec."Whse. Document Line No.");
+        //WMSMgt.ShowWhseDocLine(
+        //Rec."Whse. Document Type".AsInteger(), Rec."Whse. Document No.", Rec."Whse. Document Line No.");
+        WMSMgt.ShowWhseActivityDocLine(
+                            Rec."Whse. Document Type", Rec."Whse. Document No.", Rec."Whse. Document Line No.");
     end;
 
     local procedure EnableZoneBin()
@@ -486,8 +488,9 @@ page 50067 "Whse. Pick Subform Handheld"
         if Rec."Serial No." <> '' then begin
             ItemTrackingSetup."Serial No." := Rec."Serial No.";
             ItemTrackingSetup."Lot No." := Rec."Lot No.";
-            ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec."Item No.", Rec."Variant Code",
-                ItemTrackingSetup, false, EntriesExist);
+            // ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec."Item No.", Rec."Variant Code",
+            //     ItemTrackingSetup, false, EntriesExist);
+            ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec, false, EntriesExist);
         end;
         if ExpDate <> 0D then
             Rec."Expiration Date" := ExpDate;
@@ -503,8 +506,9 @@ page 50067 "Whse. Pick Subform Handheld"
         if Rec."Lot No." <> '' then begin
             ItemTrackingSetup."Serial No." := Rec."Serial No.";
             ItemTrackingSetup."Lot No." := Rec."Lot No.";
-            ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec."Item No.", Rec."Variant Code",
-                ItemTrackingSetup, false, EntriesExist);
+            // ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec."Item No.", Rec."Variant Code",
+            //     ItemTrackingSetup, false, EntriesExist);
+            ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec, false, EntriesExist);
         end;
         if ExpDate <> 0D then
             Rec."Expiration Date" := ExpDate;

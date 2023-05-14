@@ -62,9 +62,9 @@ report 50126 "Sales Order With Comment upd11"
                     /*
                     txtAlis := '';
                     ItemCrossReference.RESET;
-                    ItemCrossReference.SETRANGE("Cross-Reference Type",ItemCrossReference."Cross-Reference Type"::Customer);
-                    ItemCrossReference.SETRANGE("Cross-Reference Type No.","Sales Line"."Sell-to Customer No.");
-                    ItemCrossReference.SETRANGE("Cross-Reference No.","Sales Line"."Cross-Reference No.");
+                    ItemCrossReference.SETRANGE("Item Reference Type",ItemCrossReference."Item Reference Type"::Customer);
+                    ItemCrossReference.SETRANGE("Item Reference Type No.","Sales Line"."Sell-to Customer No.");
+                    ItemCrossReference.SETRANGE("Item Reference No.","Sales Line"."Item Reference No.");
                     ItemCrossReference.SETRANGE("Item No.","Sales Line"."No.");
                     IF ItemCrossReference.FINDFIRST THEN BEGIN
                        txtAlis := ItemCrossReference.Description;
@@ -478,7 +478,7 @@ report 50126 "Sales Order With Comment upd11"
                         column(TempSalesLineDesc; TempSalesLine.Description)
                         {
                         }
-                        column(TempSalesLineCrossReferenceNo; TempSalesLine."Cross-Reference No.")
+                        column(TempSalesLineCrossReferenceNo; TempSalesLine."Item Reference No.")
                         {
                         }
                         column(TempSalesLineCustomerItemNo; TempSalesLine."Customer Item No.")
@@ -1592,7 +1592,7 @@ report 50126 "Sales Order With Comment upd11"
         recItemCust: Record "Item Customer";
         TotalLine: Label '______________________';
         blSalesInvoice: Boolean;
-        ItemCrossReference: Record "Item Cross Reference";
+        ItemCrossReference: Record "Item Reference";
         ShowEmbLogo: Boolean;
         BarcodeText: Text;
         g_barcodeItem: Text[50];

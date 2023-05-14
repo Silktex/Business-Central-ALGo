@@ -7,6 +7,7 @@ report 70001 "Order Confirmation11 POSH"
 
     dataset
     {
+
         dataitem("Sales Header"; "Sales Header")
         {
             CalcFields = "Specifier Name";
@@ -439,6 +440,7 @@ report 70001 "Order Confirmation11 POSH"
                             //     CurrReport.SHOWOUTPUT := FALSE;
                         end;
                     }
+
                     dataitem("Sales Line"; "Sales Line")
                     {
                         DataItemLink = "Document Type" = FIELD("Document Type"), "Document No." = FIELD("No.");
@@ -832,6 +834,7 @@ report 70001 "Order Confirmation11 POSH"
                             //CurrReport.CREATETOTALS(SalesLine."Line Amount", SalesLine."Inv. Discount Amount");
                         end;
                     }
+
                     dataitem(VATCounter; "Integer")
                     {
                         DataItemTableView = SORTING(Number);
@@ -1186,6 +1189,27 @@ report 70001 "Order Confirmation11 POSH"
                                 CurrReport.BREAK;
                         end;
                     }
+                    dataitem(Comment; "Integer")
+                    {
+                        DataItemTableView = SORTING(Number);
+                        column(NewComment; txtComment[intCommentLine])
+                        {
+                        }
+                        column(CommentGroup; Number)
+                        {
+                        }
+
+                        trigger OnAfterGetRecord()
+                        begin
+                            intCommentLine := intCommentLine + 1;
+                        end;
+
+                        trigger OnPreDataItem()
+                        begin
+                            SETRANGE(Number, 1, intLineCount);
+                            intCommentLine := 0;
+                        end;
+                    }
                 }
 
                 trigger OnAfterGetRecord()
@@ -1450,6 +1474,144 @@ report 70001 "Order Confirmation11 POSH"
                     ShipToEmail := Contact."E-Mail";
                 END;
 
+                //TotalAmount := 0;
+                FOR intLineCount := 1 TO 50 DO BEGIN
+                    txtComment[intLineCount] := '';
+                END;
+                intLineCount := 0;
+                //txtComment:='';
+                txtProductGroup := '';
+                recSalesLine.RESET;
+                recSalesLine.SETCURRENTKEY("Document Type", "Document No.", "Item Category Code");
+                recSalesLine.SETRANGE("Document Type", "Document Type");
+                recSalesLine.SETRANGE("Document No.", "No.");
+                IF recSalesLine.FIND('-') THEN BEGIN
+                    //txtProductGroup:=recSalesLine."Item Category Code";
+                    REPEAT
+                        IF recSalesLine.Quantity - recSalesLine."Quantity Shipped" > 0 THEN
+                            IF (txtProductGroup <> recSalesLine."Item Category Code") AND (recSalesLine."Item Category Code" <> '') THEN BEGIN
+                                recStandardComment.RESET;
+                                recStandardComment.SETRANGE("Product Code", recSalesLine."Item Category Code");
+                                recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Posting Date");
+                                recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::Customer);
+                                recStandardComment.SETRANGE(recStandardComment."Sales Code", "Sell-to Customer No.");
+                                //recStandardComment.SETRANGE(Internal,TRUE);
+                                IF recStandardComment.FIND('-') THEN BEGIN
+                                    IF recStandardComment.Comment <> '' THEN BEGIN
+                                        intLineCount := intLineCount + 1;
+                                        txtComment[intLineCount] := recStandardComment.Comment;//+' '+recStandardComment."Comment 2";
+                                    END;
+                                    IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                                        intLineCount := intLineCount + 1;
+                                        txtComment[intLineCount] := recStandardComment."Comment 2";//+' '+recStandardComment."Comment 2";
+                                    END;
+                                    IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                                        intLineCount := intLineCount + 1;
+                                        txtComment[intLineCount] := recStandardComment."Comment 3";//+' '+recStandardComment."Comment 2";
+                                    END;
+                                    IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                                        intLineCount := intLineCount + 1;
+                                        txtComment[intLineCount] := recStandardComment."Comment 4";//+' '+recStandardComment."Comment 2";
+                                    END;
+                                    IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                                        intLineCount := intLineCount + 1;
+                                        txtComment[intLineCount] := recStandardComment."Comment 5";//+' '+recStandardComment."Comment 2";
+                                    END;
+                                    txtProductGroup := recSalesLine."Item Category Code";
+                                END ELSE BEGIN
+                                    CLEAR(txtComment);//Ashwini
+                                    recStandardComment.RESET;
+                                    recStandardComment.SETRANGE("Product Code", recSalesLine."Item Category Code");
+                                    recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Posting Date");
+                                    recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::"All Customer");
+                                    //recStandardComment.SETRANGE(recStandardComment."Sales Code","Sell-to Customer No.");
+                                    //recStandardComment.SETRANGE(Internal,TRUE);
+                                    IF recStandardComment.FIND('-') THEN BEGIN
+                                        IF recStandardComment.Comment <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment.Comment;//+' '+recStandardComment."Comment 2";
+                                        END;
+                                        IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 2";//+' '+recStandardComment."Comment 2";
+                                        END;
+                                        IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 3";//+' '+recStandardComment."Comment 2";
+                                        END;
+                                        IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 4";//+' '+recStandardComment."Comment 2";
+                                        END;
+                                        IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 5";//+' '+recStandardComment."Comment 2";
+                                        END;
+                                        txtProductGroup := recSalesLine."Item Category Code";
+                                    END ELSE BEGIN
+                                        recStandardComment.RESET;
+                                        recStandardComment.SETRANGE("Product Code", recSalesLine."Item Category Code");
+                                        recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Posting Date");
+                                        recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::"Customer Price Group");
+                                        recStandardComment.SETRANGE(recStandardComment."Sales Code", "Customer Price Group");
+                                        //recStandardComment.SETRANGE(Internal,TRUE);
+                                        IF recStandardComment.FIND('-') THEN BEGIN
+                                            IF recStandardComment.Comment <> '' THEN BEGIN
+                                                intLineCount := intLineCount + 1;
+                                                txtComment[intLineCount] := recStandardComment.Comment;//+' '+recStandardComment."Comment 2";
+                                            END;
+                                            IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                                                intLineCount := intLineCount + 1;
+                                                txtComment[intLineCount] := recStandardComment."Comment 2";//+' '+recStandardComment."Comment 2";
+                                            END;
+                                            IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                                                intLineCount := intLineCount + 1;
+                                                txtComment[intLineCount] := recStandardComment."Comment 3";//+' '+recStandardComment."Comment 2";
+                                            END;
+                                            IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                                                intLineCount := intLineCount + 1;
+                                                txtComment[intLineCount] := recStandardComment."Comment 4";//+' '+recStandardComment."Comment 2";
+                                            END;
+                                            IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                                                intLineCount := intLineCount + 1;
+                                                txtComment[intLineCount] := recStandardComment."Comment 5";//+' '+recStandardComment."Comment 2";
+                                            END;
+                                            txtProductGroup := recSalesLine."Item Category Code";
+                                        END;
+                                    END;
+                                END;
+                            END;
+                    UNTIL recSalesLine.NEXT = 0;
+                END;
+
+                recStandardComment.RESET;
+                recStandardComment.SETFILTER("Product Code", '');
+                recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Posting Date");
+                recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::Customer);
+                recStandardComment.SETRANGE(recStandardComment."Sales Code", "Sell-to Customer No.");
+                //recStandardComment.SETRANGE(Internal,TRUE);
+                IF recStandardComment.FIND('-') THEN BEGIN
+                    IF recStandardComment.Comment <> '' THEN BEGIN
+                        intLineCount := intLineCount + 1;
+                        txtComment[intLineCount] := recStandardComment.Comment;//+' '+recStandardComment."Comment 2";
+                    END;
+                    IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                        intLineCount := intLineCount + 1;
+                        txtComment[intLineCount] := recStandardComment."Comment 2";//+' '+recStandardComment."Comment 2";
+                    END;
+                    IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                        intLineCount := intLineCount + 1;
+                        txtComment[intLineCount] := recStandardComment."Comment 3";//+' '+recStandardComment."Comment 2";
+                    END;
+                    IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                        intLineCount := intLineCount + 1;
+                        txtComment[intLineCount] := recStandardComment."Comment 4";//+' '+recStandardComment."Comment 2";
+                    END;
+                    IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                        intLineCount := intLineCount + 1;
+                        txtComment[intLineCount] := recStandardComment."Comment 5";//+' '+recStandardComment."Comment 2";
+                    END;
+                END;
             end;
 
             trigger OnPreDataItem()
@@ -1741,6 +1903,13 @@ report 70001 "Order Confirmation11 POSH"
         ShiptoAddress: Record "Ship-to Address";
         Customer: Record Customer;
         Contact: Record Contact;
+        intLineCount: Integer;
+        txtProductGroup: Code[20];
+        recStandardComment: Record "Standard Comment";
+        txtComment: array[256] of Text[250];
+        intCommentLine: Integer;
+        recSalesLine: Record "Sales Line";
+
 
 
     procedure InitializeRequest(NoOfCopiesFrom: Integer; ShowInternalInfoFrom: Boolean; ArchiveDocumentFrom: Boolean; LogInteractionFrom: Boolean; PrintFrom: Boolean; DisplAsmInfo: Boolean)

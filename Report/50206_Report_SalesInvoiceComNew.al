@@ -456,7 +456,7 @@ report 50206 "Sales Invoice Com New"
                         {
                             DecimalPlaces = 0 : 5;
                         }
-                        column(CustRef; TempSalesInvoiceLine."Cross-Reference No.")
+                        column(CustRef; TempSalesInvoiceLine."Item Reference No.")
                         {
                         }
                         column(UnitPriceToPrint; UnitPriceToPrint)

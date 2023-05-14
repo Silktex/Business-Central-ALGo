@@ -6,29 +6,29 @@ report 50070 "Customer Price & Continuity Re"
 
     dataset
     {
-        dataitem("Item Cross Reference"; "Item Cross Reference")
+        dataitem("Item Reference"; "Item Reference")
         {
-            DataItemTableView = SORTING("Item No.", "Variant Code", "Unit of Measure", "Cross-Reference Type", "Cross-Reference Type No.", "Cross-Reference No.") WHERE("Cross-Reference Type" = FILTER(Customer));
-            RequestFilterFields = "Cross-Reference Type", "Cross-Reference Type No.", "Item No.";
-            column(Cross_Reference_Type; "Item Cross Reference"."Cross-Reference Type")
+            DataItemTableView = SORTING("Item No.", "Variant Code", "Unit of Measure", "Reference Type", "Reference Type No.", "Reference No.") WHERE("Reference Type" = FILTER(Customer));
+            RequestFilterFields = "Reference Type", "Reference Type No.", "Item No.";
+            column(Cross_Reference_Type; "Item Reference"."Reference Type")
             {
             }
-            column(Customer_No; "Item Cross Reference"."Cross-Reference Type No.")
+            column(Customer_No; "Item Reference"."Reference Type No.")
             {
             }
             column(CustomerName; CustomerName)
             {
             }
-            column(Description; "Item Cross Reference".Description)
+            column(Description; "Item Reference".Description)
             {
             }
-            column(Palcement_Start_Date; FORMAT("Item Cross Reference"."Palcement Start Date"))
+            column(Palcement_Start_Date; FORMAT("Item Reference"."Palcement Start Date"))
             {
             }
-            column(Placement_End_Date; FORMAT("Item Cross Reference"."Placement End Date"))
+            column(Placement_End_Date; FORMAT("Item Reference"."Placement End Date"))
             {
             }
-            column(Item_No; "Item Cross Reference"."Item No.")
+            column(Item_No; "Item Reference"."Item No.")
             {
             }
             column(Product_Group_Code; ProductGroupCode)
@@ -59,7 +59,7 @@ report 50070 "Customer Price & Continuity Re"
             trigger OnAfterGetRecord()
             begin
                 CustomerName := '';
-                IF recCustomer.GET("Cross-Reference Type No.") THEN;
+                IF recCustomer.GET("Reference Type No.") THEN;
                 CustomerName := recCustomer.Name;
 
                 ProductGroupCode := '';
@@ -69,7 +69,7 @@ report 50070 "Customer Price & Continuity Re"
 
                 //Price BEGIN
                 // SalesPriceCalcMgt.FindSalesPrice(
-                //       TempSalesPrice, "Cross-Reference Type No.", '',
+                //       TempSalesPrice, "Item Reference Type No.", '',
                 //       recCustomer."Customer Price Group", '', "Item No.", "Variant Code", Item."Base Unit of Measure",
                 //       '', TODAY, FALSE, Item."Item Category Code", '');
 
@@ -79,11 +79,11 @@ report 50070 "Customer Price & Continuity Re"
                 END;
 
                 CustGroupPrice := 0;
-                recCust.GET("Cross-Reference Type No.");
+                recCust.GET("Reference Type No.");
                 recSalesPrice.RESET;
                 recSalesPrice.SETRANGE("Source Type", recSalesPrice."Source Type"::"Customer Price Group");
                 recSalesPrice.SETRANGE("Source No.", recCust."Customer Price Group");
-                recSalesPrice.SETRANGE("Asset No.", "Item Cross Reference"."Item No.");
+                recSalesPrice.SETRANGE("Asset No.", "Item Reference"."Item No.");
                 IF recSalesPrice.FINDSET THEN BEGIN
                     REPEAT
                         CustGroupPrice := recSalesPrice."Unit Price";
@@ -109,7 +109,7 @@ report 50070 "Customer Price & Continuity Re"
                 MonthSales0To6 := 0;
                 ILE.RESET;
                 ILE.SETCURRENTKEY("Item No.", "Entry Type");
-                ILE.SETRANGE("Item No.", "Item Cross Reference"."Item No.");
+                ILE.SETRANGE("Item No.", "Item Reference"."Item No.");
                 ILE.SETRANGE("Entry Type", ILE."Entry Type"::Sale);
                 ILE.SETFILTER("Location Code", '<>%1', 'DAMAGED SY');
                 IF ILE.FINDFIRST THEN
@@ -132,7 +132,7 @@ report 50070 "Customer Price & Continuity Re"
                 SAMPLINGQTY := 0;
                 ILE1.RESET;
                 ILE1.SETCURRENTKEY("Item No.", "Entry Type");
-                ILE1.SETRANGE("Item No.", "Item Cross Reference"."Item No.");
+                ILE1.SETRANGE("Item No.", "Item Reference"."Item No.");
                 ILE1.SETFILTER("Remaining Quantity", '>%1', 0);
                 IF ILE1.FINDFIRST THEN
                     REPEAT
@@ -157,7 +157,7 @@ report 50070 "Customer Price & Continuity Re"
 
                 TRANSITQTY := 0;
                 ILE.RESET;
-                ILE.SETRANGE("Item No.", "Item Cross Reference"."Item No.");
+                ILE.SETRANGE("Item No.", "Item Reference"."Item No.");
                 ILE.SETFILTER("Remaining Quantity", '>%1', 0);
                 ILE.SETFILTER("Location Code", '%1|%2', 'TRANSIT', 'TRANSIT2');
                 IF ILE.FIND('-') THEN
@@ -171,7 +171,7 @@ report 50070 "Customer Price & Continuity Re"
                 recSalesLine.SETCURRENTKEY("Document Type", Type, "No.");
                 recSalesLine.SETRANGE("Document Type", recSalesLine."Document Type"::Order);
                 recSalesLine.SETRANGE(Type, recSalesLine.Type::Item);
-                recSalesLine.SETRANGE("No.", "Item Cross Reference"."Item No.");
+                recSalesLine.SETRANGE("No.", "Item Reference"."Item No.");
                 recSalesLine.SETFILTER("Location Code", '<>%1', 'DAMAGED SY');
                 IF recSalesLine.FINDFIRST THEN
                     REPEAT

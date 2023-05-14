@@ -522,10 +522,10 @@ page 70000 "Sales Prices SC"
         Expired: Boolean;
         ContinuityStartDate: Date;
         ContinuityEndDate: Date;
-        ItemCrossReference: Record "Item Cross Reference";
+        ItemCrossReference: Record "Item Reference";
         recItem: Record Item;
         RecordFound: Boolean;
-        ItemCrossReference1: Record "Item Cross Reference";
+        ItemCrossReference1: Record "Item Reference";
 
     local procedure GetRecFilters()
     begin

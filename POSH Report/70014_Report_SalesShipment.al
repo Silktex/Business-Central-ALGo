@@ -389,7 +389,7 @@ report 70014 "Sales Shipment POSH"
                         column(BackOrderedCaption; BackOrderedCaptionLbl)
                         {
                         }
-                        column(CustRef; TempSalesShipmentLine."Cross-Reference No.")
+                        column(CustRef; TempSalesShipmentLine."Item Reference No.")
                         {
                         }
                         dataitem(AsmLoop; "Integer")

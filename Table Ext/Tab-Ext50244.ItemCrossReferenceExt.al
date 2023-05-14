@@ -4,11 +4,15 @@ tableextension 50244 "Item Cross Reference_Ext" extends "Item Cross Reference"
     {
         field(50000; "Palcement Start Date"; Date)
         {
+            ObsoleteState = Removed;
+            ObsoleteTag = '21.0';
             Caption = 'Palcement Start Date';
             DataClassification = ToBeClassified;
         }
         field(50001; "Placement End Date"; Date)
         {
+            ObsoleteState = Removed;
+            ObsoleteTag = '21.0';
             Caption = 'Placement End Date';
             DataClassification = ToBeClassified;
         }
@@ -17,7 +21,8 @@ tableextension 50244 "Item Cross Reference_Ext" extends "Item Cross Reference"
     {
         key(key20; "Placement End Date")
         {
-
+            ObsoleteState = Removed;
+            ObsoleteTag = '21.0';
         }
     }
 }

@@ -421,7 +421,7 @@ codeunit 50207 Mail_Ext
             REPEAT
                 BodyText += ('<tr style="text-align: center"><td style="border:1px solid black;">' + FORMAT(I) + '</td>');
                 BodyText += ('<td style="border:1px solid black;">' + recSalesInvLine.Description + '</td>');
-                BodyText += ('<td style="border:1px solid black;">' + recSalesInvLine."Cross-Reference No." + '</td>');
+                BodyText += ('<td style="border:1px solid black;">' + recSalesInvLine."Item Reference No." + '</td>');
                 IF recSalesInvLine.Quantity = 0 THEN
                     BodyText += ('<td style="border:1px solid black;"></td>')
                 ELSE

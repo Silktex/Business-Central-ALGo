@@ -63,9 +63,9 @@ report 50123 "Sales Order With Comment updat"
                     /*
                     txtAlis := '';
                     ItemCrossReference.RESET;
-                    ItemCrossReference.SETRANGE("Cross-Reference Type",ItemCrossReference."Cross-Reference Type"::Customer);
-                    ItemCrossReference.SETRANGE("Cross-Reference Type No.","Sales Line"."Sell-to Customer No.");
-                    ItemCrossReference.SETRANGE("Cross-Reference No.","Sales Line"."Cross-Reference No.");
+                    ItemCrossReference.SETRANGE("Item Reference Type",ItemCrossReference."Item Reference Type"::Customer);
+                    ItemCrossReference.SETRANGE("Item Reference Type No.","Sales Line"."Sell-to Customer No.");
+                    ItemCrossReference.SETRANGE("Item Reference No.","Sales Line"."Item Reference No.");
                     ItemCrossReference.SETRANGE("Item No.","Sales Line"."No.");
                     IF ItemCrossReference.FINDFIRST THEN BEGIN
                        txtAlis := ItemCrossReference.Description;
@@ -492,7 +492,7 @@ report 50123 "Sales Order With Comment updat"
                         column(TempSalesLineDesc; TempSalesLine.Description)
                         {
                         }
-                        column(TempSalesLineCrossReferenceNo; TempSalesLine."Cross-Reference No.")
+                        column(TempSalesLineCrossReferenceNo; TempSalesLine."Item Reference No.")
                         {
                         }
                         column(TempSalesLineCustomerItemNo; TempSalesLine."Customer Item No.")

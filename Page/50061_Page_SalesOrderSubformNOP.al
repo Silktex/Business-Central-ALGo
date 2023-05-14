@@ -40,7 +40,7 @@ page 50061 "Sales Order Subform NOP"
                 {
                     ApplicationArea = All;
                 }
-                field("Cross-Reference No."; Rec."Cross-Reference No.")
+                field("Item Reference No."; Rec."Item Reference No.")
                 {
                     ApplicationArea = All;
 

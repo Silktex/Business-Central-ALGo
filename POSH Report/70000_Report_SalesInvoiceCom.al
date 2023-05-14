@@ -475,7 +475,7 @@ report 70000 "Sales Invoice Com POSH"
                         {
                             DecimalPlaces = 0 : 5;
                         }
-                        column(CustRef; TempSalesInvoiceLine."Cross-Reference No.")
+                        column(CustRef; TempSalesInvoiceLine."Item Reference No.")
                         {
                         }
                         column(UnitPriceToPrint; UnitPriceToPrint)

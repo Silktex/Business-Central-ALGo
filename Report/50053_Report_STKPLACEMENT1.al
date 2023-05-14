@@ -32,8 +32,8 @@ report 50053 "STK PLACEMENT1"
                                 recSalesInvLine1.CALCSUMS(recSalesInvLine1.Quantity, recSalesInvLine1.Amount);
                                 ItemCrossReference.RESET;
                                 ItemCrossReference.SETRANGE(ItemCrossReference."Item No.", recSalesInvLine."No.");
-                                ItemCrossReference.SETRANGE(ItemCrossReference."Cross-Reference Type", ItemCrossReference."Cross-Reference Type"::Customer);
-                                ItemCrossReference.SETRANGE(ItemCrossReference."Cross-Reference Type No.", recSalesInvHdr."Sell-to Customer No.");
+                                ItemCrossReference.SETRANGE(ItemCrossReference."Reference Type", ItemCrossReference."Reference Type"::Customer);
+                                ItemCrossReference.SETRANGE(ItemCrossReference."Reference Type No.", recSalesInvHdr."Sell-to Customer No.");
                                 //ItemCrossReference.SETFILTER(ItemCrossReference."Placement End Date",'>=%1',FromDate);
                                 IF ItemCrossReference.FINDLAST THEN;
                                 MakeExcelDataBody;
@@ -97,7 +97,7 @@ report 50053 "STK PLACEMENT1"
         recSalesInvLine: Record "Sales Invoice Line";
         Text0001: Label 'STK PLACEMENT';
         recSalesInvLine1: Record "Sales Invoice Line";
-        ItemCrossReference: Record "Item Cross Reference";
+        ItemCrossReference: Record "Item Reference";
         FromDate: Date;
         ToDate: Date;
 

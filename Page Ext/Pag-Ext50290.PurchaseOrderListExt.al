@@ -2,13 +2,13 @@ pageextension 50290 "Purchase Order List_Ext" extends "Purchase Order List"
 {
     layout
     {
-        addafter("Buy-from Vendor No.")
-        {
-            field("Vendor Order No."; Rec."Vendor Order No.")
-            {
-                ApplicationArea = all;
-            }
-        }
+        // addafter("Buy-from Vendor No.")
+        // {
+        //     field("Vendor Order No."; Rec."Vendor Order No.")
+        //     {
+        //         ApplicationArea = all;
+        //     }
+        // }
         addafter("Currency Code")
         {
             field("Order Date"; Rec."Order Date")

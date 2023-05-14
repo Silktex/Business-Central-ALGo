@@ -40,6 +40,7 @@ table 50021 "Packing Line"
         field(10; "Box Code"; Code[20])
         {
             TableRelation = "Box Master"."Box Code" WHERE("Shipping Agent Service Code" = FIELD("Shipping Agent Service Code"));
+            ValidateTableRelation = false;
 
             trigger OnValidate()
             begin

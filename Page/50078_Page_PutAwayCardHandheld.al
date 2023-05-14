@@ -463,8 +463,10 @@ page 50078 "Put Away Card Handheld"
 
     procedure ShowWhseLine()
     begin
-        WMSMgt.ShowWhseDocLine(
-          Rec."Whse. Document Type".AsInteger(), Rec."Whse. Document No.", Rec."Whse. Document Line No.");
+        //WMSMgt.ShowWhseDocLine(
+        //Rec."Whse. Document Type".AsInteger(), Rec."Whse. Document No.", Rec."Whse. Document Line No.");
+        WMSMgt.ShowWhseActivityDocLine(
+                            Rec."Whse. Document Type", Rec."Whse. Document No.", Rec."Whse. Document Line No.");
     end;
 
     local procedure EnableZoneBin()
@@ -482,8 +484,9 @@ page 50078 "Put Away Card Handheld"
         EntriesExist: Boolean;
     begin
         if Rec."Serial No." <> '' then
-            ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec."Item No.", Rec."Variant Code",
-                Rec."Lot No.", Rec."Serial No.", false, EntriesExist);
+            // ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec."Item No.", Rec."Variant Code",
+            //     Rec."Lot No.", Rec."Serial No.", false, EntriesExist);
+            ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec, false, EntriesExist);
 
         if ExpDate <> 0D then
             Rec."Expiration Date" := ExpDate;
@@ -496,8 +499,9 @@ page 50078 "Put Away Card Handheld"
         EntriesExist: Boolean;
     begin
         if Rec."Lot No." <> '' then
-            ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec."Item No.", Rec."Variant Code",
-               Rec."Lot No.", Rec."Serial No.", false, EntriesExist);
+            // ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec."Item No.", Rec."Variant Code",
+            //    Rec."Lot No.", Rec."Serial No.", false, EntriesExist);
+            ExpDate := ItemTrackingMgt.ExistingExpirationDate(Rec, false, EntriesExist);
 
         if ExpDate <> 0D then
             Rec."Expiration Date" := ExpDate;

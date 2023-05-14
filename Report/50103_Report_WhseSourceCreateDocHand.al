@@ -37,9 +37,10 @@ report 50103 "Whse.-Source - Create Doc Hand"
                             PostedWhseReceiptLine2."Qty. (Base)" /
                             PostedWhseReceiptLine2."Qty. per Unit of Measure", 0.00001);
 
-                        ItemTrackingManagement.CheckWhseItemTrkgSetup("Item No.", WhseSNRequired, WhseLNRequired, FALSE);
+                        ItemTrackingManagement.CheckWhseItemTrkgSetup("Item No."); //, WhseSNRequired, WhseLNRequired, FALSE);
                         IF WhseSNRequired OR WhseLNRequired THEN
-                            ItemTrackingManagement.InitItemTrkgForTempWkshLine(
+                            //ItemTrackingManagement.InitItemTrkgForTempWkshLine(
+                            ItemTrackingManagement.InitItemTrackingForTempWhseWorksheetLine(
                               WhseWkshLine."Whse. Document Type"::Receipt,
                               PostedWhseReceiptLine2."No.",
                               PostedWhseReceiptLine2."Line No.",
@@ -125,7 +126,8 @@ report 50103 "Whse.-Source - Create Doc Hand"
                 IF WhseDoc <> WhseDoc::"Whse. Mov.-Worksheet" THEN
                     CurrReport.BREAK;
 
-                CreatePick.SetValues(
+                //CreatePick.SetValues(
+                CreateParameters(
                   AssignedID, 2, SortActivity, 2, 0, 0, FALSE, DoNotFillQtytoHandle, BreakbulkFilter, FALSE);
 
                 CreatePick.SetCalledFromMoveWksh(TRUE);
@@ -251,7 +253,8 @@ report 50103 "Whse.-Source - Create Doc Hand"
                 IF WhseDoc <> WhseDoc::"Internal Pick" THEN
                     CurrReport.BREAK;
 
-                CreatePick.SetValues(
+                //CreatePick.SetValues(
+                CreateParameters(
                   AssignedID, 3, SortActivity, 1, 0, 0, FALSE, DoNotFillQtytoHandle, BreakbulkFilter, FALSE);
 
                 COPYFILTERS(WhseInternalPickLine);
@@ -377,7 +380,8 @@ report 50103 "Whse.-Source - Create Doc Hand"
                     CurrReport.BREAK;
 
                 WhseSetup.GET;
-                CreatePick.SetValues(
+                //CreatePick.SetValues(
+                CreateParameters(
                   AssignedID, 4, SortActivity, 1, 0, 0, FALSE, DoNotFillQtytoHandle, BreakbulkFilter, FALSE);
 
                 SETRANGE("Prod. Order No.", ProdOrderHeader."No.");
@@ -420,7 +424,8 @@ report 50103 "Whse.-Source - Create Doc Hand"
                     CurrReport.BREAK;
 
                 WhseSetup.GET;
-                CreatePick.SetValues(
+                //CreatePick.SetValues(
+                CreateParameters(
                   AssignedID, 5, SortActivity, 1, 0, 0, FALSE, DoNotFillQtytoHandle, BreakbulkFilter, FALSE);
 
                 SETRANGE("Document No.", AssemblyHeader."No.");
@@ -613,6 +618,7 @@ report 50103 "Whse.-Source - Create Doc Hand"
         Text004: Label 'You can create a Movement only for the available quantity in %1 %2 = %3,%4 = %5,%6 = %7,%8 = %9.';
         BreakbulkFilter: Boolean;
         TotalPendingMovQtyExceedsBinAvailErr: Label 'Item tracking defined for line %1, lot number %2, serial number %3 cannot be applied.', Comment = '%1=Line No.,%2=Lot No.,%3=Serial No.';
+        CreatePickParameters: Record "Create Pick Parameters";
 
     procedure SetPostedWhseReceiptLine(var PostedWhseReceiptLine2: Record "Posted Whse. Receipt Line"; AssignedID2: Code[50])
     begin
@@ -994,6 +1000,22 @@ report 50103 "Whse.-Source - Create Doc Hand"
             CalcSums("Qty. Outstanding (Base)");
             exit("Qty. Outstanding (Base)");
         end;
+    end;
+
+    local procedure CreateParameters(AssignedID2: Code[50]; WhseDocument2: Option "Pick Worksheet",Shipment,"Movement Worksheet","Internal Pick",Production,Assembly; SortPick2: Enum "Whse. Activity Sorting Method"; WhseDocType2: Option "Put-away",Pick,Movement; MaxNoOfSourceDoc2: Integer; MaxNoOfLines2: Integer; PerZone2: Boolean; DoNotFillQtytoHandle2: Boolean; BreakbulkFilter2: Boolean; PerBin2: Boolean)
+    begin
+        CreatePickParameters.DeleteAll();
+        CreatePickParameters."Assigned ID" := AssignedID;
+        CreatePickParameters."Sorting Method" := SortPick2;
+        CreatePickParameters."Max No. of Lines" := 0;
+        CreatePickParameters."Max No. of Source Doc." := 0;
+        CreatePickParameters."Do Not Fill Qty. to Handle" := DoNotFillQtytoHandle;
+        CreatePickParameters."Breakbulk Filter" := BreakbulkFilter;
+        CreatePickParameters."Per Bin" := PerBin2;
+        CreatePickParameters."Per Zone" := PerZone2;
+        CreatePickParameters."Whse. Document" := WhseDocument2;
+        CreatePickParameters."Whse. Document Type" := WhseDocType2;
+        CreatePick.SetParameters(CreatePickParameters);
     end;
 }
 

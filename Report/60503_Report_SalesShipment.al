@@ -387,7 +387,7 @@ report 60503 "Sales Shipment Ext"
                         column(BackOrderedCaption; BackOrderedCaptionLbl)
                         {
                         }
-                        column(CustRef; TempSalesShipmentLine."Cross-Reference No.")
+                        column(CustRef; TempSalesShipmentLine."Item Reference No.")
                         {
                         }
                         dataitem(AsmLoop; "Integer")

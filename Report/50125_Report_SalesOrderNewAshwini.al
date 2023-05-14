@@ -210,7 +210,7 @@ report 50125 "Sales Order New Ashwini"
                         column(OutstandingQuantity_SalesLine; "Sales Line"."Outstanding Quantity")
                         {
                         }
-                        column(CrossReferenceNo_SalesLine; "Sales Line"."Cross-Reference No.")
+                        column(CrossReferenceNo_SalesLine; "Sales Line"."Item Reference No.")
                         {
                         }
                         column(MinimumQty_SalesLine; "Sales Line"."Minimum Qty")

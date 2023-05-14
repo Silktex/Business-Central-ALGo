@@ -2,13 +2,13 @@ pageextension 50241 "Apply Customer Entries_Ext" extends "Apply Customer Entries
 {
     layout
     {
-        addafter("Document No.")
-        {
-            field("External Document No."; Rec."External Document No.")
-            {
-                ApplicationArea = all;
-            }
-        }
+        // addafter("Document No.")
+        // {
+        //     field("External Document No."; Rec."External Document No.")
+        //     {
+        //         ApplicationArea = all;
+        //     }
+        // }
         addafter("Global Dimension 2 Code")
         {
             field("Future/Paid Invoice"; Rec."Future/Paid Invoice")

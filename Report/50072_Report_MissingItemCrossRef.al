@@ -78,8 +78,8 @@ report 50072 "Missing Item Cross Ref"
                             ItemCustomerName2.MODIFY;
                         ItemCrossReference.RESET;
                         ItemCrossReference.SETRANGE("Item No.", ItemCustomerName2."Item No.");
-                        ItemCrossReference.SETRANGE("Cross-Reference Type", ItemCrossReference."Cross-Reference Type"::Customer);
-                        ItemCrossReference.SETRANGE(ItemCrossReference."Cross-Reference Type No.", ItemCustomerName2."Customer No.");
+                        ItemCrossReference.SETRANGE("Reference Type", ItemCrossReference."Reference Type"::Customer);
+                        ItemCrossReference.SETRANGE(ItemCrossReference."Reference Type No.", ItemCustomerName2."Customer No.");
                         IF NOT ItemCrossReference.FINDFIRST THEN BEGIN
                             IF MissingCustomerCode = '' THEN
                                 MissingCustomerCode := ItemCustomerName2."Customer No."
@@ -150,6 +150,6 @@ report 50072 "Missing Item Cross Ref"
         ItemCustomerName: Record "Item Customer Re-Order" temporary;
         SalesLine: Record "Sales Line";
         MissingCustomerCode: Text;
-        ItemCrossReference: Record "Item Cross Reference";
+        ItemCrossReference: Record "Item Reference";
 }
 

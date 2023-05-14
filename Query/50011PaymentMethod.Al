@@ -20,7 +20,7 @@ query 50011 "Payment Method"
             // { }
             column(Use_for_Invoicing; "Use for Invoicing") { }
             column(Last_Modified_Date_Time; "Last Modified Date Time") { }
-            column(Id; Id) { }
+            column(Id; SystemId) { }
             column(SAT_Payment_Method_Code; "SAT Payment Method Code") { }
             column(SAT_Method_of_Payment; "SAT Method of Payment") { }
         }

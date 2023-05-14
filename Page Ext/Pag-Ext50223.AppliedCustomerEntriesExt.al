@@ -31,13 +31,13 @@ pageextension 50223 "Applied Customer Entries_Ext" extends "Applied Customer Ent
                 ApplicationArea = all;
             }
         }
-        addafter("Closed by Amount")
-        {
-            field("External Document No."; Rec."External Document No.")
-            {
-                ApplicationArea = all;
-            }
-        }
+        // addafter("Closed by Amount")
+        // {
+        //     field("External Document No."; Rec."External Document No.")
+        //     {
+        //         ApplicationArea = all;
+        //     }
+        // }
         addafter("Entry No.")
         {
             field("Detailed Entry"; Rec."Detailed Entry")

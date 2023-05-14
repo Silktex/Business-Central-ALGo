@@ -1,5 +1,27 @@
 pageextension 50260 "Transfer Orders_Ext" extends "Transfer Orders"
 {
+    layout
+    {
+        addlast(Control1)
+        {
+            field("Posting Date"; Rec."Posting Date")
+            {
+                ApplicationArea = All;
+            }
+            field("Consignment No."; Rec."Consignment No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Ship Via"; Rec."Ship Via")
+            {
+                ApplicationArea = All;
+            }
+            field("Expected Receipt Date"; Rec."Expected Receipt Date")
+            {
+                ApplicationArea = All;
+            }
+        }
+    }
 
     actions
     {
