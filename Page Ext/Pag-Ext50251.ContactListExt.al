@@ -33,5 +33,13 @@ pageextension 50251 ContactList_Ext extends "Contact List"
                 ApplicationArea = all;
             }
         }
+
+        addlast(Control1)
+        {
+            field("Customer No."; Rec."Customer No.")
+            {
+                ApplicationArea = All;
+            }
+        }
     }
 }

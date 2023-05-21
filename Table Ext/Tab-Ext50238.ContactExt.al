@@ -67,5 +67,24 @@ tableextension 50238 Contact_Ext extends Contact
         {
             Description = 'Expired Price';
         }
+        field(50050; "Customer No."; Code[20])
+        {
+            Caption = 'Customer No.';
+            trigger OnValidate()
+            var
+                ContBussRel: Record "Contact Business Relation";
+                MyCont: Record Contact;
+            begin
+                ContBussRel.SetRange("Link to Table", ContBussRel."Link to Table"::Customer);
+                ContBussRel.SetRange("No.", "Customer No.");
+                if ContBussRel.FindSet() then
+                    repeat
+                        if MyCont.get(ContBussRel."Contact No.") then
+                            if MyCont.Type = MyCont.Type::Company then
+                                if Rec.Type <> Rec.Type::Company then
+                                    Rec.Validate("Company No.", ContBussRel."Contact No.");
+                    until ContBussRel.Next() = 0;
+            end;
+        }
     }
 }

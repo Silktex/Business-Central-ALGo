@@ -75,7 +75,7 @@ report 70011 "Shipped Goods Report"
             column(SalesHeader_Ship_Date; FORMAT("Sales Invoice Header"."Posting Date"))
             {
             }
-            column(SalesHeader_Tracking_No; "Sales Invoice Header"."Tracking No.")
+            column(SalesHeader_Tracking_No; TrackingNo) //"Sales Invoice Header"."Tracking No.")
             {
             }
             column(SalesHeader_Shipping_Agent_Code; "Sales Invoice Header"."Shipping Agent Code")
@@ -182,6 +182,13 @@ report 70011 "Shipped Goods Report"
                     SpecifierCustomerLocation := SpecifierCustomer.Address + ' ' + SpecifierCustomer."Address 2" + ', ' + SpecifierCustomer.City + ', ' + SpecifierCustomer.County + ', ' + SpecifierCustomer."Post Code";
                     SpecifierName := SpecifierCustomer.Name;
                 END;
+
+                TrackingNo := '';
+                if "Tracking No." <> '' then
+                    TrackingNo := "Tracking No."
+                else
+                    if "Package Tracking No." <> '' then
+                        TrackingNo := "Package Tracking No.";
             end;
 
             trigger OnPreDataItem()
@@ -257,6 +264,7 @@ report 70011 "Shipped Goods Report"
         SpecifierCustomer: Record Customer;
         SpecifierCustomerLocation: Code[250];
         SpecifierName: Text;
+        TrackingNo: Text[30];
 
 
     procedure QuantityOnSO(DocNo: Code[20]; ItemNo: Code[20]; VarrientCode: Code[20]; LocationCode: Code[20]): Decimal

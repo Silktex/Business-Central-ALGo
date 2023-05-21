@@ -26,9 +26,9 @@ codeunit 50209 "Release Sales Document_Ext"
     local procedure OnBeforeReopenSalesDoc(var SalesHeader: Record "Sales Header"; PreviewMode: Boolean; var IsHandled: Boolean)
     begin
         //SKNAV11.00 : Begin
-        recUserSetup.GET(USERID);
-        IF NOT recUserSetup."Allow Reopen Sales Doc." THEN
-            ERROR('You Do not have permission to reopen sales order please contact your system admin');
+        if recUserSetup.GET(USERID) then
+            IF NOT recUserSetup."Allow Reopen Sales Doc." THEN
+                ERROR('You Do not have permission to reopen sales order please contact your system admin');
         //SKNAV11.00 : End
     end;
 
