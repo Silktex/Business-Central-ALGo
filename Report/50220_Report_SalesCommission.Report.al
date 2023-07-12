@@ -86,7 +86,7 @@ report 50220 "Sales Commission"
         ExcelBuf: Record "Excel Buffer" temporary;
         recItem: Record Item;
         recSalesPerson: Record "Salesperson/Purchaser";
-        recSalesPrice: Record "Sales Price";
+        recSalesPrice: Record "Price List Line"; // "Sales Price";
         Text101: Label 'Data';
         Text102: Label 'Sales Comission';
         decUnitPrice: Decimal;
@@ -191,13 +191,12 @@ report 50220 "Sales Commission"
 
         //END ELSE
         //IF OverLimitDescription = '' THEN
-
+        //Fix12072023 to "Price List Line"
         recSalesPrice.RESET;
-        recSalesPrice.SETRANGE(recSalesPrice."Sales Type", recSalesPrice."Sales Type"::"Customer Price Group");
-        //recSalesPrice.SETRANGE(recSalesPrice."Product Type", recSalesPrice."Product Type"::"Item Category"); //VR
-        //recSalesPrice.SetRange();
-        recSalesPrice.SETRANGE(recSalesPrice."Sales Code", "Sales Invoice Header"."Customer Price Group");
-        recSalesPrice.SETRANGE(recSalesPrice."Item No.", "Sales Invoice Line"."Item Category Code");
+        recSalesPrice.SETRANGE(recSalesPrice."Source Type", recSalesPrice."Source Type"::"Customer Price Group");
+        recSalesPrice.SETRANGE(recSalesPrice."Source No.", "Sales Invoice Header"."Customer Price Group");
+        recSalesPrice.SetRange("Asset Type", recSalesPrice."Asset Type"::"Item Category");
+        recSalesPrice.SETRANGE(recSalesPrice."Asset No.", "Sales Invoice Line"."Item Category Code");
         IF recSalesPrice.FIND('+') THEN
             decUnitPrice := recSalesPrice."Unit Price"
         ELSE
@@ -320,12 +319,12 @@ report 50220 "Sales Commission"
         ExcelBuf.AddColumn(FORMAT(recItem."Product Line"), FALSE, '', FALSE, FALSE, FALSE, '', ExcelBuf."Cell Type"::Text);
         //END ELSE
         //IF OverLimitDescription = '' THEN
-
+        //Fix12072023 to "Price List Line"
         recSalesPrice.RESET;
-        recSalesPrice.SETRANGE(recSalesPrice."Sales Type", recSalesPrice."Sales Type"::"Customer Price Group");
-        //recSalesPrice.SETRANGE(recSalesPrice."Product Type", recSalesPrice."Product Type"::"Item Category"); //VR
-        recSalesPrice.SETRANGE(recSalesPrice."Sales Code", "Sales Cr.Memo Header"."Customer Price Group");
-        recSalesPrice.SETRANGE(recSalesPrice."Item No.", "Sales Cr.Memo Line"."Item Category Code");
+        recSalesPrice.SETRANGE(recSalesPrice."Source Type", recSalesPrice."Source Type"::"Customer Price Group");
+        recSalesPrice.SETRANGE(recSalesPrice."Source No.", "Sales Cr.Memo Header"."Customer Price Group");
+        recSalesPrice.SetRange("Asset Type", recSalesPrice."Asset Type"::"Item Category");
+        recSalesPrice.SETRANGE(recSalesPrice."Asset No.", "Sales Cr.Memo Line"."Item Category Code");
         IF recSalesPrice.FIND('+') THEN
             decUnitPrice := recSalesPrice."Unit Price"
         ELSE

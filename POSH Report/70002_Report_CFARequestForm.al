@@ -581,6 +581,8 @@ report 70002 "CFA Request Form POSH"
                             SETRANGE(Number, 1, NumberOfLines);
                             OnLineNumber := 0;
                             PrintFooter := FALSE;
+                            TempSalesLine.SetCurrentKey("Document Type", "Document No.", "Line No.");
+                            TempSalesLine.Ascending(true);
                         end;
                     }
                     dataitem(SalesHeaderComments; "Integer")

@@ -12,7 +12,7 @@ report 70013 "Open Sales Quote Report MIS"
         dataitem("Sales Header"; "Sales Header")
         {
             CalcFields = "Specifier Name";
-            DataItemTableView = SORTING("No.") ORDER(Ascending) WHERE("Document Type" = FILTER(Quote));
+            DataItemTableView = SORTING("Salesperson Code", "Order Date") ORDER(descending) WHERE("Document Type" = FILTER(Quote));
             PrintOnlyIfDetail = true;
             RequestFilterFields = "Salesperson Code", "No.", "Order Date", "Location Code";
             RequestFilterHeading = 'Sales Header';

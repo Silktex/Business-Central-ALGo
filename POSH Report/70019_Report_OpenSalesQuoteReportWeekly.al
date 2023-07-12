@@ -60,8 +60,10 @@ report 70019 "Open Sales Quote Report Weekly"
                 Clear(RecRef);
 
                 SalesHeader.RESET;
+                SalesHeader.SetCurrentKey("Salesperson Code", "Order Date");
                 SalesHeader.SETRANGE(SalesHeader."Document Type", SalesHeader."Document Type"::Quote);
                 SalesHeader.SETRANGE(SalesHeader."Salesperson Code", SalesPerson.Code);
+                SalesHeader.Ascending(false);
                 IF SalesHeader.FINDSET THEN BEGIN
 
                     NewString := CONVERTSTR(SalesPerson.Code, '/', '-');

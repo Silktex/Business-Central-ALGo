@@ -543,4 +543,21 @@ codeunit 50100 ProcessDevelopment
             BinContent.Modify();
         end;
     end;
+
+    //OnBeforeInheritCompanyToPersonData
+    [EventSubscriber(ObjectType::Table, Database::Contact, 'OnBeforeInheritCompanyToPersonData', '', false, false)]
+    local procedure OnBeforeInheritCompanyToPersonData(var Contact: Record Contact; var NewCompanyContact: Record Contact; xContact: Record Contact; var IsHandled: Boolean)
+    var
+        MyCont: Record Contact;
+        ContBussRel: Record "Contact Business Relation";
+    begin
+        if NewCompanyContact."Customer No." <> '' then
+            Contact."Customer No." := NewCompanyContact."Customer No."
+        else begin
+            ContBussRel.SetRange("Link to Table", ContBussRel."Link to Table"::Customer);
+            ContBussRel.SetRange("Contact No.", NewCompanyContact."No.");
+            if ContBussRel.FindFirst() then
+                Contact."Customer No." := ContBussRel."No.";
+        end;
+    end;
 }

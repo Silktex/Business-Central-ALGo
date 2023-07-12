@@ -327,6 +327,13 @@ tableextension 50211 "Sales Header_Ext" extends "Sales Header"
         }
 
     }
+
+    keys
+    {
+        key(SK1; "Salesperson Code", "Order Date")
+        {
+        }
+    }
     trigger OnAfterModify()
     begin
         IF ("Shipping Agent Code" = 'FEDEX') AND ("Shipping Agent Service Code" = 'GROUND') AND (Residential) THEN
