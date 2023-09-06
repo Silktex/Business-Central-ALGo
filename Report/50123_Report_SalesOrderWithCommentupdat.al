@@ -936,10 +936,12 @@ report 50123 "Sales Order With Comment updat"
                 Symbology: Enum "Barcode Symbology 2D";
                 FontProvider: Interface "Barcode Font Provider 2D";
                 TypeHelper: Codeunit "Type Helper";
+                ShipToCountyName: Text[100];
             //SC-TIC-62 End
             begin
                 //SC-TIC-62 Begin
                 EncodedTotals := '';
+                ShipToCountyName := '';
                 BarcodeString := "Sales Header"."No.";
                 FontProvider := Enum::"Barcode Font Provider 2D"::IDAutomation2D;
                 Symbology := Enum::"Barcode Symbology 2D"::"QR-Code";
@@ -1075,7 +1077,7 @@ report 50123 "Sales Order With Comment updat"
                     UNTIL recSalesLine.NEXT = 0;
                 END;
                 recStandardComment.RESET;
-                recStandardComment.SETFILTER("Product Code", '');
+                recStandardComment.SetRange("Product Code", '');
                 recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Posting Date");
                 recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::Customer);
                 recStandardComment.SETRANGE(recStandardComment."Sales Code", "Sell-to Customer No.");
@@ -1305,8 +1307,11 @@ report 50123 "Sales Order With Comment updat"
                 IF ("Sales Header"."Sell-to Country/Region Code" <> '') AND ("Sales Header"."Sell-to Country/Region Code" <> 'US') THEN
                     recCountry.GET("Sales Header"."Sell-to Country/Region Code");
 
-                IF ("Sales Header"."Ship-to Country/Region Code" <> '') AND ("Sales Header"."Ship-to Country/Region Code" <> 'US') THEN
+                IF ("Sales Header"."Ship-to Country/Region Code" <> '') AND ("Sales Header"."Ship-to Country/Region Code" <> 'US') THEN begin
                     recCountry2.GET("Sales Header"."Ship-to Country/Region Code");
+                    ShipToCountyName := recCountry2.Name;
+                end;
+
                 IF "Sales Header"."Payment Terms Code" <> '' THEN
                     recPmtTerm.GET("Sales Header"."Payment Terms Code");
                 //VK-SPDSPL
@@ -1317,10 +1322,10 @@ report 50123 "Sales Order With Comment updat"
                 txtShipADD[2] := "Sales Header"."Ship-to Address";
                 IF "Sales Header"."Ship-to Address 2" <> '' THEN BEGIN
                     txtShipADD[3] := "Sales Header"."Ship-to Address 2";
-                    txtShipADD[4] := "Sales Header"."Ship-to City" + ', ' + "Sales Header"."Ship-to County" + ' ' + "Sales Header"."Ship-to Post Code";
+                    txtShipADD[4] := "Sales Header"."Ship-to City" + ', ' + "Sales Header"."Ship-to County" + ' ' + "Sales Header"."Ship-to Post Code" + ' ' + ShipToCountyName;
                 END ELSE BEGIN
                     txtShipADD[3] := "Sales Header"."Ship-to City" + ', ' + "Sales Header"."Ship-to County" + ' ' + "Sales Header"."Ship-to Post Code";
-                    txtShipADD[4] := '';
+                    txtShipADD[4] := ShipToCountyName;
                 END;
 
                 IF SellToContact.GET("Sales Header"."Sell-to Contact No.") THEN;

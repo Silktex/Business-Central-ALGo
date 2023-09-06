@@ -8,10 +8,10 @@ pageextension 50211 ItemCard_Ext extends "Item Card"
             {
                 ApplicationArea = all;
             }
-            field("Description 2"; Rec."Description 2")
-            {
-                ApplicationArea = all;
-            }
+            // field("Description 2"; Rec."Description 2")
+            // {
+            //     ApplicationArea = all;
+            // }
         }
         modify("Item Category Code")
         {

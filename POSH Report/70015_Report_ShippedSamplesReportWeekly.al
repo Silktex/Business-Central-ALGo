@@ -37,10 +37,12 @@ report 70015 "Shipped Samples Report Weekly"
         FromDate: date;
         ToDate: Date;
         WeeKStart: Date;
+        RepToDate: Date;
     begin
         WeeKStart := CalcDate('-CW', WorkDate());
         FromDate := CalcDate('-7D', WeeKStart);
-        ToDate := CalcDate('-3D', WeeKStart);
+        ToDate := WeeKStart; //CalcDate('-3D', WeeKStart);
+        RepToDate := CalcDate('-3D', WeeKStart);
 
         SalesPerson.RESET;
         SalesPerson.SetRange("Active MIS", true);

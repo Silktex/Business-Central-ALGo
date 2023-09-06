@@ -5,6 +5,8 @@ report 70016 "Shipped Samples Report"
     Caption = 'Shipped Samples Report';
     Description = 'Open SO Report';
     PreviewMode = PrintLayout;
+    UsageCategory = ReportsAndAnalysis;
+    ApplicationArea = All;
 
     dataset
     {
@@ -155,13 +157,14 @@ report 70016 "Shipped Samples Report"
 
                 WeeKStart := CalcDate('-CW', WorkDate());
                 FromDate := CalcDate('-7D', WeeKStart);
-                ToDate := CalcDate('-3D', WeeKStart);
+                ToDate := WeeKStart; //('-3D', WeeKStart);
 
                 //SETRANGE("Shipment Date", WORKDATE - 7, WORKDATE - 1);
                 //SETRANGE("Posting Date", WORKDATE - 7, WORKDATE - 1);
                 SETRANGE("Posting Date", FromDate, ToDate);
             end;
         }
+
     }
 
     requestpage

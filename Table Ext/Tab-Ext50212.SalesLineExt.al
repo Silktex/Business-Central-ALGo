@@ -84,7 +84,7 @@ tableextension 50212 "Sales Line_Ext" extends "Sales Line"
             Caption = 'Backing';
             Description = 'Ravi05-04-2019';
             Editable = false;
-            OptionMembers = " ",Prebacked,"To be Backed";
+            OptionMembers = " ",Prebacked,"To be Backed","TO BE BACKED+C6","Alta is Required","TO BE BACKED+PILLING TREATMENT","TO BE BACKED+C0 FINISH";
         }
         field(50063; FinalQty; Decimal)
         {

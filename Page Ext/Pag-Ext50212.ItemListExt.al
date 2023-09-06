@@ -9,13 +9,13 @@ pageextension 50212 ItemList_Ext extends "Item List"
                 ApplicationArea = all;
             }
         }
-        addafter("Substitutes Exist")
-        {
-            field("Description 2"; Rec."Description 2")
-            {
-                ApplicationArea = all;
-            }
-        }
+        // addafter("Substitutes Exist")
+        // {
+        //     field("Description 2"; Rec."Description 2")
+        //     {
+        //         ApplicationArea = all;
+        //     }
+        // }
         modify("Search Description")
         {
             Visible = false;
