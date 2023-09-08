@@ -183,6 +183,7 @@ page 50249 UnapplyCustomerEntries_Ext
                     DtldCustLedgEntry3: Record "Detailed Cust. Ledg. Entry";
                     DtldCustLedgEntry: Record "Detailed Cust. Ledg. Entry";
                     DCVLedgerEntryType: Enum "Detailed CV Ledger Entry Type";
+                    ApplyUnapplyParameters: Record "Apply Unapply Parameters";
                 begin
                     if Rec.IsEmpty() then
                         Error(Text010);
@@ -210,7 +211,10 @@ page 50249 UnapplyCustomerEntries_Ext
                             if ApplicationEntryNo <> 0 then begin
                                 //ERROR('No application entry found');
                                 DtldCustLedgEntry3.Get(ApplicationEntryNo);
-                                CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry3, DtldCustLedgEntry3."Document No.", DtldCustLedgEntry3."Posting Date");
+                                ApplyUnapplyParameters."Document No." := DtldCustLedgEntry3."Document No.";
+                                ApplyUnapplyParameters."Posting Date" := DtldCustLedgEntry3."Posting Date";
+                                CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry3, ApplyUnapplyParameters);
+                                //CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry3, DtldCustLedgEntry3."Document No.", DtldCustLedgEntry3."Posting Date");
                             end;
                         until RecCLE.Next = 0;
                     //    RecFutureInv.RESET;
@@ -226,7 +230,10 @@ page 50249 UnapplyCustomerEntries_Ext
                     //  END;
                     //END;
 
-                    CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry2, DocNo, PostingDate);
+                    ApplyUnapplyParameters."Document No." := DocNo;
+                    ApplyUnapplyParameters."Posting Date" := PostingDate;
+                    CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry3, ApplyUnapplyParameters);
+                    //CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry2, DocNo, PostingDate);
 
                     //IF CONFIRM('Unaplly entry',FALSE) THEN BEGIN
                     //  RecFutureInv.RESET;
@@ -254,7 +261,10 @@ page 50249 UnapplyCustomerEntries_Ext
                             if ApplicationEntryNo <> 0 then begin
                                 //ERROR('No application entry found');
                                 DtldCustLedgEntry3.Get(ApplicationEntryNo);
-                                CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry3, DtldCustLedgEntry3."Document No.", DtldCustLedgEntry3."Posting Date");
+                                ApplyUnapplyParameters."Document No." := DtldCustLedgEntry3."Document No.";
+                                ApplyUnapplyParameters."Posting Date" := DtldCustLedgEntry3."Posting Date";
+                                CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry3, ApplyUnapplyParameters);
+                                //CustEntryApplyPostedEntries.PostUnApplyCustomer(DtldCustLedgEntry3, DtldCustLedgEntry3."Document No.", DtldCustLedgEntry3."Posting Date");
                             end;
                         until RecCLE.Next = 0;
                     //    RecFutureInv.RESET;
@@ -291,11 +301,15 @@ page 50249 UnapplyCustomerEntries_Ext
                 trigger OnAction()
                 var
                     CustEntryApplyPostedEntries: Codeunit "CustEntry-Apply Posted Entries";
+                    ApplyUnapplyParameters: Record "Apply Unapply Parameters";
                 begin
                     if Rec.IsEmpty() then
                         Error(Text010);
 
-                    CustEntryApplyPostedEntries.PreviewUnapply(DtldCustLedgEntry2, DocNo, PostingDate);
+                    ApplyUnapplyParameters."Document No." := DocNo;
+                    ApplyUnapplyParameters."Posting Date" := PostingDate;
+                    CustEntryApplyPostedEntries.PreviewUnapply(DtldCustLedgEntry2, ApplyUnapplyParameters);
+                    //CustEntryApplyPostedEntries.PreviewUnapply(DtldCustLedgEntry2, DocNo, PostingDate);
                 end;
             }
         }
@@ -309,6 +323,7 @@ page 50249 UnapplyCustomerEntries_Ext
     var
         DtldCustLedgEntry2: Record "Detailed Cust. Ledg. Entry";
         Cust: Record Customer;
+        Unappcustle: page "Unapply Customer Entries";
         DocNo: Code[20];
         PostingDate: Date;
         CustLedgEntryNo: Integer;

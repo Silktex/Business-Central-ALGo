@@ -1696,6 +1696,7 @@ Cstr(Fields!ShipptocustomerEmail.Value)
                                                 <Style>
                                                   <FontFamily>Segoe UI</FontFamily>
                                                   <FontSize>8pt</FontSize>
+                                                  <FontWeight>=IIf(Fields!LineCmtBold.Value,"Bold","Default")</FontWeight>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1714,6 +1715,7 @@ Cstr(Fields!ShipptocustomerEmail.Value)
                                         </Style>
                                       </Textbox>
                                       <ColSpan>2</ColSpan>
+                                      <rd:Selected>true</rd:Selected>
                                     </CellContents>
                                   </TablixCell>
                                   <TablixCell />
@@ -2125,6 +2127,7 @@ Cstr(Fields!ShipptocustomerEmail.Value)
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>=IIf(Fields!txtBlod.Value,"Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -2625,6 +2628,7 @@ CStr(Fields!TotalLine.Value)
                                                 <Style>
                                                   <FontFamily>Segoe UI</FontFamily>
                                                   <FontSize>8pt</FontSize>
+                                                  <FontWeight>=IIf(Fields!HdrCmtBold.Value,"Bold","Default")</FontWeight>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -6455,8 +6459,14 @@ StP1iye11awtL62PJhuoVlQn12sCKKKKo+GvDeh6HCH0XRtN055Fw7WlqkJb67QM0UUVt0UUVU1TTLDV
         <Field Name="CommentGroup">
           <DataField>CommentGroup</DataField>
         </Field>
+        <Field Name="txtBlod">
+          <DataField>txtBlod</DataField>
+        </Field>
         <Field Name="recSalesLineComments_Comment">
           <DataField>recSalesLineComments_Comment</DataField>
+        </Field>
+        <Field Name="LineCmtBold">
+          <DataField>LineCmtBold</DataField>
         </Field>
         <Field Name="AsmLineUnitOfMeasureText">
           <DataField>AsmLineUnitOfMeasureText</DataField>
@@ -6481,6 +6491,9 @@ StP1iye11awtL62PJhuoVlQn12sCKKKKo+GvDeh6HCH0XRtN055Fw7WlqkJb67QM0UUVt0UUVU1TTLDV
         </Field>
         <Field Name="recSalesHeaderComments_Comment">
           <DataField>recSalesHeaderComments_Comment</DataField>
+        </Field>
+        <Field Name="HdrCmtBold">
+          <DataField>HdrCmtBold</DataField>
         </Field>
       </Fields>
       <Query>

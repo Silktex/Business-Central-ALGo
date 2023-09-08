@@ -5,6 +5,7 @@ report 50123 "Sales Order With Comment updat"
     Caption = 'Sales Order';
     PreviewMode = PrintLayout;
 
+
     dataset
     {
         dataitem("Sales Header"; "Sales Header")
@@ -702,10 +703,14 @@ report 50123 "Sales Order With Comment updat"
                             column(CommentGroup; Number)
                             {
                             }
-
+                            column(txtBlod; txtBlod)
+                            {
+                            }
                             trigger OnAfterGetRecord()
                             begin
+                                txtBlod := StrPos(txtComment[Number], '~') <> 0;
                                 intCommentLine := intCommentLine + 1;
+
                             end;
 
                             trigger OnPreDataItem()
@@ -719,6 +724,10 @@ report 50123 "Sales Order With Comment updat"
                             DataItemLinkReference = SalesLine;
                             DataItemTableView = SORTING(Number);
                             column(recSalesLineComments_Comment; recSalesLineComments.Comment)
+                            {
+                            }
+
+                            column(LineCmtBold; (strpos(recSalesLineComments.Comment, '~') <> 0))
                             {
                             }
 
@@ -886,7 +895,9 @@ report 50123 "Sales Order With Comment updat"
                         column(recSalesHeaderComments_Comment; recSalesHeaderComments.Comment)
                         {
                         }
-
+                        column(HdrCmtBold; (strpos(recSalesHeaderComments.Comment, '~') <> 0))
+                        {
+                        }
                         trigger OnAfterGetRecord()
                         begin
                             IF Number = 1 THEN
@@ -1638,6 +1649,8 @@ report 50123 "Sales Order With Comment updat"
         RemarksText: Text[3];
         SellToContact: Record Contact;
         ShipToContact: Record Contact;
+        [InDataSet]
+        txtBlod: Boolean;
 
 
     procedure GetUnitOfMeasureDescr(UOMCode: Code[10]): Text[10]

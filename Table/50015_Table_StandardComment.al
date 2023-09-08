@@ -10,13 +10,14 @@ table 50015 "Standard Comment"
         }
         field(2; "Sales Type"; Option)
         {
-            OptionCaption = ',Customer,All Customer,Customer Price Group';
-            OptionMembers = ,Customer,"All Customer","Customer Price Group";
+            OptionCaption = ',Customer,All Customer,Customer Price Group,Vendor,All Vendor';
+            OptionMembers = ,Customer,"All Customer","Customer Price Group",Vendor,"All Vendor";
         }
         field(3; "Sales Code"; Code[20])
         {
             TableRelation = IF ("Sales Type" = FILTER(Customer)) Customer."No." ELSE
-            IF ("Sales Type" = FILTER("Customer Price Group")) "Customer Price Group".Code;
+            IF ("Sales Type" = FILTER("Customer Price Group")) "Customer Price Group".Code else
+            if ("Sales Type" = filter(Vendor)) Vendor."No.";
         }
         field(4; Comment; Text[250])
         {

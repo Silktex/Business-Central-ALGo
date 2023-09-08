@@ -1525,7 +1525,9 @@
                                                 <TextRuns>
                                                   <TextRun>
                                                     <Value>=Fields!Comment_SalesCommentLine.Value</Value>
-                                                    <Style />
+                                                    <Style>
+                                                      <FontWeight>=IIf(Fields!LineCmtBold.Value,"Bold","Default")</FontWeight>
+                                                    </Style>
                                                   </TextRun>
                                                 </TextRuns>
                                                 <Style />
@@ -2400,6 +2402,7 @@ Cstr(Fields!PrepmtPmtTermsDescCaption.Value)
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <FontWeight>=IIf(Fields!txtBold.Value,"Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -4476,6 +4479,9 @@ End Function</Code>
         <Field Name="Comment_SalesHeaderComment">
           <DataField>Comment_SalesHeaderComment</DataField>
         </Field>
+        <Field Name="HdrCmtBold">
+          <DataField>HdrCmtBold</DataField>
+        </Field>
         <Field Name="LineNo_SalesHeaderComment">
           <DataField>LineNo_SalesHeaderComment</DataField>
         </Field>
@@ -4737,6 +4743,9 @@ End Function</Code>
         <Field Name="Comment_SalesCommentLine">
           <DataField>Comment_SalesCommentLine</DataField>
         </Field>
+        <Field Name="LineCmtBold">
+          <DataField>LineCmtBold</DataField>
+        </Field>
         <Field Name="DocumentLineNo_SalesCommentLine">
           <DataField>DocumentLineNo_SalesCommentLine</DataField>
         </Field>
@@ -4988,6 +4997,9 @@ End Function</Code>
         </Field>
         <Field Name="CommentGroup">
           <DataField>CommentGroup</DataField>
+        </Field>
+        <Field Name="txtBlod">
+          <DataField>txtBlod</DataField>
         </Field>
       </Fields>
       <Query>

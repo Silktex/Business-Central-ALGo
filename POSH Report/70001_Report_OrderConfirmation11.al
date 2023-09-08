@@ -409,6 +409,9 @@ report 70001 "Order Confirmation11 POSH"
                         column(Comment_SalesHeaderComment; SalesHeaderComment.Comment)
                         {
                         }
+                        column(HdrCmtBold; (strpos(SalesHeaderComment.Comment, '~') <> 0))
+                        {
+                        }
                         column(LineNo_SalesHeaderComment; SalesHeaderComment."Line No.")
                         {
                         }
@@ -696,6 +699,9 @@ report 70001 "Order Confirmation11 POSH"
                             {
                             }
                             column(Comment_SalesCommentLine; "Sales Comment Line".Comment)
+                            {
+                            }
+                            column(LineCmtBold; (strpos("Sales Comment Line".Comment, '~') <> 0))
                             {
                             }
                             column(DocumentLineNo_SalesCommentLine; "Sales Comment Line"."Document Line No.")
@@ -1198,9 +1204,12 @@ report 70001 "Order Confirmation11 POSH"
                         column(CommentGroup; Number)
                         {
                         }
-
+                        column(txtBlod; txtBold)
+                        {
+                        }
                         trigger OnAfterGetRecord()
                         begin
+                            txtBold := StrPos(txtComment[Number], '~') <> 0;
                             intCommentLine := intCommentLine + 1;
                         end;
 
@@ -1909,6 +1918,7 @@ report 70001 "Order Confirmation11 POSH"
         txtComment: array[256] of Text[250];
         intCommentLine: Integer;
         recSalesLine: Record "Sales Line";
+        txtBold: Boolean;
 
 
 

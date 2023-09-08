@@ -1,16 +1,18 @@
 reportextension 50001 "Custom Bank Acc. - Detail Tria" extends "Bank Acc. - Detail Trial Bal."
 {
+    RDLCLayout = './Report Ext/BankAccDetailTrialBalExt.rdlc';
+
     dataset
     {
         modify("Bank Account Ledger Entry")
         {
-
             trigger OnAfterAfterGetRecord()
             var
                 Cust: Record Customer;
                 Vend: Record Vendor;
                 GLAcc: Record "G/L Account";
             begin
+                SalesOrderNo := '';
                 if "Source Code" = 'SALES' then
                     Case "Bal. Account Type" of
                         "Bal. Account Type"::Customer:
@@ -18,6 +20,8 @@ reportextension 50001 "Custom Bank Acc. - Detail Tria" extends "Bank Acc. - Deta
                                 Cust.get("Bal. Account No.");
                                 if Description <> Cust.Name then
                                     Description := Cust.Name;
+                                if SalesInvHeader.get("Document No.") then
+                                    SalesOrderNo := SalesInvHeader."Order No.";
                             end;
                         "Bal. Account Type"::Vendor:
                             begin
@@ -34,5 +38,16 @@ reportextension 50001 "Custom Bank Acc. - Detail Tria" extends "Bank Acc. - Deta
                     End;
             end;
         }
+
+        add("Bank Account Ledger Entry")
+        {
+            column(SalesOrderNo; SalesOrderNo)
+            {
+            }
+        }
     }
+
+    var
+        SalesOrderNo: Code[20];
+        SalesInvHeader: Record "Sales Invoice Header";
 }

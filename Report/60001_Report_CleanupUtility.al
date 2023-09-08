@@ -1047,21 +1047,21 @@ report 60001 "Cleanup Utility"
                 Win.UPDATE(1, i);
                 PostedBankRecLine.DELETEALL;
 
-                i += 1;
-                Win.UPDATE(1, i);
-                "BankRecSub-line".DELETEALL;
+                // i += 1;
+                // Win.UPDATE(1, i);
+                // "BankRecSub-line".DELETEALL;
 
-                i += 1;
-                Win.UPDATE(1, i);
-                DepositHeader.DELETEALL;
+                // i += 1;
+                // Win.UPDATE(1, i);
+                // DepositHeader.DELETEALL;
 
-                i += 1;
-                Win.UPDATE(1, i);
-                PostedDepositHeader.DELETEALL;
+                // i += 1;
+                // Win.UPDATE(1, i);
+                // PostedDepositHeader.DELETEALL;
 
-                i += 1;
-                Win.UPDATE(1, i);
-                PostedDepositLine.DELETEALL;
+                // i += 1;
+                // Win.UPDATE(1, i);
+                // PostedDepositLine.DELETEALL;
 
                 i += 1;
                 Win.UPDATE(1, i);
@@ -1492,15 +1492,15 @@ report 60001 "Cleanup Utility"
         MyVendor: Record "My Vendor";
         MyItem: Record "My Item";
         AccountIdentifier: Record "Account Identifier";
-        BankRecHeader: Record "Bank Rec. Header";
-        BankRecLine: Record "Bank Rec. Line";
+        BankRecHeader: Record "Bank Acc. Reconciliation";
+        BankRecLine: Record "Bank Acc. Reconciliation Line";
         BankCommentLine: Record "Bank Comment Line";
         PostedBankRecHeader: Record "Posted Bank Rec. Header";
         PostedBankRecLine: Record "Posted Bank Rec. Line";
-        "BankRecSub-line": Record "Bank Rec. Sub-line";
-        DepositHeader: Record "Deposit Header";
-        PostedDepositHeader: Record "Posted Deposit Header";
-        PostedDepositLine: Record "Posted Deposit Line";
+        // "BankRecSub-line": Record "Bank Rec. Sub-line";
+        // DepositHeader: Record "Deposit Header";
+        // PostedDepositHeader: Record "Posted Deposit Header";
+        // PostedDepositLine: Record "Posted Deposit Line";
         TrackingNo: Record "Tracking No.";
         // Specsheet: Record "Spec sheet";
         PaymentFutureOldInv: Record "Payment Future Old Inv";

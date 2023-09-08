@@ -22,8 +22,8 @@ tableextension 50260 "Sales Price_Ext" extends "Price List Line"
         }
         field(50000; "Product Type"; Option)
         {
-            OptionCaption = ',Item,Item Category';
-            OptionMembers = ,Item,"Item Category";
+            OptionCaption = ' ,Item,Item Category';
+            OptionMembers = " ",Item,"Item Category";
         }
         field(50001; "Location Code"; Code[10])
         {

@@ -150,6 +150,14 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
                 Visible = ShowProjectInfo;
                 MultiLine = true;
             }
+            field("Third Party"; Rec."Third Party")
+            {
+                ApplicationArea = All;
+            }
+            field("Third Party Account No."; Rec."Third Party Account No.")
+            {
+                ApplicationArea = All;
+            }
         }
     }
     actions

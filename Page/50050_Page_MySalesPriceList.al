@@ -1,179 +1,23 @@
-page 50026 "Expired Sales Prices"
+page 50050 "My Sales Price List"
 {
-    Caption = 'Expired Prices';
-    DataCaptionExpression = GetCaption;
+    Caption = 'Expired Sales Prices';
+    DataCaptionExpression = 'Sales Price';
     DelayedInsert = true;
-    PageType = Worksheet;
+    PageType = List;
     SaveValues = true;
     SourceTable = "Price List Line";
-    //SourceTableView = WHERE(Expired = FILTER(true));
-
+    SourceTableView = WHERE("Source Group" = const(Customer), "Price List Code" = filter(<> ''));
+    Editable = false;
+    UsageCategory = Administration;
+    ApplicationArea = All;
 
     layout
     {
         area(content)
         {
-            group(General)
-            {
-                Caption = 'General';
-                field(SalesTypeFilter; SalesTypeFilter)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Sales Type Filter';
-                    OptionCaption = 'Customer,Customer Price Group,All Customers,Campaign,None';
-
-                    trigger OnValidate()
-                    begin
-                        SalesTypeFilterOnAfterValidate;
-                    end;
-                }
-                field(SalesCodeFilterCtrl; SalesCodeFilter)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Sales Code Filter';
-                    Enabled = SalesCodeFilterCtrlEnable;
-
-                    trigger OnLookup(var Text: Text): Boolean
-                    var
-                        CustList: Page "Customer List";
-                        CustPriceGrList: Page "Customer Price Groups";
-                        CampaignList: Page "Campaign List";
-                    begin
-                        if SalesTypeFilter = SalesTypeFilter::"All Customers" then
-                            exit;
-
-                        case SalesTypeFilter of
-                            SalesTypeFilter::Customer:
-                                begin
-                                    CustList.LookupMode := true;
-                                    if CustList.RunModal = ACTION::LookupOK then
-                                        Text := CustList.GetSelectionFilter
-                                    else
-                                        exit(false);
-                                end;
-                            SalesTypeFilter::"Customer Price Group":
-                                begin
-                                    CustPriceGrList.LookupMode := true;
-                                    if CustPriceGrList.RunModal = ACTION::LookupOK then
-                                        Text := CustPriceGrList.GetSelectionFilter
-                                    else
-                                        exit(false);
-                                end;
-                            SalesTypeFilter::Campaign:
-                                begin
-                                    CampaignList.LookupMode := true;
-                                    if CampaignList.RunModal = ACTION::LookupOK then
-                                        Text := CampaignList.GetSelectionFilter
-                                    else
-                                        exit(false);
-                                end;
-                        end;
-
-                        exit(true);
-                    end;
-
-                    trigger OnValidate()
-                    begin
-                        SalesCodeFilterOnAfterValidate;
-                        /*
-                   IF "Sales Type"="Sales Type"::"Customer Price Group" THEN BEGIN
-                       IF recCustPrice.GET(SalesCodeFilter) THEN
-                         txtSalesCodeDesc:=recCustPrice.Description
-                        ELSE
-                         txtSalesCodeDesc:='';
-
-                     END ELSE BEGIN
-                       IF "Sales Type"="Sales Type"::Customer THEN BEGIN
-                          IF recCustomer.GET(SalesCodeFilter) THEN
-                             txtSalesCodeDesc:=recCustomer.Name
-                           ELSE
-                            txtSalesCodeDesc:='';
-                     END ELSE BEGIN
-                        IF "Sales Type"="Sales Type"::Campaign THEN BEGIN
-                          IF recCampaign.GET(SalesCodeFilter) THEN
-                             txtSalesCodeDesc:=recCampaign.Description
-                           ELSE
-                            txtSalesCodeDesc:='';
-                      END;
-                     END;
-                    END;
-                   */
-
-                    end;
-                }
-                field(ItemNoFilterCtrl; ItemNoFilter)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Item No. Filter';
-
-                    trigger OnLookup(var Text: Text): Boolean
-                    var
-                        ItemList: Page "Item List";
-                    begin
-                        ItemList.LookupMode := true;
-                        if ItemList.RunModal = ACTION::LookupOK then
-                            Text := ItemList.GetSelectionFilter
-                        else
-                            exit(false);
-
-                        exit(true);
-                    end;
-
-                    trigger OnValidate()
-                    begin
-                        ItemNoFilterOnAfterValidate;
-                    end;
-                }
-                field(StartingDateFilter; StartingDateFilter)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Starting Date Filter';
-
-                    trigger OnValidate()
-                    var
-                        FilterTokens: Codeunit "Filter Tokens";
-                    begin
-                        FilterTokens.MakeDateFilter(StartingDateFilter);
-                        StartingDateFilterOnAfterValid;
-                    end;
-                }
-                field(SalesCodeFilterCtrl2; CurrencyCodeFilter)
-                {
-                    ApplicationArea = All;
-                    Caption = 'Currency Code Filter';
-
-                    trigger OnLookup(var Text: Text): Boolean
-                    var
-                        CurrencyList: Page Currencies;
-                    begin
-                        CurrencyList.LookupMode := true;
-                        if CurrencyList.RunModal = ACTION::LookupOK then
-                            Text := CurrencyList.GetSelectionFilter
-                        else
-                            exit(false);
-
-                        exit(true);
-                    end;
-
-                    trigger OnValidate()
-                    begin
-                        CurrencyCodeFilterOnAfterValid;
-                    end;
-                }
-
-                field(ExpiredPrices; ExpiredPrices)
-                {
-                    Caption = 'Expired Prices';
-                    ApplicationArea = all;
-                    trigger OnValidate()
-                    begin
-                        CurrencyCodeFilterOnAfterValid;
-                    end;
-                }
-            }
             repeater(Control1)
             {
-                ShowCaption = false;
+                //ShowCaption = false;
                 // field("Sales Type"; Rec."Sales Type")
                 // {
                 //     ApplicationArea = All;
@@ -381,12 +225,6 @@ page 50026 "Expired Sales Prices"
     {
     }
 
-    trigger OnAfterGetCurrRecord()
-    begin
-        //UpdateSourceType();
-        "Sales CodeEditable" := rec."Source Type" <> rec."Source Type"::"All Customers"
-    end;
-
     trigger OnAfterGetRecord()
     begin
         //UpdateSourceType();
@@ -453,6 +291,7 @@ page 50026 "Expired Sales Prices"
         end;
 
         //A/17.04.2019/SCST000002
+        ProductDescription := '';
         ContinuityStartDate := 0D;
         ContinuityEndDate := 0D;
         if Rec."Asset Type" = Rec."Asset Type"::Item then begin
@@ -471,9 +310,9 @@ page 50026 "Expired Sales Prices"
             end;
         end;
 
-        ProductDescription := '';
+
         if Rec."Asset Type" = Rec."Asset Type"::"Item Category" then begin
-            Backing.SetRange("Product Type", Backing."Product Type"::Item);
+            Backing.SetRange("Product Type", Backing."Product Type"::"Item Category Code");
             Backing.SetRange("Product Code", Rec."Asset No.");
             if Backing.FindFirst() then begin
                 BackingType := Backing."Resc. Code";
@@ -520,19 +359,6 @@ page 50026 "Expired Sales Prices"
         //E/17.04.2019/SCST000002
     end;
 
-    trigger OnInit()
-    begin
-        SalesCodeFilterCtrlEnable := true;
-        "Sales CodeEditable" := true;
-    end;
-
-    trigger OnOpenPage()
-    begin
-        ExpiredPrices := ExpiredPrices::" ";
-        GetRecFilters;
-        SetRecFilters;
-        Rec.SetRange(Discontinued, 0);
-    end;
 
     var
         TaxDetails: Record "Tax Detail";
@@ -581,213 +407,6 @@ page 50026 "Expired Sales Prices"
         ExpiredPrices: Option " ",Yes,No;
         CountryOfOrigin: Text[100];
 
-    procedure GetRecFilters()
-    begin
-        if Rec.GetFilters <> '' then begin
-            if Rec.GetFilter("Source Type") <> '' then
-                SalesTypeFilter := GetSalesTypeFilter
-            else
-                SalesTypeFilter := SalesTypeFilter::None;
 
-            SalesCodeFilter := Rec.GetFilter("Source No.");
-            ItemNoFilter := Rec.GetFilter("Asset No.");
-            CurrencyCodeFilter := Rec.GetFilter("Currency Code");
-        end;
-
-        Evaluate(StartingDateFilter, Rec.GetFilter("Starting Date"));
-    end;
-
-    procedure SetRecFilters()
-    begin
-        SalesCodeFilterCtrlEnable := true;
-        if SalesTypeFilter <> SalesTypeFilter::None then
-            Rec.SetRange("Source Type", SalesTypeFilter)
-        else
-            Rec.SetRange("Source Type");
-
-        if SalesTypeFilter in [SalesTypeFilter::"All Customers", SalesTypeFilter::None] then begin
-            SalesCodeFilterCtrlEnable := false;
-            SalesCodeFilter := '';
-        end;
-
-        if SalesCodeFilter <> '' then
-            Rec.SetFilter("Source No.", SalesCodeFilter)
-        else
-            Rec.SetRange("Source No.");
-
-        if StartingDateFilter <> '' then
-            Rec.SetFilter("Starting Date", StartingDateFilter)
-        else
-            Rec.SetRange("Starting Date");
-
-        if ItemNoFilter <> '' then begin
-            Rec.SetFilter("Asset No.", ItemNoFilter);
-        end else
-            Rec.SetRange("Asset No.");
-
-        if CurrencyCodeFilter <> '' then begin
-            Rec.SetFilter("Currency Code", CurrencyCodeFilter);
-        end else
-            Rec.SetRange("Currency Code");
-
-        Case ExpiredPrices of
-            ExpiredPrices::" ":
-                Rec.SetRange(Expired);
-            ExpiredPrices::Yes:
-                Rec.SetRange(Expired, true);
-            ExpiredPrices::No:
-                Rec.SetRange(Expired, false);
-        end;
-
-        case SalesTypeFilter of
-            SalesTypeFilter::Customer:
-                CheckFilters(DATABASE::Customer, SalesCodeFilter);
-            SalesTypeFilter::"Customer Price Group":
-                CheckFilters(DATABASE::"Customer Price Group", SalesCodeFilter);
-            SalesTypeFilter::Campaign:
-                CheckFilters(DATABASE::Campaign, SalesCodeFilter);
-        end;
-        CheckFilters(DATABASE::Item, ItemNoFilter);
-        CheckFilters(DATABASE::Currency, CurrencyCodeFilter);
-
-        CurrPage.Update(false);
-    end;
-
-    procedure GetCaption(): Text[250]
-    var
-        ObjTransl: Record "Object Translation";
-        SourceTableName: Text[100];
-        SalesSrcTableName: Text[100];
-        Description: Text[250];
-    begin
-        GetRecFilters;
-        "Sales CodeEditable" := SourceType <> SourceType::"All Customers";
-
-        SourceTableName := '';
-        if ItemNoFilter <> '' then
-            SourceTableName := ObjTransl.TranslateObject(ObjTransl."Object Type"::Table, 27);
-
-        SalesSrcTableName := '';
-        case SalesTypeFilter of
-            SalesTypeFilter::Customer:
-                begin
-                    SalesSrcTableName := ObjTransl.TranslateObject(ObjTransl."Object Type"::Table, 18);
-                    Cust."No." := SalesCodeFilter;
-                    if Cust.Find then
-                        Description := Cust.Name;
-                end;
-            SalesTypeFilter::"Customer Price Group":
-                begin
-                    SalesSrcTableName := ObjTransl.TranslateObject(ObjTransl."Object Type"::Table, 6);
-                    CustPriceGr.Code := SalesCodeFilter;
-                    if CustPriceGr.Find then
-                        Description := CustPriceGr.Description;
-                end;
-            SalesTypeFilter::Campaign:
-                begin
-                    SalesSrcTableName := ObjTransl.TranslateObject(ObjTransl."Object Type"::Table, 5071);
-                    Campaign."No." := SalesCodeFilter;
-                    if Campaign.Find then
-                        Description := Campaign.Description;
-                end;
-            SalesTypeFilter::"All Customers":
-                begin
-                    SalesSrcTableName := Text000;
-                    Description := '';
-                end;
-        end;
-
-        if SalesSrcTableName = Text000 then
-            exit(StrSubstNo('%1 %2 %3', SalesSrcTableName, SourceTableName, ItemNoFilter));
-        exit(StrSubstNo('%1 %2 %3 %4 %5', SalesSrcTableName, SalesCodeFilter, Description, SourceTableName, ItemNoFilter));
-    end;
-
-    procedure CheckFilters(TableNo: Integer; FilterTxt: Text[250])
-    var
-        FilterRecordRef: RecordRef;
-        FilterFieldRef: FieldRef;
-    begin
-        if FilterTxt = '' then
-            exit;
-        Clear(FilterRecordRef);
-        Clear(FilterFieldRef);
-        FilterRecordRef.Open(TableNo);
-        FilterFieldRef := FilterRecordRef.Field(1);
-        FilterFieldRef.SetFilter(FilterTxt);
-        if FilterRecordRef.IsEmpty then
-            Error(Text001, FilterRecordRef.Caption, FilterTxt);
-    end;
-
-    local procedure SalesCodeFilterOnAfterValidate()
-    begin
-        CurrPage.SaveRecord;
-        SetRecFilters;
-    end;
-
-    local procedure SalesTypeFilterOnAfterValidate()
-    begin
-        CurrPage.SaveRecord;
-        SalesCodeFilter := '';
-        SetRecFilters;
-    end;
-
-    local procedure StartingDateFilterOnAfterValid()
-    begin
-        CurrPage.SaveRecord;
-        SetRecFilters;
-    end;
-
-    local procedure ItemNoFilterOnAfterValidate()
-    begin
-        CurrPage.SaveRecord;
-        SetRecFilters;
-    end;
-
-    local procedure CurrencyCodeFilterOnAfterValid()
-    begin
-        CurrPage.SaveRecord;
-        SetRecFilters;
-    end;
-
-    local procedure ExpiredFilterOnAfterValid()
-    begin
-        CurrPage.SaveRecord;
-        SetRecFilters;
-    end;
-
-    local procedure GetSalesTypeFilter(): Integer
-    begin
-        case Rec.GetFilter("Source Type") of
-            Format(Rec."Source Type"::Customer):
-                exit(0);
-            Format(Rec."Source Type"::"Customer Price Group"):
-                exit(1);
-            Format(Rec."Source Type"::"All Customers"):
-                exit(2);
-            Format(Rec."Source Type"::Campaign):
-                exit(3);
-        end;
-    end;
-
-    // local procedure UpdateSourceType()
-    // var
-    //     PriceSource: Record "Price Source";
-    //     PriceListHeader: Record "Price List Header";
-    // begin
-    //     case PriceListHeader."Source Group" of
-    //         "Price Source Group"::Customer:
-    //             begin
-    //                 // IsJobGroup := false;
-    //                 // SourceType := "Sales Price Source Type".FromInteger(Rec."Source Type".AsInteger());
-    //             end;
-    //         "Price Source Group"::Job:
-    //             begin
-    //                 // IsJobGroup := true;
-    //                 // JobSourceType := "Job Price Source Type".FromInteger(Rec."Source Type".AsInteger());
-    //             end;
-    //     end;
-    //     PriceSource."Source Type" := Rec."Source Type";
-    //     // IsParentAllowed := PriceSource.IsParentSourceAllowed();
-    // end;
 }
 
