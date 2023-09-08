@@ -2402,7 +2402,7 @@ Cstr(Fields!PrepmtPmtTermsDescCaption.Value)
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
-                                    <FontWeight>=IIf(Fields!txtBold.Value,"Bold","Default")</FontWeight>
+                                    <FontWeight>=IIf(Fields!txtBlod.Value,"Bold","Default")</FontWeight>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
