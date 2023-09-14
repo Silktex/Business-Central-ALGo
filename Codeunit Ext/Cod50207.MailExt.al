@@ -110,6 +110,9 @@ codeunit 50207 Mail_Ext
             UNTIL recPurchaseLine.NEXT = 0;
 
         BodyText += ('</table>');
+        BodyText += ('<br>');
+        BodyText += ('<b>Important Note:- </b>');
+        BodyText += ('<b>Goods must be rolled as face side in and please put face side sticker on all 4 corners of fabrics.</b><br>');
         BodyText += ('<p>Thank you.<br>');
         BodyText += ('<p>Regards,<br>');
         BodyText += ('<B>' + recCompInfo.Name + '</B>');

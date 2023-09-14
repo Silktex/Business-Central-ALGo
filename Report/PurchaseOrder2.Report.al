@@ -369,6 +369,9 @@ report 50010 "Purchase Order2"
                             column(DocumentLineNo_PurchCommentLine; "Purch. Comment Line"."Document Line No.")
                             {
                             }
+                            column(LineCmtBold; (strpos("Purch. Comment Line".Comment, '~') <> 0))
+                            {
+                            }
                         }
 
                         trigger OnAfterGetRecord()
@@ -453,6 +456,176 @@ report 50010 "Purchase Order2"
                             PrintFooter := false;
                         end;
                     }
+
+                    dataitem(PurchHeaderComments; "Integer")
+                    {
+                        DataItemTableView = SORTING(Number);
+                        column(CmtLine; Number)
+                        {
+                        }
+                        column(CommentText; txtComment[Number])
+                        {
+                        }
+                        column(HdrCmtBold; (strpos(txtComment[Number], '~') <> 0))
+                        {
+                        }
+                        trigger OnAfterGetRecord()
+                        begin
+
+                        end;
+
+                        trigger OnPreDataItem()
+                        var
+                            PLine: Record "Purchase Line";
+                            TempItemCat: Record "Item Category" temporary;
+                        begin
+                            intLineCount := 0;
+                            TempPurchHeaderComments.DeleteAll();
+                            TempItemCat.DeleteAll();
+
+                            PLine.Reset();
+                            PLine.SetRange("Document Type", "Purchase Header"."Document Type");
+                            PLine.SetRange("Document No.", "Purchase Header"."No.");
+                            PLine.SetRange(Type, PLine.Type::Item);
+                            PLine.SetFilter(Quantity, '<>0');
+                            if PLine.FindSet() then
+                                repeat
+                                    if PLine."Item Category Code" <> '' then begin
+                                        TempItemCat.Init();
+                                        TempItemCat.Code := PLine."Item Category Code";
+                                        if not TempItemCat.Insert() then;
+                                    end;
+                                until PLine.Next() = 0;
+
+                            TempItemCat.Reset();
+                            if TempItemCat.FindSet() then
+                                repeat
+                                    recStandardComment.RESET;
+                                    recStandardComment.SetRange("Product Code", TempItemCat.Code);
+                                    recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Purchase Header"."Posting Date");
+                                    recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::Vendor);
+                                    recStandardComment.SETRANGE(recStandardComment."Sales Code", "Purchase Header"."Buy-from Vendor No.");
+                                    IF recStandardComment.FIND('-') THEN BEGIN
+                                        IF recStandardComment.Comment <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment.Comment;
+                                        END;
+                                        IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 2";
+                                        END;
+                                        IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 3";
+                                        END;
+                                        IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 4";
+                                        END;
+                                        IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 5";
+                                        END;
+                                    END;
+
+                                    recStandardComment.RESET;
+                                    recStandardComment.SetRange("Product Code", TempItemCat.Code);
+                                    recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Purchase Header"."Posting Date");
+                                    recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::"All Vendor");
+                                    recStandardComment.SETRANGE(recStandardComment."Sales Code");
+                                    IF recStandardComment.FIND('-') THEN BEGIN
+                                        IF recStandardComment.Comment <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment.Comment;
+                                        END;
+                                        IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 2";
+                                        END;
+                                        IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 3";
+                                        END;
+                                        IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 4";
+                                        END;
+                                        IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                                            intLineCount := intLineCount + 1;
+                                            txtComment[intLineCount] := recStandardComment."Comment 5";
+                                        END;
+                                    END;
+                                until TempItemCat.Next() = 0;
+
+                            recPurchHeaderComments.SETRANGE(recPurchHeaderComments."Document Type", "Purchase Header"."Document Type");
+                            recPurchHeaderComments.SETRANGE(recPurchHeaderComments."No.", "Purchase Header"."No.");
+                            recPurchHeaderComments.SETRANGE(recPurchHeaderComments."Document Line No.", 0);
+                            if recPurchHeaderComments.FindSet() then
+                                repeat
+                                    intLineCount += 1;
+                                    txtComment[intLineCount] := recPurchHeaderComments.Comment;
+                                until recPurchHeaderComments.Next() = 0;
+
+                            recStandardComment.RESET;
+                            recStandardComment.SetRange("Product Code", '');
+                            recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Purchase Header"."Posting Date");
+                            recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::Vendor);
+                            recStandardComment.SETRANGE(recStandardComment."Sales Code", "Purchase Header"."Buy-from Vendor No.");
+                            IF recStandardComment.FIND('-') THEN BEGIN
+                                IF recStandardComment.Comment <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment.Comment;
+                                END;
+                                IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment."Comment 2";
+                                END;
+                                IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment."Comment 3";
+                                END;
+                                IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment."Comment 4";
+                                END;
+                                IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment."Comment 5";
+                                END;
+                            END;
+
+                            recStandardComment.RESET;
+                            recStandardComment.SetRange("Product Code", '');
+                            recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Purchase Header"."Posting Date");
+                            recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::"All Vendor");
+                            recStandardComment.SETRANGE(recStandardComment."Sales Code");
+                            IF recStandardComment.FIND('-') THEN BEGIN
+                                IF recStandardComment.Comment <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment.Comment;
+                                END;
+                                IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment."Comment 2";
+                                END;
+                                IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment."Comment 3";
+                                END;
+                                IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment."Comment 4";
+                                END;
+                                IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                                    intLineCount := intLineCount + 1;
+                                    txtComment[intLineCount] := recStandardComment."Comment 5";
+                                END;
+                            END;
+
+                            SETRANGE(Number, 1, intLineCount);
+                        end;
+                    }
+
                 }
 
                 trigger OnAfterGetRecord()
@@ -668,6 +841,11 @@ report 50010 "Purchase Order2"
         SalesPurchPerson: Record "Salesperson/Purchaser";
         CompanyInformation: Record "Company Information";
         RespCenter: Record "Responsibility Center";
+        recPurchHeaderComments: Record "Purch. Comment Line";
+        TempPurchHeaderComments: Record "Purch. Comment Line" temporary;
+        recStandardComment: Record "Standard Comment";
+        intLineCount: Integer;
+        txtComment: array[256] of Text[250];
         Language: Codeunit Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";

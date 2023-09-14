@@ -28,6 +28,10 @@ pageextension 50244 "Sales & Receivables Setup_Ext" extends "Sales & Receivables
             {
                 ApplicationArea = all;
             }
+            field("Custom Price Mgmt. Enabled"; Rec."Custom Price Mgmt. Enabled")
+            {
+                ApplicationArea = all;
+            }
         }
 
         addlast(General)

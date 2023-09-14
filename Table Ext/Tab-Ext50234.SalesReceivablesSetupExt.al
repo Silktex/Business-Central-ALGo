@@ -21,5 +21,8 @@ tableextension 50234 "Sales & Receivables Setup_Ext" extends "Sales & Receivable
         field(50005; "Show Project Info"; Boolean)
         {
         }
+        field(50009; "Custom Price Mgmt. Enabled"; Boolean)
+        {
+        }
     }
 }
