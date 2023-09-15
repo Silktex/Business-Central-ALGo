@@ -111,8 +111,7 @@ codeunit 50207 Mail_Ext
 
         BodyText += ('</table>');
         BodyText += ('<br>');
-        BodyText += ('<b>Important Note:- </b>');
-        BodyText += ('<b>Goods must be rolled as face side in and please put face side sticker on all 4 corners of fabrics.</b><br>');
+        BodyText += ('<b>Important Note:- All Goods must be rolled as face side in and please put face side sticker.</b>');
         BodyText += ('<p>Thank you.<br>');
         BodyText += ('<p>Regards,<br>');
         BodyText += ('<B>' + recCompInfo.Name + '</B>');
