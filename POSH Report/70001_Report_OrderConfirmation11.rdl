@@ -3512,7 +3512,7 @@ Cstr(Fields!PrepmtPmtTermsDescCaption.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=(ReportItems!NNCSalesLineLineAmt.Value)</Value>
+                      <Value>=First(Fields!LineAmtTot.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                         <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -3545,7 +3545,7 @@ Cstr(Fields!PrepmtPmtTermsDescCaption.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=(ReportItems!TotalAmtinc.Value)+First(Fields!FREIGHT.Value, "DataSet_Result")</Value>
+                      <Value>=First(Fields!LineAmtTot.Value, "DataSet_Result")+First(Fields!FREIGHT.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                         <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -3783,7 +3783,7 @@ Cstr(Fields!PrepmtPmtTermsDescCaption.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>=(ReportItems!TotalAmtinc.Value)+First(Fields!FREIGHT.Value, "DataSet_Result")-Last(Fields!LOGENTRYAMOUNT.Value, "DataSet_Result")</Value>
+                      <Value>=First(Fields!LineAmtTot.Value, "DataSet_Result")+First(Fields!FREIGHT.Value, "DataSet_Result")-Last(Fields!LOGENTRYAMOUNT.Value, "DataSet_Result")</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                         <Format>'$'#,0.00;('$'#,0.00)</Format>
@@ -4148,6 +4148,12 @@ End Function</Code>
         </Field>
         <Field Name="FREIGHTFormat">
           <DataField>FREIGHTFormat</DataField>
+        </Field>
+        <Field Name="LineAmtTot">
+          <DataField>LineAmtTot</DataField>
+        </Field>
+        <Field Name="LineAmtTotFormat">
+          <DataField>LineAmtTotFormat</DataField>
         </Field>
         <Field Name="LOGENTRYAMOUNT">
           <DataField>LOGENTRYAMOUNT</DataField>

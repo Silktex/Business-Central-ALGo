@@ -32,6 +32,9 @@ report 70001 "Order Confirmation11 POSH"
             column(FREIGHT; Freight)
             {
             }
+            column(LineAmtTot; LineAmtTot)
+            {
+            }
             column(LOGENTRYAMOUNT; LOGENTRYAMOUNT)
             {
             }
@@ -1444,6 +1447,17 @@ report 70001 "Order Confirmation11 POSH"
                     Freight := RecSalesinvLine.Amount;
                 END;
 
+                LineAmtTot := 0;
+                RecSalesinvLine.RESET;
+                RecSalesinvLine.SETRANGE(RecSalesinvLine."Document No.", "No.");
+                //RecSalesinvLine.SETFILTER(RecSalesinvLine.Type, 'Item');
+                //RecSalesinvLine.SETFILTER(RecSalesinvLine."No.", '<>%1', '');
+                IF RecSalesinvLine.FIND('-') THEN
+                    repeat
+                        if (RecSalesinvLine."No." <> 'FREIGHT') then
+                            LineAmtTot := LineAmtTot + RecSalesinvLine.Amount;
+                    Until RecSalesinvLine.Next() = 0;
+
                 //MESSAGE('%1',Freight);
                 LOGENTRYAMOUNT := 0;
                 CreditCardNo := '';
@@ -1882,6 +1896,7 @@ report 70001 "Order Confirmation11 POSH"
         rECSalesCommentLine: Record "Sales Comment Line";
         COMENT: Text;
         Freight: Decimal;
+        LineAmtTot: Decimal;
         CreditCardNo: Text;
         RecSalesinvLine: Record "Sales Line";
         DOPaymentTransLoEntry: Record "DO Payment Trans. Log Entry";
