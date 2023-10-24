@@ -33,5 +33,14 @@ tableextension 50210 "Item Ledger Entry_Ext" extends "Item Ledger Entry"
             DataClassification = ToBeClassified;
             Description = 'SKNAV11.00';
         }
+
+        // field(50005; "Related Bin Code"; Code[20])
+        // {
+        //     Caption = 'Bin Code';
+        //     FieldClass = FlowField;
+        //     CalcFormula = lookup("Bin Content"."Bin Code" where("Location Code" = field("Location Code"), "Item No." = field("Item No."), "Variant Code" = field("Variant Code"), "Lot No. Filter" = field("Lot No.")));
+        //     Editable = false;
+        // }
     }
+
 }

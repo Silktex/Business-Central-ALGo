@@ -138,7 +138,21 @@ pageextension 50213 "Item Ledger Entries_Ext" extends "Item Ledger Entries"
         {
             Editable = false;
         }
+
+        addfirst(factboxes)
+        {
+            part(BinInventory; "Bin Inventory")
+            {
+                ApplicationArea = All;
+                SubPageLink = "Item No." = FIELD("Item No."),
+                              "Variant Code" = FIELD("Variant Code"),
+                              "Location Code" = FIELD("Location Code"),
+                              "Lot No. Filter" = field("Lot No.");
+            }
+        }
+
     }
+
     actions
     {
         addafter("Application Worksheet")
@@ -159,7 +173,24 @@ pageextension 50213 "Item Ledger Entries_Ext" extends "Item Ledger Entries"
                     PrintLable(Rec."Item No.", Rec."Lot No.", Rec."Remaining Quantity");
                 end;
             }
+
+
         }
+        addafter("&Value Entries")
+        {
+            action("&Bin Contents")
+            {
+                ApplicationArea = All;
+                Caption = '&Bin Contents';
+                Image = BinContent;
+                RunObject = Page "Bin Content";
+                RunPageLink = "Location Code" = field("Location Code"), "Item No." = FIELD("Item No."), "Lot No. Filter" = field("Lot No.");
+                RunPageView = SORTING("Item No.");
+                ToolTip = 'View the quantities of the item in each bin where it exists. You can see all the important parameters relating to bin content, and you can modify certain bin content parameters in this window.';
+            }
+        }
+
+
     }
     var
         //  ReportLabel: Report "Print PHP Label";

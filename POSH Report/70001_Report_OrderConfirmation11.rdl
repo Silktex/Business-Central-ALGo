@@ -1526,7 +1526,9 @@
                                                   <TextRun>
                                                     <Value>=Fields!Comment_SalesCommentLine.Value</Value>
                                                     <Style>
+                                                      <FontSize>=IIf(Fields!LineCmtBold.Value,"10pt","8pt")</FontSize>
                                                       <FontWeight>=IIf(Fields!LineCmtBold.Value,"Bold","Default")</FontWeight>
+                                                      <Color>=IIf(Fields!LineCmtBold.Value,"Red","Black")</Color>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -2401,8 +2403,9 @@ Cstr(Fields!PrepmtPmtTermsDescCaption.Value)
                                   <Style>
                                     <FontStyle>Normal</FontStyle>
                                     <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>=IIf(Fields!txtBlod.Value,"10pt","8pt")</FontSize>
                                     <FontWeight>=IIf(Fields!txtBlod.Value,"Bold","Default")</FontWeight>
+                                    <Color>=IIf(Fields!txtBlod.Value,"Red","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>

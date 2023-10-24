@@ -1695,8 +1695,9 @@ Cstr(Fields!ShipptocustomerEmail.Value)
                                                 <Value>=Fields!recSalesLineComments_Comment.Value</Value>
                                                 <Style>
                                                   <FontFamily>Segoe UI</FontFamily>
-                                                  <FontSize>8pt</FontSize>
+                                                  <FontSize>=IIf(Fields!LineCmtBold.Value,"10pt","8pt")</FontSize>
                                                   <FontWeight>=IIf(Fields!LineCmtBold.Value,"Bold","Default")</FontWeight>
+                                                  <Color>=IIf(Fields!LineCmtBold.Value,"Red","Black")</Color>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1715,7 +1716,6 @@ Cstr(Fields!ShipptocustomerEmail.Value)
                                         </Style>
                                       </Textbox>
                                       <ColSpan>2</ColSpan>
-                                      <rd:Selected>true</rd:Selected>
                                     </CellContents>
                                   </TablixCell>
                                   <TablixCell />
@@ -2126,8 +2126,9 @@ Cstr(Fields!ShipptocustomerEmail.Value)
                                   <Value>=Fields!NewComment.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>=IIf(Fields!txtBlod.Value,"10pt","8pt")</FontSize>
                                     <FontWeight>=IIf(Fields!txtBlod.Value,"Bold","Default")</FontWeight>
+                                    <Color>=IIf(Fields!txtBlod.Value,"Red","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>

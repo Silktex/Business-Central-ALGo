@@ -1655,15 +1655,17 @@ Cstr(Fields!ContactToLbl_CAption.Value)
                                               <TextRun>
                                                 <Value xml:space="preserve">          </Value>
                                                 <Style>
-                                                  <FontSize>8pt</FontSize>
+                                                  <FontSize>=IIf(Fields!LineCmtBold.Value,"10pt","8pt")</FontSize>
                                                   <FontWeight>=IIf(Fields!LineCmtBold.Value,"Bold","Default")</FontWeight>
+                                                  <Color>=IIf(Fields!LineCmtBold.Value,"Red","Black")</Color>
                                                 </Style>
                                               </TextRun>
                                               <TextRun>
                                                 <Value>=Fields!Comment_PurchCommentLine.Value</Value>
                                                 <Style>
-                                                  <FontSize>8pt</FontSize>
+                                                  <FontSize>=IIf(Fields!LineCmtBold.Value,"10pt","8pt")</FontSize>
                                                   <FontWeight>=IIf(Fields!LineCmtBold.Value,"Bold","Default")</FontWeight>
+                                                  <Color>=IIf(Fields!LineCmtBold.Value,"Red","Black")</Color>
                                                 </Style>
                                               </TextRun>
                                             </TextRuns>
@@ -1740,8 +1742,9 @@ Cstr(Fields!ContactToLbl_CAption.Value)
                                 <TextRun>
                                   <Value>=Fields!CommentText.Value</Value>
                                   <Style>
-                                    <FontSize>8pt</FontSize>
+                                    <FontSize>=IIf(Fields!HdrCmtBold.Value,"10pt","8pt")</FontSize>
                                     <FontWeight>=IIf(Fields!HdrCmtBold.Value,"Bold","Default")</FontWeight>
+                                    <Color>=IIf(Fields!HdrCmtBold.Value,"Red","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
