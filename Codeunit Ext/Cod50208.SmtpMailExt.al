@@ -430,6 +430,7 @@ codeunit 50208 SmtpMail_Ext
             BodyText += ('<p>');
             BodyText += (Text001);
             BodyText += ('</p>');
+
             BodyText += ('<p>');
             BodyText += (Text002);
             BodyText += ('<br>');
@@ -1127,6 +1128,8 @@ codeunit 50208 SmtpMail_Ext
         BodyText += ('<body>');
         BodyText += ('<p> Dear Sir/Madam,</p>');
         BodyText += ('<p>Please find the attached MIS Report.');
+        GetTotalPayment(BodyText);
+        BodyText += ('<br>');
         BodyText += ('<br>Regards,</p>');
         BodyText += ('<p><br>Silk Crafts Accounts Team</br></p>');
         BodyText += ('</body>');
@@ -1177,6 +1180,8 @@ codeunit 50208 SmtpMail_Ext
             BodyText += ('<body>');
             BodyText += ('<p> Dear Sir/Madam,</p>');
             BodyText += ('<p>Please find the attached MIS Report.');
+            GetTotalPayment(BodyText);
+            BodyText += ('<br>');
             BodyText += ('<br>Regards,</p>');
             BodyText += ('<p><br>Posh Textiles Accounts Team</br></p>');
             BodyText += ('</body>');
@@ -1185,6 +1190,71 @@ codeunit 50208 SmtpMail_Ext
             EmailMessage.AddAttachment(ToFile, '.xlsx', InStreamValue);
             Email.Send(EmailMessage);
         END;
+    end;
+
+    procedure GetTotalPayment(var BodyText: Text)
+    var
+        CustomerLedger: Record "Cust. Ledger Entry";
+        TotalPaymentRcptAmount: Decimal;
+        VendorLedger: Record "Vendor Ledger Entry";
+        TotalPaymentPaidAmount: Decimal;
+    begin
+        TotalPaymentRcptAmount := 0;
+        TotalPaymentPaidAmount := 0;
+
+        CustomerLedger.Reset();
+        CustomerLedger.SetCurrentKey("Document Type", "Posting Date");
+        CustomerLedger.SetRange("Document Type", CustomerLedger."Document Type"::Payment);
+        CustomerLedger.SetRange("Posting Date", WorkDate());
+        if CustomerLedger.FindSet() then
+            repeat
+                CustomerLedger.CalcFields("Amount (LCY)");
+                TotalPaymentRcptAmount += CustomerLedger."Amount (LCY)";
+            until CustomerLedger.Next() = 0;
+
+        if TotalPaymentRcptAmount <> 0 then begin
+            BodyText += ('<br>');
+            BodyText += ('<P>Below are summary for your reference.</P>');
+            BodyText += ('<br>');
+            BodyText += ('<H2>Payment Received: </H2>' + Format(TotalPaymentRcptAmount));
+            BodyText += ('</table>');
+
+            if CustomerLedger.FindSet() then begin
+                BodyText += ('<table border="1">');
+                BodyText += ('<tr><th>Customer</th><th>Amount</th>');
+                repeat
+                    CustomerLedger.CalcFields("Amount (LCY)");
+                    BodyText += ('<tr><td>' + CustomerLedger."Customer Name" + '</td><td>' + Format(CustomerLedger."Amount (LCY)") + '</td>');
+                until CustomerLedger.Next() = 0;
+                BodyText += ('</table>');
+            end;
+        end;
+
+        VendorLedger.Reset();
+        VendorLedger.SetCurrentKey("Document Type", "Posting Date");
+        VendorLedger.SetRange("Document Type", VendorLedger."Document Type"::Payment);
+        VendorLedger.SetRange("Posting Date", WorkDate());
+        if VendorLedger.FindSet() then
+            repeat
+                VendorLedger.CalcFields("Amount (LCY)");
+                TotalPaymentPaidAmount += VendorLedger."Amount (LCY)";
+            until CustomerLedger.Next() = 0;
+
+        if TotalPaymentPaidAmount <> 0 then begin
+            BodyText += ('<br>');
+            BodyText += ('<br>');
+            BodyText += ('<H2>Vendor Payment: </H2>' + Format(TotalPaymentPaidAmount));
+
+            if VendorLedger.FindSet() then begin
+                BodyText += ('<table border="1">');
+                BodyText += ('<tr><th>Vendor</th><th>Amount</th>');
+                repeat
+                    VendorLedger.CalcFields("Amount (LCY)");
+                    BodyText += ('<tr><td>' + VendorLedger."Vendor Name" + '</td><td>' + Format(VendorLedger."Amount (LCY)") + '</td>');
+                until VendorLedger.Next() = 0;
+                BodyText += ('</table>');
+            end;
+        end;
     end;
 
 }

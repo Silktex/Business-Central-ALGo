@@ -2426,10 +2426,10 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
         <Height>3.90754cm</Height>
         <Style />
       </Body>
-      <Width>15.96309cm</Width>
+      <Width>15.88371cm</Width>
       <Page>
         <PageHeader>
-          <Height>9.03908cm</Height>
+          <Height>9.25075cm</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -2588,7 +2588,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>3.03243in</Top>
+              <Top>3.15743in</Top>
               <Left>4.32399in</Left>
               <Height>11pt</Height>
               <Width>0.88034in</Width>
@@ -2613,7 +2613,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.36425in</Top>
+              <Top>3.48925in</Top>
               <Left>0.01389in</Left>
               <Height>11pt</Height>
               <Width>0.91629in</Width>
@@ -2638,7 +2638,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.19771in</Top>
+              <Top>3.32271in</Top>
               <Left>0.01389in</Left>
               <Height>11pt</Height>
               <Width>0.91629in</Width>
@@ -2700,7 +2700,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.03118in</Top>
+              <Top>3.15618in</Top>
               <Left>0.93017in</Left>
               <Height>11pt</Height>
               <Width>3.35091in</Width>
@@ -2725,7 +2725,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.03118in</Top>
+              <Top>3.15618in</Top>
               <Left>0.01389in</Left>
               <Height>11pt</Height>
               <Width>0.91628in</Width>
@@ -2775,7 +2775,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.03118in</Top>
+              <Top>3.15618in</Top>
               <Left>5.21822in</Left>
               <Height>11pt</Height>
               <Width>1.03521in</Width>
@@ -2900,7 +2900,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.36425in</Top>
+              <Top>3.48925in</Top>
               <Left>0.93017in</Left>
               <Height>11pt</Height>
               <Width>5.32326in</Width>
@@ -2925,7 +2925,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>3.19771in</Top>
+              <Top>3.32271in</Top>
               <Left>0.93017in</Left>
               <Height>11pt</Height>
               <Width>5.32326in</Width>
@@ -2951,9 +2951,9 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>2.51013in</Top>
-              <Left>0.42087in</Left>
+              <Left>0.30837in</Left>
               <Height>11pt</Height>
-              <Width>2.75484in</Width>
+              <Width>2.86734in</Width>
               <ZIndex>19</ZIndex>
               <Style />
             </Textbox>
@@ -2976,9 +2976,9 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>2.34789in</Top>
-              <Left>0.42087in</Left>
+              <Left>0.30837in</Left>
               <Height>11pt</Height>
-              <Width>2.75484in</Width>
+              <Width>2.86734in</Width>
               <ZIndex>20</ZIndex>
               <Style />
             </Textbox>
@@ -3001,9 +3001,9 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>2.19386in</Top>
-              <Left>0.42087in</Left>
+              <Left>0.30837in</Left>
               <Height>11pt</Height>
-              <Width>2.75484in</Width>
+              <Width>2.86734in</Width>
               <ZIndex>21</ZIndex>
               <Style />
             </Textbox>
@@ -3026,9 +3026,9 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>2.03982in</Top>
-              <Left>0.42087in</Left>
+              <Left>0.30837in</Left>
               <Height>11pt</Height>
-              <Width>2.75484in</Width>
+              <Width>2.86734in</Width>
               <ZIndex>22</ZIndex>
               <Style />
             </Textbox>
@@ -3303,9 +3303,9 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
               <Top>2.81569in</Top>
-              <Left>0.42087in</Left>
+              <Left>0.30837in</Left>
               <Height>0.12639in</Height>
-              <Width>2.75485in</Width>
+              <Width>3.23401in</Width>
               <ZIndex>31</ZIndex>
               <Style>
                 <Border>
@@ -3458,9 +3458,9 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>2.66291in</Top>
-              <Left>0.42087in</Left>
+              <Left>0.30837in</Left>
               <Height>11pt</Height>
-              <Width>2.75484in</Width>
+              <Width>2.86734in</Width>
               <ZIndex>36</ZIndex>
               <Style />
             </Textbox>
