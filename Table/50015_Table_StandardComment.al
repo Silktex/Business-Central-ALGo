@@ -67,13 +67,24 @@ table 50015 "Standard Comment"
         field(21; Internal4; Boolean)
         {
         }
+        field(30; "Entry No."; Integer)
+        {
+            AutoIncrement = true;
+        }
     }
 
     keys
     {
-        key(Key1; "Product Code", "Sales Type", "Sales Code", "From Date")
+        // key(Key1; "Product Code", "Sales Type", "Sales Code", "From Date")
+        // {
+        //     Clustered = true;
+        // }
+        key(Key1; "Entry No.")
         {
             Clustered = true;
+        }
+        key(Key2; "Product Code", "Sales Type", "Sales Code", "From Date")
+        {
         }
     }
 

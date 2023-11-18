@@ -1195,9 +1195,16 @@ codeunit 50208 SmtpMail_Ext
     procedure GetTotalPayment(var BodyText: Text)
     var
         CustomerLedger: Record "Cust. Ledger Entry";
+        Cust: Record Customer;
         TotalPaymentRcptAmount: Decimal;
         VendorLedger: Record "Vendor Ledger Entry";
         TotalPaymentPaidAmount: Decimal;
+        Vend: Record Vendor;
+        SalesHeader: Record "Sales Header";
+        SalesInvoiceHeader: Record "Sales Invoice Header";
+        PurchaseHedader: Record "Purchase Header";
+        PurchaseInvoiceHeader: Record "Purch. Inv. Header";
+        TotalAmt: Decimal;
     begin
         TotalPaymentRcptAmount := 0;
         TotalPaymentPaidAmount := 0;
@@ -1216,18 +1223,57 @@ codeunit 50208 SmtpMail_Ext
             BodyText += ('<br>');
             BodyText += ('<P>Below are summary for your reference.</P>');
             BodyText += ('<br>');
-            BodyText += ('<H2>Payment Received: </H2>' + Format(TotalPaymentRcptAmount));
-            BodyText += ('</table>');
+            BodyText += ('<H2>Payment Received: ' + Format(ABS(TotalPaymentRcptAmount)) + '</H2>');
 
             if CustomerLedger.FindSet() then begin
                 BodyText += ('<table border="1">');
                 BodyText += ('<tr><th>Customer</th><th>Amount</th>');
                 repeat
                     CustomerLedger.CalcFields("Amount (LCY)");
-                    BodyText += ('<tr><td>' + CustomerLedger."Customer Name" + '</td><td>' + Format(CustomerLedger."Amount (LCY)") + '</td>');
+                    Cust.Get(CustomerLedger."Customer No.");
+                    BodyText += ('<tr><td>' + Cust.Name + '</td><td>' + Format(ABS(CustomerLedger."Amount (LCY)")) + '</td>');
                 until CustomerLedger.Next() = 0;
                 BodyText += ('</table>');
             end;
+        end;
+
+        SalesHeader.Reset();
+        SalesHeader.SetRange("Document Type", SalesHeader."Document Type"::Order);
+        SalesHeader.SetRange("Order Date", WorkDate());
+        SalesHeader.SetAutoCalcFields("Amount Including VAT");
+        if SalesHeader.FindSet() then begin
+            TotalAmt := 0;
+            BodyText += ('<br>');
+            BodyText += ('<br>');
+            BodyText += ('<H2>Sales Order Details: ');
+            BodyText += ('<br>');
+            BodyText += ('<table border="1">');
+            BodyText += ('<tr><th>Customer</th><th>Order No.</th><th>Amount</th>');
+            repeat
+                BodyText += ('<tr><td>' + SalesHeader."Sell-to Customer Name" + '</td><td>' + SalesHeader."No." + '</td><td>' + Format(SalesHeader."Amount Including VAT") + '</td>');
+                TotalAmt += SalesHeader."Amount Including VAT";
+            until SalesHeader.Next() = 0;
+            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td><b>' + Format(TotalAmt) + '</b></td>');
+            BodyText += ('</table>');
+        end;
+
+        SalesInvoiceHeader.Reset();
+        SalesInvoiceHeader.SetRange("Posting Date", WorkDate());
+        SalesInvoiceHeader.SetAutoCalcFields("Amount Including VAT");
+        if SalesInvoiceHeader.FindSet() then begin
+            TotalAmt := 0;
+            BodyText += ('<br>');
+            BodyText += ('<br>');
+            BodyText += ('<H2>Sales Invoice Details: ');
+            BodyText += ('<br>');
+            BodyText += ('<table border="1">');
+            BodyText += ('<tr><th>Customer</th><th>Order No.</th><th>Amount</th>');
+            repeat
+                BodyText += ('<tr><td>' + SalesInvoiceHeader."Sell-to Customer Name" + '</td><td>' + SalesInvoiceHeader."No." + '</td><td>' + Format(SalesInvoiceHeader."Amount Including VAT") + '</td>');
+                TotalAmt += SalesInvoiceHeader."Amount Including VAT";
+            until SalesInvoiceHeader.Next() = 0;
+            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td><b>' + Format(TotalAmt) + '</b></td>');
+            BodyText += ('</table>');
         end;
 
         VendorLedger.Reset();
@@ -1243,17 +1289,58 @@ codeunit 50208 SmtpMail_Ext
         if TotalPaymentPaidAmount <> 0 then begin
             BodyText += ('<br>');
             BodyText += ('<br>');
-            BodyText += ('<H2>Vendor Payment: </H2>' + Format(TotalPaymentPaidAmount));
+            BodyText += ('<br>');
+            BodyText += ('<H2>Vendor Payment: ' + Format(TotalPaymentPaidAmount)) + '</H2>';
 
             if VendorLedger.FindSet() then begin
                 BodyText += ('<table border="1">');
                 BodyText += ('<tr><th>Vendor</th><th>Amount</th>');
                 repeat
                     VendorLedger.CalcFields("Amount (LCY)");
-                    BodyText += ('<tr><td>' + VendorLedger."Vendor Name" + '</td><td>' + Format(VendorLedger."Amount (LCY)") + '</td>');
+                    Vend.get(VendorLedger."Vendor No.");
+                    BodyText += ('<tr><td>' + Vend.Name + '</td><td>' + Format(VendorLedger."Amount (LCY)") + '</td>');
                 until VendorLedger.Next() = 0;
                 BodyText += ('</table>');
             end;
+        end;
+
+        PurchaseHedader.Reset();
+        PurchaseHedader.SetRange("Document Type", PurchaseHedader."Document Type"::Order);
+        PurchaseHedader.SetRange("Order Date", WorkDate());
+        PurchaseHedader.SetAutoCalcFields("Amount Including VAT");
+        if PurchaseHedader.FindSet() then begin
+            TotalAmt := 0;
+            BodyText += ('<br>');
+            BodyText += ('<br>');
+            BodyText += ('<H2>Sales Order Details: ');
+            BodyText += ('<br>');
+            BodyText += ('<table border="1">');
+            BodyText += ('<tr><th>Vendor</th><th>Order No.</th><th>Amount</th>');
+            repeat
+                BodyText += ('<tr><td>' + PurchaseHedader."Buy-from Vendor Name" + '</td><td>' + PurchaseHedader."No." + '</td><td>' + Format(PurchaseHedader."Amount Including VAT") + '</td>');
+                TotalAmt += PurchaseHedader."Amount Including VAT";
+            until PurchaseHedader.Next() = 0;
+            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td><b>' + Format(TotalAmt) + '</b></td>');
+            BodyText += ('</table>');
+        end;
+
+        PurchaseInvoiceHeader.Reset();
+        PurchaseInvoiceHeader.SetRange("Posting Date", WorkDate());
+        PurchaseInvoiceHeader.SetAutoCalcFields("Amount Including VAT");
+        if PurchaseInvoiceHeader.FindSet() then begin
+            TotalAmt := 0;
+            BodyText += ('<br>');
+            BodyText += ('<br>');
+            BodyText += ('<H2>Sales Invoice Details: ');
+            BodyText += ('<br>');
+            BodyText += ('<table border="1">');
+            BodyText += ('<tr><th>Vendor</th><th>Invoice No.</th><th>Amount</th>');
+            repeat
+                BodyText += ('<tr><td>' + PurchaseInvoiceHeader."Buy-from Vendor Name" + '</td><td>' + PurchaseInvoiceHeader."No." + '</td><td>' + Format(PurchaseInvoiceHeader."Amount Including VAT") + '</td>');
+                TotalAmt += PurchaseInvoiceHeader."Amount Including VAT";
+            until PurchaseInvoiceHeader.Next() = 0;
+            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td><b>' + Format(TotalAmt) + '</b></td>');
+            BodyText += ('</table>');
         end;
     end;
 

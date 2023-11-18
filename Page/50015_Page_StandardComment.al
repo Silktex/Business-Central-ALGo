@@ -11,6 +11,11 @@ page 50015 "Standard Comment"
         {
             repeater(Group)
             {
+                field("Entry No."; Rec."Entry No.")
+                {
+                    ApplicationArea = all;
+                    Editable = false;
+                }
                 field("Product Code"; Rec."Product Code")
                 {
                     ApplicationArea = All;
@@ -86,6 +91,37 @@ page 50015 "Standard Comment"
 
     actions
     {
+        area(Processing)
+        {
+            action(Move)
+            {
+                Caption = 'Migrate';
+                ApplicationArea = All;
+                trigger OnAction()
+                var
+                    UPGStdCmt: Record "UPG Standard Comment";
+                    StdComts: Record "Standard Comment";
+                begin
+                    StdComts.Reset();
+                    if StdComts.FindSet() then begin
+                        repeat
+                            UPGStdCmt.Init();
+                            UPGStdCmt.TransferFields(StdComts);
+                            UPGStdCmt.Insert();
+                        until StdComts.Next() = 0;
+                    end else begin
+                        UPGStdCmt.Reset();
+                        if UPGStdCmt.FindSet() then
+                            repeat
+                                StdComts.Init();
+                                StdComts.TransferFields(UPGStdCmt);
+                                StdComts.Insert();
+                            until UPGStdCmt.Next() = 0;
+                    end;
+                    CurrPage.Update();
+                end;
+            }
+        }
     }
 
     trigger OnAfterGetRecord()
