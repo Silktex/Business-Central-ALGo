@@ -1227,11 +1227,11 @@ codeunit 50208 SmtpMail_Ext
 
             if CustomerLedger.FindSet() then begin
                 BodyText += ('<table border="1">');
-                BodyText += ('<tr><th>Customer</th><th>Amount</th>');
+                BodyText += ('<tr><th>Customer</th><th align="right">Amount</th>');
                 repeat
                     CustomerLedger.CalcFields("Amount (LCY)");
                     Cust.Get(CustomerLedger."Customer No.");
-                    BodyText += ('<tr><td>' + Cust.Name + '</td><td>' + Format(ABS(CustomerLedger."Amount (LCY)")) + '</td>');
+                    BodyText += ('<tr><td>' + Cust.Name + '</td><td align="right">' + Format(ABS(CustomerLedger."Amount (LCY)")) + '</td>');
                 until CustomerLedger.Next() = 0;
                 BodyText += ('</table>');
             end;
@@ -1248,12 +1248,12 @@ codeunit 50208 SmtpMail_Ext
             BodyText += ('<H2>Sales Order Details: ');
             BodyText += ('<br>');
             BodyText += ('<table border="1">');
-            BodyText += ('<tr><th>Customer</th><th>Order No.</th><th>Amount</th>');
+            BodyText += ('<tr><th>Customer</th><th>Order No.</th><th align="right">Amount</th>');
             repeat
-                BodyText += ('<tr><td>' + SalesHeader."Sell-to Customer Name" + '</td><td>' + SalesHeader."No." + '</td><td>' + Format(SalesHeader."Amount Including VAT") + '</td>');
+                BodyText += ('<tr><td>' + SalesHeader."Sell-to Customer Name" + '</td><td>' + SalesHeader."No." + '</td><td align="right">' + Format(SalesHeader."Amount Including VAT") + '</td>');
                 TotalAmt += SalesHeader."Amount Including VAT";
             until SalesHeader.Next() = 0;
-            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td><b>' + Format(TotalAmt) + '</b></td>');
+            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td align="right"><b>' + Format(TotalAmt) + '</b></td>');
             BodyText += ('</table>');
         end;
 
@@ -1267,12 +1267,12 @@ codeunit 50208 SmtpMail_Ext
             BodyText += ('<H2>Sales Invoice Details: ');
             BodyText += ('<br>');
             BodyText += ('<table border="1">');
-            BodyText += ('<tr><th>Customer</th><th>Order No.</th><th>Amount</th>');
+            BodyText += ('<tr><th>Customer</th><th>Order No.</th><th align="right">Amount</th>');
             repeat
-                BodyText += ('<tr><td>' + SalesInvoiceHeader."Sell-to Customer Name" + '</td><td>' + SalesInvoiceHeader."No." + '</td><td>' + Format(SalesInvoiceHeader."Amount Including VAT") + '</td>');
+                BodyText += ('<tr><td>' + SalesInvoiceHeader."Sell-to Customer Name" + '</td><td>' + SalesInvoiceHeader."No." + '</td><td align="right">' + Format(SalesInvoiceHeader."Amount Including VAT") + '</td>');
                 TotalAmt += SalesInvoiceHeader."Amount Including VAT";
             until SalesInvoiceHeader.Next() = 0;
-            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td><b>' + Format(TotalAmt) + '</b></td>');
+            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td align="right"><b>' + Format(TotalAmt) + '</b></td>');
             BodyText += ('</table>');
         end;
 
@@ -1294,11 +1294,11 @@ codeunit 50208 SmtpMail_Ext
 
             if VendorLedger.FindSet() then begin
                 BodyText += ('<table border="1">');
-                BodyText += ('<tr><th>Vendor</th><th>Amount</th>');
+                BodyText += ('<tr><th>Vendor</th><th align="right">Amount</th>');
                 repeat
                     VendorLedger.CalcFields("Amount (LCY)");
                     Vend.get(VendorLedger."Vendor No.");
-                    BodyText += ('<tr><td>' + Vend.Name + '</td><td>' + Format(VendorLedger."Amount (LCY)") + '</td>');
+                    BodyText += ('<tr><td>' + Vend.Name + '</td><td align="right">' + Format(VendorLedger."Amount (LCY)") + '</td>');
                 until VendorLedger.Next() = 0;
                 BodyText += ('</table>');
             end;
@@ -1312,15 +1312,15 @@ codeunit 50208 SmtpMail_Ext
             TotalAmt := 0;
             BodyText += ('<br>');
             BodyText += ('<br>');
-            BodyText += ('<H2>Sales Order Details: ');
+            BodyText += ('<H2>Purchase Order Details: ');
             BodyText += ('<br>');
             BodyText += ('<table border="1">');
-            BodyText += ('<tr><th>Vendor</th><th>Order No.</th><th>Amount</th>');
+            BodyText += ('<tr><th>Vendor</th><th>Order No.</th><th align="right">Amount</th>');
             repeat
-                BodyText += ('<tr><td>' + PurchaseHedader."Buy-from Vendor Name" + '</td><td>' + PurchaseHedader."No." + '</td><td>' + Format(PurchaseHedader."Amount Including VAT") + '</td>');
+                BodyText += ('<tr><td>' + PurchaseHedader."Buy-from Vendor Name" + '</td><td>' + PurchaseHedader."No." + '</td><td align="right">' + Format(PurchaseHedader."Amount Including VAT") + '</td>');
                 TotalAmt += PurchaseHedader."Amount Including VAT";
             until PurchaseHedader.Next() = 0;
-            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td><b>' + Format(TotalAmt) + '</b></td>');
+            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td align="right"><b>' + Format(TotalAmt) + '</b></td>');
             BodyText += ('</table>');
         end;
 
@@ -1331,15 +1331,15 @@ codeunit 50208 SmtpMail_Ext
             TotalAmt := 0;
             BodyText += ('<br>');
             BodyText += ('<br>');
-            BodyText += ('<H2>Sales Invoice Details: ');
+            BodyText += ('<H2>Purchase Invoice Details: ');
             BodyText += ('<br>');
             BodyText += ('<table border="1">');
-            BodyText += ('<tr><th>Vendor</th><th>Invoice No.</th><th>Amount</th>');
+            BodyText += ('<tr><th>Vendor</th><th>Invoice No.</th><th align="right">Amount</th>');
             repeat
-                BodyText += ('<tr><td>' + PurchaseInvoiceHeader."Buy-from Vendor Name" + '</td><td>' + PurchaseInvoiceHeader."No." + '</td><td>' + Format(PurchaseInvoiceHeader."Amount Including VAT") + '</td>');
+                BodyText += ('<tr><td>' + PurchaseInvoiceHeader."Buy-from Vendor Name" + '</td><td>' + PurchaseInvoiceHeader."No." + '</td><td align="right">' + Format(PurchaseInvoiceHeader."Amount Including VAT") + '</td>');
                 TotalAmt += PurchaseInvoiceHeader."Amount Including VAT";
             until PurchaseInvoiceHeader.Next() = 0;
-            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td><b>' + Format(TotalAmt) + '</b></td>');
+            BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td align="right"><b>' + Format(TotalAmt) + '</b></td>');
             BodyText += ('</table>');
         end;
     end;
