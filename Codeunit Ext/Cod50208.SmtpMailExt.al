@@ -1227,11 +1227,11 @@ codeunit 50208 SmtpMail_Ext
 
             if CustomerLedger.FindSet() then begin
                 BodyText += ('<table border="1">');
-                BodyText += ('<tr><th>Customer</th><th align="right">Amount</th>');
+                BodyText += ('<tr><th>Customer</th><th>External Document No.</th><th align="right">Amount</th>');
                 repeat
                     CustomerLedger.CalcFields("Amount (LCY)");
                     Cust.Get(CustomerLedger."Customer No.");
-                    BodyText += ('<tr><td>' + Cust.Name + '</td><td align="right">' + Format(ABS(CustomerLedger."Amount (LCY)")) + '</td>');
+                    BodyText += ('<tr><td>' + Cust.Name + '</td><td>' + CustomerLedger."External Document No." + '</td><td align="right">' + Format(ABS(CustomerLedger."Amount (LCY)")) + '</td>');
                 until CustomerLedger.Next() = 0;
                 BodyText += ('</table>');
             end;
@@ -1294,11 +1294,11 @@ codeunit 50208 SmtpMail_Ext
 
             if VendorLedger.FindSet() then begin
                 BodyText += ('<table border="1">');
-                BodyText += ('<tr><th>Vendor</th><th align="right">Amount</th>');
+                BodyText += ('<tr><th>Vendor</th><th>External Document No.</th><th align="right">Amount</th>');
                 repeat
                     VendorLedger.CalcFields("Amount (LCY)");
                     Vend.get(VendorLedger."Vendor No.");
-                    BodyText += ('<tr><td>' + Vend.Name + '</td><td align="right">' + Format(VendorLedger."Amount (LCY)") + '</td>');
+                    BodyText += ('<tr><td>' + Vend.Name + '</td><td>' + VendorLedger."External Document No." + '</td><td align="right">' + Format(VendorLedger."Amount (LCY)") + '</td>');
                 until VendorLedger.Next() = 0;
                 BodyText += ('</table>');
             end;
