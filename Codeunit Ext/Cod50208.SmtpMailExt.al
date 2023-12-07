@@ -1233,6 +1233,7 @@ codeunit 50208 SmtpMail_Ext
                     Cust.Get(CustomerLedger."Customer No.");
                     BodyText += ('<tr><td>' + Cust.Name + '</td><td>' + CustomerLedger."External Document No." + '</td><td align="right">' + Format(ABS(CustomerLedger."Amount (LCY)")) + '</td>');
                 until CustomerLedger.Next() = 0;
+                BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td align="right"><b>' + Format(TotalPaymentRcptAmount) + '</b></td>');
                 BodyText += ('</table>');
             end;
         end;
@@ -1284,7 +1285,7 @@ codeunit 50208 SmtpMail_Ext
             repeat
                 VendorLedger.CalcFields("Amount (LCY)");
                 TotalPaymentPaidAmount += VendorLedger."Amount (LCY)";
-            until CustomerLedger.Next() = 0;
+            until VendorLedger.Next() = 0;
 
         if TotalPaymentPaidAmount <> 0 then begin
             BodyText += ('<br>');
@@ -1300,6 +1301,7 @@ codeunit 50208 SmtpMail_Ext
                     Vend.get(VendorLedger."Vendor No.");
                     BodyText += ('<tr><td>' + Vend.Name + '</td><td>' + VendorLedger."External Document No." + '</td><td align="right">' + Format(VendorLedger."Amount (LCY)") + '</td>');
                 until VendorLedger.Next() = 0;
+                BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td align="right"><b>' + Format(TotalPaymentPaidAmount) + '</b></td>');
                 BodyText += ('</table>');
             end;
         end;

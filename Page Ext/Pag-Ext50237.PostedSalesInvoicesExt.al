@@ -14,6 +14,13 @@ pageextension 50237 "Posted Sales Invoices_Ext" extends "Posted Sales Invoices"
         {
             Visible = true;
         }
+        addafter("External Document No.")
+        {
+            field("Project Name"; Rec."Project Name")
+            {
+                ApplicationArea = All;
+            }
+        }
         moveafter("Currency Code"; "Order No.")
         modify("Order No.")
         {
