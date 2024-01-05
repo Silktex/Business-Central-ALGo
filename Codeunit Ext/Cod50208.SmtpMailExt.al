@@ -1233,7 +1233,7 @@ codeunit 50208 SmtpMail_Ext
                     Cust.Get(CustomerLedger."Customer No.");
                     BodyText += ('<tr><td>' + Cust.Name + '</td><td>' + CustomerLedger."External Document No." + '</td><td align="right">' + Format(ABS(CustomerLedger."Amount (LCY)")) + '</td>');
                 until CustomerLedger.Next() = 0;
-                BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td align="right"><b>' + Format(TotalPaymentRcptAmount) + '</b></td>');
+                BodyText += ('<tr><td>' + '<b>Total</b>' + '</td><td>' + ' ' + '</td><td align="right"><b>' + Format(ABS(TotalPaymentRcptAmount)) + '</b></td>');
                 BodyText += ('</table>');
             end;
         end;

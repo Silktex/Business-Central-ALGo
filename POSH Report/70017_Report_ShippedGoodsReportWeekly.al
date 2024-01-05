@@ -91,7 +91,7 @@ report 70017 "Shipped Goods Report Weekly"
 
                         IF ComInfo."Test MIS E-Mail" = '' then BEGIn
                             MailCC.Add('sarika@poshtextiles.com');
-                            MailCC.Add('mm@poshtextiles.com');
+                            //MailCC.Add('mm@poshtextiles.com');
                         END;
 
                         EmailMessage.Create(AddRecipients, txtSubject, txtBody1, TRUE, MailCC, MailBCC);
