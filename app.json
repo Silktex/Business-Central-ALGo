@@ -2,7 +2,7 @@
   "id": "e70ca125-8f03-441d-a7cc-f87c882e141c",
   "name": "SilkCraft",
   "publisher": "Default publisher",
-  "version": "1.0.1.3",
+  "version": "1.0.1.7",
   "brief": "",
   "description": "",
   "privacyStatement": "",
@@ -13,7 +13,7 @@
   "dependencies": [],
   "screenshots": [],
   "platform": "1.0.0.0",
-  "application": "19.0.0.0",
+  "application": "1.0.0.0",
   "idRanges": [
     {
       "from": 50000,
@@ -26,6 +26,6 @@
     "allowDownloadingSource": true,
     "includeSourceInSymbolFile": true
   },
-  "runtime": "8.0"
+  "runtime": "11.0"
 
 }

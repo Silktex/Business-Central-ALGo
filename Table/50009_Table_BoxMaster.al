@@ -24,9 +24,16 @@ table 50009 "Box Master"
         field(6; "Box Weight"; Decimal)
         {
         }
+        field(10; "Shipping Agent Code"; Code[10])
+        {
+            AccessByPermission = TableData "Shipping Agent Services" = R;
+            Caption = 'Shipping Agent Code';
+            TableRelation = "Shipping Agent";
+        }
         field(7; "Shipping Agent Service Code"; Code[20])
         {
-            TableRelation = "Shipping Agent Services".Code;
+            TableRelation = "Shipping Agent Services".Code where("Shipping Agent Code" = field("Shipping Agent Code"));
+
         }
         field(8; "Show in Handheld"; Boolean)
         {

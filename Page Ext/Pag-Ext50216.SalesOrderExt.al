@@ -106,6 +106,10 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
         }
         addafter("Package Tracking No.")
         {
+            field("Box Code"; Rec."Box Code")
+            {
+                ApplicationArea = all;
+            }
             field("RocketShip Tracking No."; Rec."RocketShip Tracking No.")
             {
                 ApplicationArea = all;

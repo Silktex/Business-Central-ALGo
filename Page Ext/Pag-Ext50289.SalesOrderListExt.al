@@ -42,7 +42,11 @@ pageextension 50289 "Sales Order List_Ext" extends "Sales Order List"
             {
                 ApplicationArea = all;
             }
-            field("""LastMailSenton"; LastDateMailSentFN(Rec."No."))
+            field("Project Name"; Rec."Project Name")
+            {
+                ApplicationArea = all;
+            }
+            field("LastMailSenton"; LastDateMailSentFN(Rec."No."))
             {
                 Caption = 'Last Mail Sent on';
                 ApplicationArea = all;

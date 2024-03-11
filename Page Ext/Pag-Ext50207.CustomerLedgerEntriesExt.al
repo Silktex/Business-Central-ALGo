@@ -27,7 +27,7 @@ pageextension 50207 "Customer Ledger Entries_Ext" extends "Customer Ledger Entri
     {
         modify(UnapplyEntries)
         {
-            Visible = false;
+            Visible = true;
         }
         addafter(UnapplyEntries)
         {
@@ -36,6 +36,7 @@ pageextension 50207 "Customer Ledger Entries_Ext" extends "Customer Ledger Entri
                 ApplicationArea = Basic, Suite;
                 Caption = 'Unapply Entries';
                 Ellipsis = true;
+                Visible = false;
                 Image = UnApply;
                 Promoted = true;
                 PromotedCategory = Process;

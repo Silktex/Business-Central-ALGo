@@ -174,7 +174,22 @@ pageextension 50213 "Item Ledger Entries_Ext" extends "Item Ledger Entries"
                 end;
             }
 
+            action(PrintAPILabel)
+            {
+                Caption = 'API Print Label';
+                Image = LinkWeb;
+                Promoted = true;
+                ApplicationArea = all;
 
+                trigger OnAction()
+                var
+                // ReportLabel: Report "Print PHP Label";
+                begin
+                    CurrPage.SetSelectionFilter(recILE);
+                    //REPORT.RUN(REPORT::"Item Label Print",FALSE,FALSE,recILE);
+                    PrintLableAPI(Rec."Item No.", Rec."Lot No.", Rec."Remaining Quantity");
+                end;
+            }
         }
         addafter("&Value Entries")
         {
@@ -254,4 +269,80 @@ pageextension 50213 "Item Ledger Entries_Ext" extends "Item Ledger Entries"
 */
 
     end;
+
+    procedure PrintLableAPI(ItemCode: Code[20]; LotNo: Code[20]; Qty: Decimal)
+    var
+        InvSetupRec: Record "Inventory Setup";
+        TempBlob: Codeunit "Temp Blob";
+        InStream: InStream;
+        OutStream: OutStream;
+        HttpWebClient: HttpClient;
+        RequestMessage: HttpRequestMessage;
+        ContentHeaders: HttpHeaders;
+        HttpWebContent: HttpContent;
+        ResponseMessage: HttpResponseMessage;
+        LocJObject: JsonObject;
+        JToken: JsonToken;
+        JsonResponse: Text;
+        RespMsg: Text;
+        ConnectionMsg: Label 'The web service returned an error message:\\Status code: %1\Description: %2';
+        ResponseErrorText: Text;
+        CancelledDateText: text;
+        FieldRef: FieldRef;
+        RecRef: RecordRef;
+        Authorization: Text;
+        JObject: JsonObject;
+        DataText: BigText;
+        DataStream: InStream;
+        // MemoryStream: DotNet MemoryStream;
+        //Bytes: DotNet Array;
+        //Convert: DotNet Convert;
+        //Base64String: Text;
+        OStream: OutStream;
+        txtSend: Text;
+        recItem: Record Item;
+        PrinterSelection: Record "Printer Selection";
+        FileName: Text;
+    begin
+        InvSetupRec.Get();
+        if InvSetupRec."ZPL Print IP Add. Label Only" <> '' then begin
+            FileName := '';
+            recItem.Get(ItemCode);
+            txtSend := ('^XA' +
+                       '^MMT' +
+                       '^PW477' +
+                       '^LL0203' +
+                       '^LS0' +
+                       '^FO5,10^BX,10,200' +
+                       '^FD' + LotNo + '^FS' +
+                       '^BCN,50,Y,N,N' +
+                       '^FT180,0^A0N,34,33^FH\^FD' + LotNo + '^FS' +
+                       '^FT10,180^A0N,34,31^FH\^FD' + recItem.Description + '^FS' +
+                       '^FT180,110^A0N,34,33^FH\^FDQty:^FS' +
+                       '^FT240,110^A0N,34,33^FH\^FD' + Format(Qty) + ' Yards^FS' +
+                       '^XZ');
+
+
+            JObject.WriteTo(txtSend);
+            HttpWebContent.WriteFrom(txtSend);
+            HttpWebContent.GetHeaders(ContentHeaders);
+            ContentHeaders.Clear();
+            //ContentHeaders.Add('Content-Length', Format(StrLen(txtSend)));
+            RequestMessage.Content := HttpWebContent;
+            RequestMessage.SetRequestUri(InvSetupRec."ZPL Print IP Add. Label Only");
+            RequestMessage.Method := 'POST';
+            HttpWebClient.Send(RequestMessage, ResponseMessage);
+
+            if not ResponseMessage.IsSuccessStatusCode then
+                error(ConnectionMsg,
+                      ResponseMessage.HttpStatusCode,
+                      ResponseMessage.ReasonPhrase);
+            HttpWebContent := ResponseMessage.Content;
+            HttpWebContent.ReadAs(JsonResponse);
+            if GuiAllowed then
+                Message(JsonResponse);
+
+        end;
+    end;
+
 }

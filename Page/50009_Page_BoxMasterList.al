@@ -37,6 +37,10 @@ page 50009 "Box Master List"
                 {
                     ApplicationArea = all;
                 }
+                field("Shipping Agent Code"; Rec."Shipping Agent Code")
+                {
+                    ApplicationArea = all;
+                }
                 field("Shipping Agent Service Code"; Rec."Shipping Agent Service Code")
                 {
                     ApplicationArea = all;

@@ -24,6 +24,10 @@ pageextension 50236 "Posted Sales Shipments_Ext" extends "Posted Sales Shipments
             {
                 ApplicationArea = all;
             }
+            field("Project Name"; Rec."Project Name")
+            {
+                ApplicationArea = all;
+            }
         }
         addafter("Shipment Date")
         {
@@ -42,7 +46,7 @@ pageextension 50236 "Posted Sales Shipments_Ext" extends "Posted Sales Shipments
                     PAGE.Run(0, MailSentRec);
                 end;
             }
-            field("""LastMailSenton"; LastDateMailSentFN(Rec."No."))
+            field("LastMailSenton"; LastDateMailSentFN(Rec."No."))
             {
                 Caption = 'Last Mail Sent on';
                 ApplicationArea = all;

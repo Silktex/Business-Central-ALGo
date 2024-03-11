@@ -18,6 +18,10 @@ pageextension 50287 "Sales Quotes_Ext" extends "Sales Quotes"
                     rec.SetWorkDescription(WorkDescription);
                 end;
             }
+            field("Project Name"; Rec."Project Name")
+            {
+                ApplicationArea = all;
+            }
         }
     }
     actions
