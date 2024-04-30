@@ -18,7 +18,7 @@ query 50011 "Payment Method"
             { }
             // column(Bank_Data_Conversion_Pmt__Type; "Bank Data Conversion Pmt. Type")
             // { }
-            column(Use_for_Invoicing; "Use for Invoicing") { }
+            //column(Use_for_Invoicing; "LTI Use for Invoicing") { }
             column(Last_Modified_Date_Time; "Last Modified Date Time") { }
             column(Id; SystemId) { }
             column(SAT_Payment_Method_Code; "SAT Payment Method Code") { }

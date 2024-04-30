@@ -878,7 +878,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Fields!OrderedQuantity.Value)</Value>
+                                  <Value>=Fields!OrderedQuantity.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -912,7 +912,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Fields!TempSalesShptLineQy.Value)</Value>
+                                  <Value>=Fields!TempSalesShptLineQy.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -945,7 +945,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Code.BlankZero(Fields!BackOrderedQuantity.Value)</Value>
+                                  <Value>=Fields!BackOrderedQuantity.Value</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
@@ -1303,10 +1303,39 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value />
+                                  <Value>="Roll #"</Value>
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!ItemLedgerEntry_LotNo.Value</Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!ItemLedgerEntry_Quantity.Value</Value>
+                                  <Style>
+                                    <FontFamily>Segoe UI</FontFamily>
+                                    <FontSize>8pt</FontSize>
+                                    <Format>=Fields!ItemLedgerEntry_QuantityFormat.Value</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1343,11 +1372,14 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Right</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox4</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>true</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1375,11 +1407,14 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Right</TextAlign>
+                                <TextAlign>Left</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>true</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Style>None</Style>
@@ -1403,6 +1438,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                                   <Style>
                                     <FontFamily>Segoe UI</FontFamily>
                                     <FontSize>8pt</FontSize>
+                                    <Format>=Fields!ItemLedgerEntry_QuantityFormat.Value</Format>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -1412,6 +1448,9 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>ItemLedgerEntry_LotNo</rd:DefaultName>
+                          <Visibility>
+                            <Hidden>true</Hidden>
+                          </Visibility>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1636,10 +1675,10 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
         <Height>0.8988in</Height>
         <Style />
       </Body>
-      <Width>6.96508in</Width>
+      <Width>6.99633in</Width>
       <Page>
         <PageHeader>
-          <Height>3.45802in</Height>
+          <Height>3.06219in</Height>
           <PrintOnFirstPage>true</PrintOnFirstPage>
           <PrintOnLastPage>true</PrintOnLastPage>
           <ReportItems>
@@ -1660,10 +1699,10 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.15835in</Top>
-              <Left>4.04076in</Left>
+              <Top>2.66599in</Top>
+              <Left>2.46042in</Left>
               <Height>11pt</Height>
-              <Width>1.21308in</Width>
+              <Width>1.58417in</Width>
               <Style />
             </Textbox>
             <Textbox Name="PODateCaption1">
@@ -1683,10 +1722,10 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.00557in</Top>
-              <Left>4.04076in</Left>
+              <Top>2.66599in</Top>
+              <Left>1.173in</Left>
               <Height>11pt</Height>
-              <Width>1.21308in</Width>
+              <Width>1.26856in</Width>
               <ZIndex>1</ZIndex>
               <Style />
             </Textbox>
@@ -1707,10 +1746,10 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.61668in</Top>
-              <Left>4.04076in</Left>
+              <Top>2.66599in</Top>
+              <Left>4.0499in</Left>
               <Height>11pt</Height>
-              <Width>1.21308in</Width>
+              <Width>1.20394in</Width>
               <ZIndex>2</ZIndex>
               <Style />
             </Textbox>
@@ -1758,10 +1797,10 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.54724in</Top>
-              <Left>4.04076in</Left>
+              <Top>2.66599in</Top>
+              <Left>0.01042in</Left>
               <Height>11pt</Height>
-              <Width>1.21308in</Width>
+              <Width>1.15008in</Width>
               <ZIndex>4</ZIndex>
               <Style />
             </Textbox>
@@ -1834,7 +1873,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.37483in</Top>
+              <Top>1.49983in</Top>
               <Left>3.64076in</Left>
               <Height>11pt</Height>
               <Width>0.67618in</Width>
@@ -1858,10 +1897,10 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.31113in</Top>
-              <Left>4.04076in</Left>
+              <Top>2.66599in</Top>
+              <Left>5.25465in</Left>
               <Height>11pt</Height>
-              <Width>1.21308in</Width>
+              <Width>1.58417in</Width>
               <ZIndex>8</ZIndex>
               <Style />
             </Textbox>
@@ -1882,7 +1921,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.85279in</Top>
+              <Top>0.72779in</Top>
               <Left>4.04076in</Left>
               <Height>11pt</Height>
               <Width>1.21308in</Width>
@@ -1906,7 +1945,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>0.70002in</Top>
+              <Top>0.57502in</Top>
               <Left>4.04076in</Left>
               <Height>11pt</Height>
               <Width>1.21308in</Width>
@@ -1930,57 +1969,10 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.41233in</Top>
+              <Top>1.53733in</Top>
               <Height>11pt</Height>
               <Width>0.67618in</Width>
               <ZIndex>11</ZIndex>
-              <Style />
-            </Textbox>
-            <Textbox Name="TaxRegLabel1">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Code.GetData(26,1)</Value>
-                      <Style>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <Top>1.4639in</Top>
-              <Left>4.04076in</Left>
-              <Height>11pt</Height>
-              <Width>1.21308in</Width>
-              <ZIndex>12</ZIndex>
-              <Style />
-            </Textbox>
-            <Textbox Name="TaxRegNo1">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Code.GetData(27,1)</Value>
-                      <Style>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <Top>1.47432in</Top>
-              <Left>5.25384in</Left>
-              <Height>11pt</Height>
-              <Width>1.58417in</Width>
-              <ZIndex>13</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="PackageTrackingNoLabel1">
@@ -2000,58 +1992,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.92224in</Top>
+              <Top>0.89724in</Top>
               <Left>4.04076in</Left>
               <Height>11pt</Height>
               <Width>1.21308in</Width>
-              <ZIndex>14</ZIndex>
-              <Style />
-            </Textbox>
-            <Textbox Name="ShippingAgentCodeLabel1">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Code.GetData(30,1)</Value>
-                      <Style>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
-                        <FontWeight>Bold</FontWeight>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <Top>1.76946in</Top>
-              <Left>4.04076in</Left>
-              <Height>11pt</Height>
-              <Width>1.21308in</Width>
-              <ZIndex>15</ZIndex>
-              <Style />
-            </Textbox>
-            <Textbox Name="ShippingAgentCodeText1">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Code.GetData(31,1)</Value>
-                      <Style>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <Top>1.77988in</Top>
-              <Left>5.25384in</Left>
-              <Height>11pt</Height>
-              <Width>1.58417in</Width>
-              <ZIndex>16</ZIndex>
+              <ZIndex>12</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="PackageTrackingNoText1">
@@ -2070,11 +2015,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.28682in</Top>
-              <Left>5.25384in</Left>
+              <Top>1.34932in</Top>
+              <Left>5.37884in</Left>
               <Height>11pt</Height>
               <Width>1.58417in</Width>
-              <ZIndex>17</ZIndex>
+              <ZIndex>13</ZIndex>
               <Visibility>
                 <Hidden>true</Hidden>
               </Visibility>
@@ -2102,11 +2047,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.15835in</Top>
-              <Left>5.25384in</Left>
+              <Top>2.82571in</Top>
+              <Left>2.46042in</Left>
               <Height>11pt</Height>
               <Width>1.58417in</Width>
-              <ZIndex>18</ZIndex>
+              <ZIndex>14</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="SalesShptHdrOrderDate1">
@@ -2128,11 +2073,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.00557in</Top>
-              <Left>5.25384in</Left>
+              <Top>2.82293in</Top>
+              <Left>1.173in</Left>
               <Height>11pt</Height>
-              <Width>1.58417in</Width>
-              <ZIndex>19</ZIndex>
+              <Width>1.26856in</Width>
+              <ZIndex>15</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="ShipmentMethodDescription1">
@@ -2151,11 +2096,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>1.6271in</Top>
-              <Left>5.25384in</Left>
-              <Height>11pt</Height>
-              <Width>1.58417in</Width>
-              <ZIndex>20</ZIndex>
+              <Top>2.82293in</Top>
+              <Left>4.05326in</Left>
+              <Height>11.2pt</Height>
+              <Width>1.20058in</Width>
+              <ZIndex>16</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="SalesShptHdrShptDate1">
@@ -2177,11 +2122,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.54724in</Top>
-              <Left>5.25384in</Left>
+              <Top>2.82571in</Top>
+              <Left>0.01042in</Left>
               <Height>11pt</Height>
-              <Width>1.58417in</Width>
-              <ZIndex>21</ZIndex>
+              <Width>1.15008in</Width>
+              <ZIndex>17</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="SalesShptHdrNo1">
@@ -2203,10 +2148,10 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                 </Paragraph>
               </Paragraphs>
               <Top>0.39446in</Top>
-              <Left>5.25384in</Left>
+              <Left>5.37884in</Left>
               <Height>11pt</Height>
               <Width>1.58417in</Width>
-              <ZIndex>22</ZIndex>
+              <ZIndex>18</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="SalesPurchPersonName1">
@@ -2227,11 +2172,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>1.32154in</Top>
-              <Left>5.25384in</Left>
+              <Top>2.82571in</Top>
+              <Left>5.25465in</Left>
               <Height>11pt</Height>
               <Width>1.58417in</Width>
-              <ZIndex>23</ZIndex>
+              <ZIndex>19</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="SalesShptHdrYourRef1">
@@ -2252,11 +2197,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.85279in</Top>
-              <Left>5.25384in</Left>
+              <Top>0.72779in</Top>
+              <Left>5.37884in</Left>
               <Height>11pt</Height>
               <Width>1.58417in</Width>
-              <ZIndex>24</ZIndex>
+              <ZIndex>20</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="SalesShptHdrBilltoCustNo1">
@@ -2277,34 +2222,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   </Style>
                 </Paragraph>
               </Paragraphs>
-              <Top>0.70002in</Top>
-              <Left>5.25384in</Left>
+              <Top>0.57502in</Top>
+              <Left>5.37884in</Left>
               <Height>11pt</Height>
               <Width>1.58417in</Width>
-              <ZIndex>25</ZIndex>
-              <Style />
-            </Textbox>
-            <Textbox Name="CopyTxt1">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Code.GetData(14,1)</Value>
-                      <Style>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style />
-                </Paragraph>
-              </Paragraphs>
-              <Top>1.77072in</Top>
-              <Left>0.01042in</Left>
-              <Height>11pt</Height>
-              <Width>2.43114in</Width>
-              <ZIndex>26</ZIndex>
+              <ZIndex>21</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="PageNumberTextBox">
@@ -2329,57 +2251,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
               <Left>6.77358in</Left>
               <Height>11pt</Height>
               <Width>0.18942in</Width>
-              <ZIndex>27</ZIndex>
-              <Style />
-            </Textbox>
-            <Textbox Name="CompanyAddress81">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Code.GetData(8,1)</Value>
-                      <Style>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <Top>1.61794in</Top>
-              <Left>0.01042in</Left>
-              <Height>11pt</Height>
-              <Width>2.43114in</Width>
-              <ZIndex>28</ZIndex>
-              <Style />
-            </Textbox>
-            <Textbox Name="CompanyAddress71">
-              <KeepTogether>true</KeepTogether>
-              <Paragraphs>
-                <Paragraph>
-                  <TextRuns>
-                    <TextRun>
-                      <Value>=Code.GetData(7,1)</Value>
-                      <Style>
-                        <FontFamily>Segoe UI</FontFamily>
-                        <FontSize>8pt</FontSize>
-                      </Style>
-                    </TextRun>
-                  </TextRuns>
-                  <Style>
-                    <TextAlign>Left</TextAlign>
-                  </Style>
-                </Paragraph>
-              </Paragraphs>
-              <Top>1.46517in</Top>
-              <Left>0.01042in</Left>
-              <Height>11pt</Height>
-              <Width>2.43114in</Width>
-              <ZIndex>29</ZIndex>
+              <ZIndex>22</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="CompanyAddress61">
@@ -2403,8 +2275,8 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
               <Top>1.31239in</Top>
               <Left>0.01042in</Left>
               <Height>11pt</Height>
-              <Width>2.43114in</Width>
-              <ZIndex>30</ZIndex>
+              <Width>3.19156in</Width>
+              <ZIndex>23</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="CompanyAddress51">
@@ -2428,8 +2300,8 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
               <Top>1.15961in</Top>
               <Left>0.01042in</Left>
               <Height>11pt</Height>
-              <Width>2.43114in</Width>
-              <ZIndex>31</ZIndex>
+              <Width>3.19156in</Width>
+              <ZIndex>24</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="CompanyAddress41">
@@ -2453,8 +2325,8 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
               <Top>1.00683in</Top>
               <Left>0.01042in</Left>
               <Height>11pt</Height>
-              <Width>2.43114in</Width>
-              <ZIndex>32</ZIndex>
+              <Width>3.19156in</Width>
+              <ZIndex>25</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="CompanyAddress31">
@@ -2478,8 +2350,8 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
               <Top>0.85406in</Top>
               <Left>0.01042in</Left>
               <Height>11pt</Height>
-              <Width>2.43114in</Width>
-              <ZIndex>33</ZIndex>
+              <Width>3.19156in</Width>
+              <ZIndex>26</ZIndex>
               <Style />
             </Textbox>
             <Textbox Name="CompanyAddress21">
@@ -2503,8 +2375,8 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
               <Top>0.70128in</Top>
               <Left>0.01042in</Left>
               <Height>11pt</Height>
-              <Width>2.43114in</Width>
-              <ZIndex>34</ZIndex>
+              <Width>3.19156in</Width>
+              <ZIndex>27</ZIndex>
               <Style />
             </Textbox>
             <Image Name="CompanyInfoPicture1">
@@ -2516,7 +2388,7 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
               <Left>0.01042in</Left>
               <Height>49.09088pt</Height>
               <Width>1.15008in</Width>
-              <ZIndex>35</ZIndex>
+              <ZIndex>28</ZIndex>
               <DataElementOutput>NoOutput</DataElementOutput>
               <Style>
                 <Border />
@@ -2539,11 +2411,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox3</rd:DefaultName>
-              <Top>2.56844in</Top>
+              <Top>1.69344in</Top>
               <Left>0.28104in</Left>
               <Height>0.88958in</Height>
               <Width>2.92094in</Width>
-              <ZIndex>36</ZIndex>
+              <ZIndex>29</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2571,11 +2443,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox11</rd:DefaultName>
-              <Top>2.54011in</Top>
+              <Top>1.66511in</Top>
               <Left>4.04076in</Left>
               <Height>0.90277in</Height>
               <Width>2.79725in</Width>
-              <ZIndex>37</ZIndex>
+              <ZIndex>30</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
@@ -2604,19 +2476,15 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox13</rd:DefaultName>
-              <Top>1.94655in</Top>
-              <Left>5.26773in</Left>
-              <Height>0.12847in</Height>
-              <Width>1.57028in</Width>
-              <ZIndex>38</ZIndex>
+              <Top>0.89655in</Top>
+              <Left>5.37884in</Left>
+              <Height>0.1604in</Height>
+              <Width>1.58416in</Width>
+              <ZIndex>31</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="Textbox16">
@@ -2637,19 +2505,15 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                 </Paragraph>
               </Paragraphs>
               <rd:DefaultName>Textbox13</rd:DefaultName>
-              <Top>2.1028in</Top>
-              <Left>5.26773in</Left>
-              <Height>0.14582in</Height>
-              <Width>1.55639in</Width>
-              <ZIndex>39</ZIndex>
+              <Top>1.07084in</Top>
+              <Left>5.37884in</Left>
+              <Height>0.14028in</Height>
+              <Width>1.58417in</Width>
+              <ZIndex>32</ZIndex>
               <Style>
                 <Border>
                   <Style>None</Style>
                 </Border>
-                <PaddingLeft>2pt</PaddingLeft>
-                <PaddingRight>2pt</PaddingRight>
-                <PaddingTop>2pt</PaddingTop>
-                <PaddingBottom>2pt</PaddingBottom>
               </Style>
             </Textbox>
             <Textbox Name="PackageTrackingNoLabel2">
@@ -2669,11 +2533,11 @@ Cstr(Fields!ShiptoCountryRegionCode_SalesShipmentHeader.Value)
                   <Style />
                 </Paragraph>
               </Paragraphs>
-              <Top>2.09584in</Top>
+              <Top>1.07084in</Top>
               <Left>4.02687in</Left>
               <Height>11pt</Height>
-              <Width>1.24086in</Width>
-              <ZIndex>40</ZIndex>
+              <Width>1.22697in</Width>
+              <ZIndex>33</ZIndex>
               <Style />
             </Textbox>
           </ReportItems>

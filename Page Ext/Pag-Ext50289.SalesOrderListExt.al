@@ -64,6 +64,46 @@ pageextension 50289 "Sales Order List_Ext" extends "Sales Order List"
     }
     actions
     {
+        addfirst(Action3)
+        {
+            action(CreateTransferOrder)
+            {
+                ApplicationArea = All;
+                Caption = 'Create Transfer Order';
+                Ellipsis = true;
+                Promoted = true;
+                PromotedCategory = Process;
+                Image = ExecuteBatch;
+                ToolTip = 'Create a transfer order at once for all selected Sales Order.';
+
+                trigger OnAction()
+                var
+                    SalesHeader: Record "Sales Header";
+                    TransferHeader: Record "Transfer Header";
+                    SelectionFilterManagement: Codeunit SelectionFilterManagement;
+                    CreateTransferOrder: Codeunit "SLK Create Trans. Ord. from SO";
+                    TransOrdAddLbl: Label 'Transfer Order %1 has been created';
+                begin
+                    CurrPage.SetSelectionFilter(SalesHeader);
+                    SalesHeader.SetFilter("No.", SelectionFilterManagement.GetSelectionFilterForSalesHeader(SalesHeader));
+                    if SalesHeader.FindSet() then begin
+                        Clear(CreateTransferOrder);
+                        CreateTransferOrder.InsertTransHeader(SalesHeader, TransferHeader);
+                        repeat
+                            Clear(CreateTransferOrder);
+                            CreateTransferOrder.SetTransferHeader(TransferHeader."No.", true);
+                            CreateTransferOrder.Run(SalesHeader);
+                        until SalesHeader.Next() = 0;
+                        Message(TransOrdAddLbl, TransferHeader."No.")
+                    end;
+                    CurrPage.Update(false);
+                end;
+            }
+
+
+
+        }
+
         addafter("Co&mments")
         {
             action(CreateMail)
@@ -272,6 +312,7 @@ pageextension 50289 "Sales Order List_Ext" extends "Sales Order List"
                 ToolTip = 'Shipped Sample Report Manual';
                 ApplicationArea = all;
             }
+
         }
 
     }

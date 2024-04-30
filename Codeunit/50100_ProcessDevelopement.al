@@ -139,6 +139,9 @@ codeunit 50100 ProcessDevelopment
     begin
         TransferShipmentLine."Purchase Receipt No." := TransferLine."Purchase Receipt No.";   //SKNAV11.00
         TransferShipmentLine."Purchase Receipt Line No." := TransferLine."Purchase Receipt Line No.";   //SKNAV11.00
+        TransferShipmentLine."Sales Order No." := TransferLine."Sales Order No.";
+        TransferShipmentLine."Sales Order Line No." := TransferLine."Sales Order Line No.";
+        TransferShipmentLine."SLK Instructions" := TransferLine."SLK Instructions";
     end;
 
     //Code for table 5746 Transfer Receipt Header
@@ -154,6 +157,9 @@ codeunit 50100 ProcessDevelopment
     begin
         TransferReceiptline."Purchase Receipt No." := TransferLine."Purchase Receipt No.";   //SKNAV11.00
         TransferReceiptline."Purchase Receipt Line No." := TransferLine."Purchase Receipt Line No.";   //SKNAV11.00
+        TransferReceiptline."Sales Order No." := TransferLine."Sales Order No.";
+        TransferReceiptline."Sales Order Line No." := TransferLine."Sales Order Line No.";
+        TransferReceiptline."SLK Instructions" := TransferLine."SLK Instructions";
 
     end;
 

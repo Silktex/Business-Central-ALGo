@@ -826,6 +826,44 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
                 end;
             }
         }
+        addlast("Create Purchase Document")
+        {
+            action(CreateTansOrder)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Create New Transfer Order';
+                Image = Document;
+                ToolTip = 'Create transfer orders to get the items that are required by this sales document, minus any quantity that is already available.';
+
+                trigger OnAction()
+                var
+                    TransDocFromSalesDoc: Codeunit "SLK Create Trans. Ord. from SO";
+                begin
+                    TransDocFromSalesDoc.Run(Rec);
+                end;
+            }
+
+            action(AppendTansOrder)
+            {
+                ApplicationArea = Suite;
+                Caption = 'Add to Existing Transfer Order';
+                Image = Document;
+                ToolTip = 'Create transfer orders to get the items that are required by this sales document, minus any quantity that is already available.';
+
+                trigger OnAction()
+                var
+                    TransferHeader: Record "Transfer Header";
+                    TransDocFromSalesDoc: Codeunit "SLK Create Trans. Ord. from SO";
+                begin
+                    TransferHeader.SetRange("Transfer-to Code", Rec."Location Code");
+                    if Page.RunModal(0, TransferHeader) = Action::LookupOK then begin
+                        Clear(TransDocFromSalesDoc);
+                        TransDocFromSalesDoc.SetTransferHeader(TransferHeader."No.", false);
+                        TransDocFromSalesDoc.Run(Rec);
+                    end;
+                end;
+            }
+        }
     }
 
     trigger OnOpenPage()

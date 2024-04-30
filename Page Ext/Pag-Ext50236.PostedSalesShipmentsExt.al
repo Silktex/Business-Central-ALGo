@@ -99,11 +99,12 @@ pageextension 50236 "Posted Sales Shipments_Ext" extends "Posted Sales Shipments
         recPWSL.RESET;
         recPWSL.SETRANGE("Posted Source Document", recPWSL."Posted Source Document"::"Posted Shipment");
         recPWSL.SETRANGE("Posted Source No.", Rec."No.");
-        IF recPWSL.FIND('-') THEN
+        IF recPWSL.FIND('-') THEN begin
             recTrackingNo.RESET;
-        recTrackingNo.SETRANGE(recTrackingNo."Warehouse Shipment No", recPWSL."Whse. Shipment No.");
-        IF recTrackingNo.FIND('-') THEN
-            Rec."Tracking No." := recTrackingNo."Tracking No.";
+            recTrackingNo.SETRANGE(recTrackingNo."Warehouse Shipment No", recPWSL."Whse. Shipment No.");
+            IF recTrackingNo.FIND('-') THEN
+                Rec."Tracking No." := recTrackingNo."Tracking No.";
+        end;
     end;
 
     trigger OnAfterGetRecord()
@@ -112,11 +113,12 @@ pageextension 50236 "Posted Sales Shipments_Ext" extends "Posted Sales Shipments
         recPWSL.RESET;
         recPWSL.SETRANGE("Posted Source Document", recPWSL."Posted Source Document"::"Posted Shipment");
         recPWSL.SETRANGE("Posted Source No.", Rec."No.");
-        IF recPWSL.FIND('-') THEN
+        IF recPWSL.FIND('-') THEN begin
             recTrackingNo.RESET;
-        recTrackingNo.SETRANGE(recTrackingNo."Warehouse Shipment No", recPWSL."Whse. Shipment No.");
-        IF recTrackingNo.FIND('-') THEN
-            Rec."Tracking No." := recTrackingNo."Tracking No.";
+            recTrackingNo.SETRANGE(recTrackingNo."Warehouse Shipment No", recPWSL."Whse. Shipment No.");
+            IF recTrackingNo.FIND('-') THEN
+                Rec."Tracking No." := recTrackingNo."Tracking No.";
+        end;
     end;
 
     var

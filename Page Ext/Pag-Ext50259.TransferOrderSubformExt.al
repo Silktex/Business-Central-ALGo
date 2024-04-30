@@ -22,5 +22,27 @@ pageextension 50259 "Transfer Order Subform_Ext" extends "Transfer Order Subform
                 ApplicationArea = all;
             }
         }
+
+        addlast(Control1)
+        {
+
+            field("Sales Order No."; Rec."Sales Order No.")
+            {
+                ApplicationArea = all;
+                Editable = false;
+            }
+            field("Sales Order Line No."; Rec."Sales Order Line No.")
+            {
+                ApplicationArea = all;
+                Editable = false;
+            }
+            field("SLK Instructions"; Rec."SLK Instructions")
+            {
+                ApplicationArea = All;
+                ToolTip = 'Specifies the value of the Instructions field.';
+            }
+
+
+        }
     }
 }

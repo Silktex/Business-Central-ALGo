@@ -813,11 +813,11 @@ report 60503 "Sales Shipment Ext"
         ShipCaptionLbl: Label 'Ship';
         ShipmentCaptionLbl: Label 'Shipment Advice';
         ShipmentNumberCaptionLbl: Label 'Shipment Number:';
-        ShipmentDateCaptionLbl: Label 'Posting Date:';
+        ShipmentDateCaptionLbl: Label 'Ship Date'; //'Posting Date:';
         PageCaptionLbl: Label 'Page:';
-        ShipViaCaptionLbl: Label 'Incoterms:';
+        ShipViaCaptionLbl: Label 'Terms'; //'Incoterms:';
         PODateCaptionLbl: Label 'P.O. Date';
-        OurOrderNoCaptionLbl: Label 'Our Order No.';
+        OurOrderNoCaptionLbl: Label 'SO No.'; //'Our Order No.';
         ItemNoCaptionLbl: Label 'Item No.';
         UnitCaptionLbl: Label 'Unit';
         DescriptionCaptionLbl: Label 'Description';
