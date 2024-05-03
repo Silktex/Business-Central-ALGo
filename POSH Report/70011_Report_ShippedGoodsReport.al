@@ -154,17 +154,21 @@ report 70011 "Shipped Goods Report"
                 IF recSalesperson.FINDFIRST THEN
                     SalespersonName := recSalesperson.Name;
 
+                SelltocustomerEmail := '';
                 SelltoContactPhoneNo := '';
                 contact.RESET;
                 contact.SETRANGE(contact."No.", "Sales Invoice Header"."Sell-to Contact No.");
-                IF contact.FINDFIRST THEN
+                IF contact.FINDFIRST THEN begin
                     SelltoContactPhoneNo := contact."Phone No.";
+                    SelltocustomerEmail := contact."E-Mail";
+                end;
 
-                SelltocustomerEmail := '';
-                customer.RESET;
-                customer.SETRANGE(customer."No.", "Sales Invoice Header"."Sell-to Customer No.");
-                IF customer.FINDFIRST THEN
-                    SelltocustomerEmail := customer."E-Mail";
+                if SelltocustomerEmail = '' then begin
+                    customer.RESET;
+                    customer.SETRANGE(customer."No.", "Sales Invoice Header"."Sell-to Customer No.");
+                    IF customer.FINDFIRST THEN
+                        SelltocustomerEmail := customer."E-Mail";
+                end;
 
                 SpecifierContactEmail := '';
                 SpecifierContactName := '';
