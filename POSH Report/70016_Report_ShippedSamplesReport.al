@@ -142,8 +142,10 @@ report 70016 "Shipped Samples Report"
                 SelltoContactPhoneNo := '';
                 contact.RESET;
                 contact.SETRANGE(contact."No.", "Sales Invoice Header"."Sell-to Contact No.");
-                IF contact.FINDFIRST THEN
+                IF contact.FINDFIRST THEN begin
                     SelltoContactPhoneNo := contact."Phone No.";
+                    SelltocustomerEmail := contact."E-Mail";
+                End;
 
                 SelltocustomerEmail := '';
                 customer.RESET;

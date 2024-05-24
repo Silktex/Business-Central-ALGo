@@ -157,8 +157,10 @@ report 70012 "Open Sales Orders Report MIS"
                 SelltoContactPhoneNo := '';
                 contact.RESET;
                 contact.SETRANGE(contact."No.", "Sales Header"."Sell-to Contact No.");
-                IF contact.FINDFIRST THEN
+                IF contact.FINDFIRST THEN begin
                     SelltoContactPhoneNo := contact."Phone No.";
+                    SelltocustomerEmail := contact."E-Mail";
+                End;
 
                 SelltocustomerEmail := '';
                 customer.RESET;
