@@ -224,7 +224,7 @@ page 50032 "Stock Details"
                 field(LocGASTONIA1; LocGASTONIA)
                 {
                     ApplicationArea = All;
-                    Caption = 'GASTONIA';
+                    Caption = 'MATRL BANK';
 
                     trigger OnDrillDown()
                     var
@@ -234,7 +234,7 @@ page 50032 "Stock Details"
                         ILE.SetCurrentKey("Item No.", "Entry Type");
                         ILE.SetRange(ILE."Item No.", Rec."No.");
                         ILE.SetFilter(ILE."Remaining Quantity", '>%1', 0);
-                        ILE.SetRange(ILE."Location Code", 'GASTONIA');
+                        ILE.SetRange(ILE."Location Code", 'MATRL BANK');
                         PAGE.Run(PAGE::"Item Ledger Entries", ILE);
                     end;
                 }
@@ -386,7 +386,7 @@ page 50032 "Stock Details"
                     if ILE1."Location Code" = 'SYOSSET' then
                         SYOSSETQTY += ILE1."Remaining Quantity"
                     else
-                        if ILE1."Location Code" = 'GASTONIA' then
+                        if ILE1."Location Code" = 'MATRL BANK' then
                             GASTONIAQTY += ILE1."Remaining Quantity"
                         else
                             if ILE1."Location Code" = 'DAMAGED SY' then
@@ -638,7 +638,7 @@ page 50032 "Stock Details"
         if ILE.FindFirst then
             repeat
                 if ILE."Remaining Quantity" >= Rec."Short Piece" then begin
-                    if ILE."Location Code" = 'GASTONIA' then
+                    if ILE."Location Code" = 'MATRL BANK' then
                         GASTONIAQTY += ILE."Remaining Quantity"
                 end;
             until ILE.Next = 0;

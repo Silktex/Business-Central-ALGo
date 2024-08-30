@@ -25,12 +25,12 @@ codeunit 50020 "QR Code Management"
         QRCodeFileName := MoveToMagicPath(QRCodeFileName); // To avoid confirmation dialogue on RTC
 
         // Load the image from file into the BLOB field
-        CLEAR(TempBlob);
-        ThreeTierMgt.BLOBImport(TempBlob, QRCodeFileName);
-        IF TempBlob.HASVALUE THEN BEGIN
-            //    SalesHeader."QR Code" := TempBlob.Blob;
-            SalesHeader.MODIFY;
-        END;
+        // CLEAR(TempBlob);
+        // ThreeTierMgt.BLOBImport(TempBlob, QRCodeFileName);
+        // IF TempBlob.HASVALUE THEN BEGIN
+        //    SalesHeader."QR Code" := TempBlob.Blob;
+        //     SalesHeader.MODIFY;
+        // END;
 
         // Erase the temporary file
         // IF NOT ISSERVICETIER THEN
@@ -91,6 +91,7 @@ codeunit 50020 "QR Code Management"
     procedure QROrder(SalesHeader: Record "Sales Header")
     var
         TempBlob: Codeunit "Temp Blob";
+        QRGenerator: codeunit "QR Code Management";
         QRCodeInput: Text[1024];
         QRCodeFileName: Text[1024];
         Cust: Record Customer;
@@ -103,7 +104,7 @@ codeunit 50020 "QR Code Management"
         QRCodeFileName := MoveToMagicPath(QRCodeFileName);
 
         CLEAR(TempBlob);
-        ThreeTierMgt.BLOBImport(TempBlob, QRCodeFileName);
+        //ThreeTierMgt.BLOBImport(TempBlob, QRCodeFileName);
         IF TempBlob.HASVALUE THEN BEGIN
             TempBlob.CreateInStream(instream);
             SalesHeader."QR Code".CreateInStream(instream);

@@ -34,23 +34,23 @@ page 50018 "Tracking No"
                     ApplicationArea = All;
                     Editable = false;
 
-                    trigger OnAssistEdit()
-                    var
-                        outFile: File;
-                        Istream1: InStream;
-                        Line: Text;
-                        Text1: Text;
-                        OStream: OutStream;
-                        FileManagement: Codeunit "File Management";
-                        TempBlob: Codeunit "Temp Blob";// temporary;
-                        recTrackingNo: Record "Tracking No.";
-                    begin
-                        Rec.CalcFields(Image);
-                        if Rec.Image.HasValue() then begin
-                            TempBlob.FromRecord(Rec, rec.FieldNo(Image));
-                            FileManagement.BLOBExport(TempBlob, 'Label.TXT', true);
-                        end;
-                    end;
+                    // trigger OnAssistEdit()
+                    // var
+                    //     outFile: File;
+                    //     Istream1: InStream;
+                    //     Line: Text;
+                    //     Text1: Text;
+                    //     OStream: OutStream;
+                    //     FileManagement: Codeunit "File Management";
+                    //     TempBlob: Codeunit "Temp Blob";// temporary;
+                    //     recTrackingNo: Record "Tracking No.";
+                    // begin
+                    //     Rec.CalcFields(Image);
+                    //     if Rec.Image.HasValue() then begin
+                    //         TempBlob.FromRecord(Rec, rec.FieldNo(Image));
+                    //         FileManagement.BLOBExport(TempBlob, 'Label.TXT', true);
+                    //     end;
+                    // end;
                 }
             }
         }

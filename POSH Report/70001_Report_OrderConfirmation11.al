@@ -77,7 +77,7 @@ report 70001 "Order Confirmation11 POSH"
             column(PO_Numbers; "External Document No.")
             {
             }
-            column(ShippingAgentCode_SalesInvoiceHeader; "Shipping Agent Code")
+            column(ShippingAgentCode_SalesInvoiceHeader; "Shipping Agent Code" + ' ' + ShipAccNo)
             {
             }
             column(ShiptoName_SalesInvoiceHeader; "Ship-to Name")
@@ -147,6 +147,9 @@ report 70001 "Order Confirmation11 POSH"
             {
             }
             column(ShipToEmail; ShipToEmail)
+            {
+            }
+            column(ShipAccNo; ShipAccNo)
             {
             }
             column(DocumentType_SalesHeader; "Document Type")
@@ -1485,12 +1488,14 @@ report 70001 "Order Confirmation11 POSH"
 
                 ShipToPhoneNo := '';
                 ShipToEmail := '';
+                ShipAccNo := '';
                 ShiptoAddress.RESET;
                 ShiptoAddress.SETRANGE("Customer No.", "Sales Header"."Sell-to Customer No.");
                 ShiptoAddress.SETRANGE(ShiptoAddress.Code, "Sales Header"."Ship-to Code");
                 IF ShiptoAddress.FINDFIRST THEN BEGIN
                     ShipToPhoneNo := ShiptoAddress."Phone No.";
                     ShipToEmail := ShiptoAddress."E-Mail";
+                    ShipAccNo := ShipToAddress."UPS Account No.";
                 END ELSE BEGIN
                     IF Contact.GET("Sales Header"."Sell-to Contact No.") THEN
                         ShipToPhoneNo := Contact."Phone No.";
@@ -1934,6 +1939,7 @@ report 70001 "Order Confirmation11 POSH"
         intCommentLine: Integer;
         recSalesLine: Record "Sales Line";
         txtBold: Boolean;
+        ShipAccNo: Text;
 
 
 

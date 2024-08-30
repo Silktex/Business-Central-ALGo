@@ -112,4 +112,19 @@ codeunit 50217 "Whse. Validate Source Line_Ext"
         //SPDSAUQV001 END Old
         //SPDSAUQV001 Begin
     end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Post Shipment", 'OnBeforeValidateTransferLineQtyToShip', '', false, false)]
+    local procedure SLKOnBeforeValidateTransferLineQtyToShip(var TransferLine: Record "Transfer Line"; WarehouseShipmentLine: Record "Warehouse Shipment Line"; var IsHandled: Boolean)
+    var
+        UOMMgt: Codeunit "Unit of Measure Management";
+    begin
+        if WarehouseShipmentLine."Qty. to Ship" > TransferLine."Outstanding Quantity" then begin
+            TransferLine.Quantity := UOMMgt.RoundAndValidateQty((WarehouseShipmentLine."Qty. to Ship" + TransferLine."Quantity Shipped"), TransferLine."Qty. Rounding Precision", TransferLine.FieldCaption(Quantity));
+            TransferLine."Quantity (Base)" := UOMMgt.CalcBaseQty(TransferLine."Item No.", TransferLine."Variant Code", TransferLine."Unit of Measure Code", WarehouseShipmentLine."Qty. to Ship", TransferLine."Qty. per Unit of Measure", TransferLine."Qty. Rounding Precision (Base)", TransferLine.FieldCaption("Qty. Rounding Precision"), TransferLine.FieldCaption(Quantity), TransferLine.FieldCaption("Quantity (Base)"));
+            TransferLine.InitQtyInTransit();
+            TransferLine.InitOutstandingQty();
+            TransferLine.InitQtyToShip();
+            TransferLine.InitQtyToReceive();
+        end;
+    end;
 }

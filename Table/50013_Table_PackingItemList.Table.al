@@ -42,6 +42,55 @@ table 50013 "Packing Item List"
         field(10; "Source Document Line No."; Integer)
         {
         }
+        field(11; "Lot No."; Code[20])
+        {
+            //TableRelation = if ("Source Document Type" = const("Warehouse Shipment")) "Registered Whse. Activity Line"."Lot No." where("Whse. Document No." = field("Source Document No."), "Whse. Document Line No." = field("Source Document Line No."));
+            // trigger OnValidate()
+            // var
+            //     RegPickLine: Record "Registered Whse. Activity Line";
+            //     LotQty: Decimal;
+            // begin
+            //     Rec.TestField("Source Document No.");
+            //     Rec.TestField("Source Document Line No.");
+
+            //     LotQty := 0;
+            //     if Rec."Source Document Type" = Rec."Source Document Type"::"Warehouse Shipment" then begin
+            //         RegPickLine.SetRange("Whse. Document No.", "Source Document No.");
+            //         RegPickLine.SetRange("Whse. Document Line No.", "Source Document Line No.");
+            //         RegPickLine.SetRange("Lot No.", "Lot No.");
+            //         RegPickLine.SetRange("Action Type", RegPickLine."Action Type"::Place);
+            //         if RegPickLine.FindSet() then
+            //             repeat
+            //                 LotQty += RegPickLine.Quantity;
+            //             Until RegPickLine.Next() = 0;
+            //     end;
+
+            //     if LotQty <> 0 then
+            //         Rec.Quantity := LotQty;
+            // end;
+
+            trigger OnLookup()
+            var
+                RegPickLine: Record "Registered Whse. Activity Line";
+            begin
+                Rec.TestField("Source Document No.");
+                Rec.TestField("Source Document Line No.");
+
+                if Rec."Source Document Type" = Rec."Source Document Type"::"Warehouse Shipment" then begin
+                    RegPickLine.Reset();
+                    RegPickLine.SetRange("Whse. Document Type", RegPickLine."Whse. Document Type"::Shipment);
+                    RegPickLine.SetRange("Whse. Document No.", "Source Document No.");
+                    RegPickLine.SetRange("Whse. Document Line No.", "Source Document Line No.");
+                    RegPickLine.SetRange("Action Type", RegPickLine."Action Type"::take);
+                    if RegPickLine.FindSet() then
+                        if Page.RunModal(Page::"Registered Whse. Act.-Lines", RegPickLine) = Action::LookupOK then begin
+                            Rec."Lot No." := RegPickLine."Lot No.";
+                            Rec.Quantity := RegPickLine.Quantity;
+                        end;
+                end;
+            end;
+        }
+
     }
 
     keys
@@ -58,12 +107,12 @@ table 50013 "Packing Item List"
 
     trigger OnDelete()
     begin
-        IF "Source Document Type" = "Source Document Type"::"Warehouse Shipment" THEN BEGIN
-            recWhseShptLine.GET("Source Document No.", "Source Document Line No.");
-            recWhseShptLine."Quantity To Pack" := recWhseShptLine."Quantity To Pack" + Quantity;
-            recWhseShptLine."Quantity Packed" := recWhseShptLine."Quantity Packed" - Quantity;
-            recWhseShptLine.MODIFY(FALSE);
-        END;
+        IF "Source Document Type" = "Source Document Type"::"Warehouse Shipment" THEN
+            if recWhseShptLine.GET("Source Document No.", "Source Document Line No.") then begin
+                recWhseShptLine."Quantity To Pack" := recWhseShptLine."Quantity To Pack" + Quantity;
+                recWhseShptLine."Quantity Packed" := recWhseShptLine."Quantity Packed" - Quantity;
+                recWhseShptLine.MODIFY(FALSE);
+            END;
     end;
 
     trigger OnInsert()
@@ -81,6 +130,7 @@ table 50013 "Packing Item List"
     var
         recPackLineList: Record "Packing Item List";
         recWhseShptLine: Record "Warehouse Shipment Line";
+        GenJnl: Record "Gen. Journal Line";
 
 
     procedure TestStatusOpen()

@@ -23,4 +23,11 @@ tableextension 50247 "Transfer Line_Ext" extends "Transfer Line"
             Caption = 'Instructions';
         }
     }
+
+    keys
+    {
+        key(Custom1; "Sales Order No.", "Sales Order Line No.")
+        {
+        }
+    }
 }

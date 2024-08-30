@@ -25,6 +25,10 @@ page 50023 "Packing Item List"
                 {
                     ApplicationArea = All;
                 }
+                field("Lot No."; Rec."Lot No.")
+                {
+                    ApplicationArea = All;
+                }
                 field(Quantity; Rec.Quantity)
                 {
                     ApplicationArea = All;
@@ -59,6 +63,21 @@ page 50023 "Packing Item List"
 
                         WhseShipmentLines.LookupMode(true);
                         WhseShipmentLines.RunModal;
+                    end;
+                end;
+            }
+            action("Split Line")
+            {
+                ApplicationArea = All;
+
+                trigger OnAction()
+                begin
+                    Rec.TestField("Source Document No.");
+                    Rec.TestField("Source Document Line No.");
+
+                    if PackingLine2."Source Document Type" = PackingLine2."Source Document Type"::"Warehouse Shipment" then begin
+                        SplitLine(Rec);
+                        CurrPage.Update(true);
                     end;
                 end;
             }
@@ -106,6 +125,31 @@ page 50023 "Packing Item List"
             until PackItemLine.Next = 0;
         PackingLine2."Gross Weight" := decNetWeight + PackingLine2.Weight;
         PackingLine2.Modify(false);
+    end;
+
+    procedure SplitLine(recPackItemList: Record "Packing Item List")
+    var
+        recPackItemList2: Record "Packing Item List";
+        LineNo: Integer;
+    begin
+
+        recPackItemList2.SetRange("Packing No.", recPackItemList."Packing No.");
+        //recPackItemList2.SetRange("Packing Line No.", recPackItemList."Packing Line No.");
+        if recPackItemList2.FindLast() then
+            LineNo := recPackItemList2."Line No." + 10000;
+
+        recPackItemList2.INIT;
+        recPackItemList2."Packing No." := recPackItemList."Packing No.";
+        recPackItemList2."Packing Line No." := recPackItemList."Packing Line No.";
+        recPackItemList2."Source Document Type" := recPackItemList."Source Document Type";
+        recPackItemList2."Source Document No." := recPackItemList."Source Document No.";
+        recPackItemList2."Source Document Line No." := recPackItemList."Source Document Line No.";
+        recPackItemList2."Line No." := LineNo;
+        recPackItemList2."Item No." := recPackItemList."Item No.";
+        recPackItemList2."Item Name" := recPackItemList."Item Name";
+        recPackItemList2.VALIDATE(Quantity, 0);
+        recPackItemList.VALIDATE("Unit Price", recPackItemList."Unit Price");
+        recPackItemList2.INSERT;
     end;
 }
 

@@ -1,31 +1,29 @@
 {
-  "id": "e70ca125-8f03-441d-a7cc-f87c882e141c",
-  "name": "SilkCraft",
-  "publisher": "Default publisher",
-  "version": "1.0.2.4",
-  "brief": "",
-  "description": "",
-  "privacyStatement": "",
-  "EULA": "",
-  "help": "",
-  "url": "",
-  "logo": "",
-  "dependencies": [],
-  "screenshots": [],
-  "platform": "1.0.0.0",
-  "application": "1.0.0.0",
-  "idRanges": [
-    {
-      "from": 50000,
-      "to": 99999
-    }
-  ],
-  
-  "resourceExposurePolicy": {
-    "allowDebugging": true,
-    "allowDownloadingSource": true,
-    "includeSourceInSymbolFile": true
-  },
-  "runtime": "11.0"
-
+    "id": "e70ca125-8f03-441d-a7cc-f87c882e141c",
+    "name": "SilkCraft",
+    "publisher": "Default publisher",
+    "version": "1.0.2.5",
+    "brief": "",
+    "description": "",
+    "privacyStatement": "",
+    "EULA": "",
+    "help": "",
+    "url": "",
+    "logo": "",
+    "dependencies": [],
+    "screenshots": [],
+    "platform": "1.0.0.0",
+    "application": "24.3.21374.21517",
+    "idRanges": [
+        {
+            "from": 50000,
+            "to": 99999
+        }
+    ],
+    "resourceExposurePolicy": {
+        "allowDebugging": true,
+        "allowDownloadingSource": true,
+        "includeSourceInSymbolFile": true
+    },
+    "runtime": "13.0"
 }
