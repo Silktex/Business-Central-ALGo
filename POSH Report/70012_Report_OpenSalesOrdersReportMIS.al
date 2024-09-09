@@ -162,11 +162,12 @@ report 70012 "Open Sales Orders Report MIS"
                     SelltocustomerEmail := contact."E-Mail";
                 End;
 
-                SelltocustomerEmail := '';
-                customer.RESET;
-                customer.SETRANGE(customer."No.", "Sales Header"."Sell-to Customer No.");
-                IF customer.FINDFIRST THEN
-                    SelltocustomerEmail := customer."E-Mail";
+                if SelltocustomerEmail = '' then begin
+                    customer.RESET;
+                    customer.SETRANGE(customer."No.", "Sales Header"."Sell-to Customer No.");
+                    IF customer.FINDFIRST THEN
+                        SelltocustomerEmail := customer."E-Mail";
+                end;
 
                 SpecifierContactEmail := '';
                 SpecifierContactName := '';

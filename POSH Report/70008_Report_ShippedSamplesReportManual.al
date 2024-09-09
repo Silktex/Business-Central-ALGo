@@ -143,13 +143,13 @@ report 70008 "Shipped Samples Report Manual"
                     SelltoContactPhoneNo := contact."Phone No.";
                     SelltocustomerEmail := contact."E-Mail";
                 END;
-                /*
-                SelltocustomerEmail:= '';
-                customer.RESET;
-                customer.SETRANGE(customer."No.","Sales Invoice Header"."Sell-to Customer No.");
-                IF customer.FINDFIRST THEN
-                   SelltocustomerEmail := customer."E-Mail";
-                */
+
+                if SelltocustomerEmail = '' then begin
+                    customer.RESET;
+                    customer.SETRANGE(customer."No.", "Sales Invoice Header"."Sell-to Customer No.");
+                    IF customer.FINDFIRST THEN
+                        SelltocustomerEmail := customer."E-Mail";
+                end;
 
             end;
 
