@@ -316,11 +316,16 @@ pageextension 50289 "Sales Order List_Ext" extends "Sales Order List"
         }
 
     }
+
     trigger OnOpenPage()
     var
         compInfo: Record "Company Information";
     begin
+        Rec.SetCurrentKey("Document Type", "No.");
+        Rec.Ascending(false);
         Rec.SetRange("Short Close", false);
+        if Rec.FindFirst() then;
+
         compInfo.get();
         IF compInfo."Report Selection" = compInfo."Report Selection"::Slik then
             ShowSilkReport := true;

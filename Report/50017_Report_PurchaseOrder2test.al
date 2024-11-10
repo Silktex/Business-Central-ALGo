@@ -735,9 +735,11 @@ report 50017 "Purchase Order2 test"
         end;
 
         trigger OnOpenPage()
+        var
+            DocumentType: Enum "Interaction Log Entry Document Type";
         begin
             ArchiveDocument := ArchiveManagement.PurchaseDocArchiveGranule;
-            LogInteraction := SegManagement.FindInteractTmplCode(13) <> '';
+            LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Purch. Ord.") <> '';
 
             ArchiveDocumentEnable := ArchiveDocument;
             LogInteractionEnable := LogInteraction;
@@ -805,9 +807,9 @@ report 50017 "Purchase Order2 test"
         Text007: Label 'Total Tax:';
         Text008: Label 'Tax:';
         UseExternalTaxEngine: Boolean;
-        [InDataSet]
+
         ArchiveDocumentEnable: Boolean;
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         ToCaptionLbl: Label 'Vendor :';
         ReceiveByCaptionLbl: Label 'Receive By';

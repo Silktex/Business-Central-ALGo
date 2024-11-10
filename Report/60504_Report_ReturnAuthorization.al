@@ -631,11 +631,7 @@ report 60504 "Return Authorization Ext"
 
         trigger OnOpenPage()
         begin
-            /* reactivate when HQ comes up with a code number for return authorizations
-            LogInteraction := SegManagement.FindInteractTmplCode(2) <> '';
-            */
             LogInteractionEnable := LogInteraction;
-
         end;
     }
 
@@ -671,7 +667,7 @@ report 60504 "Return Authorization Ext"
         LogInteraction: Boolean;
         TaxRegNo: Text[30];
         TaxRegLabel: Text[30];
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         SoldCaptionLbl: Label 'Sold';
         To_CaptionLbl: Label 'To:';

@@ -46,6 +46,10 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
             {
                 ApplicationArea = all;
             }
+            field("Project Location"; Rec."Project Location")
+            {
+                ApplicationArea = all;
+            }
         }
         addafter("Payment Terms Code")
         {

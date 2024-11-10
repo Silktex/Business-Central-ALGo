@@ -117,7 +117,7 @@ pageextension 70005 PriceListLineReviewExt extends "Price List Line Review"
         //A/17.04.2019/SCST000001
         ContinuityStartDate := 0D;
         ContinuityEndDate := 0D;
-        IF Rec."Asset Type".AsInteger() = Rec."Asset Type"::Item THEN BEGIN
+        IF Rec."Asset Type" = Rec."Asset Type"::Item THEN BEGIN
             ItemCrossReference.RESET;
             ItemCrossReference.SETRANGE(ItemCrossReference."Item No.", Rec."Asset No.");
             IF ItemCrossReference.FINDFIRST THEN BEGIN
@@ -126,7 +126,7 @@ pageextension 70005 PriceListLineReviewExt extends "Price List Line Review"
             END;
         END;
 
-        IF Rec."Asset Type".AsInteger() = Rec."Asset Type"::"Item Category" THEN BEGIN
+        IF Rec."Asset Type" = Rec."Asset Type"::"Item Category" THEN BEGIN
             recItem.RESET;
             //recItem.SETRANGE("Product Group Code","Item No.");
             recItem.SETRANGE("Item Category Code", Rec."Asset No.");

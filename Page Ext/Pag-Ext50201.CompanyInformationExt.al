@@ -124,7 +124,7 @@ pageextension 50201 CompanyInformation_Ext extends "Company Information"
                         ControlTotal: Decimal;
                         Result: Boolean;
                         LastPurchaseAmount: Decimal;
-                        NoSeriesMgt: Codeunit NoSeriesManagement;
+                        NoSeriesMgt: Codeunit "No. Series";
                         CompInfo: Record "Company Information";
                         IntegratorTxID: Code[20];
                     begin
@@ -132,7 +132,8 @@ pageextension 50201 CompanyInformation_Ext extends "Company Information"
                         if IntegratorTxID = '' then begin
                             CompInfo.Get();
                             CompInfo.TestField("Stamp Postage Nos.");
-                            NoSeriesMgt.InitSeries(Rec."Stamp Postage Nos.", xRec."Stamp Postage Nos.", Today, IntegratorTxID, Rec."Stamp Postage Nos.");
+                            //NoSeriesMgt.InitSeries(Rec."Stamp Postage Nos.", xRec."Stamp Postage Nos.", Today, IntegratorTxID, Rec."Stamp Postage Nos.");
+                            IntegratorTxID := NoSeriesMgt.GetNextNo(rec."Stamp Postage Nos.", Today);
                             Commit;
                         end;
 

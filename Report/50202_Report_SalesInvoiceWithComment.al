@@ -1078,7 +1078,7 @@ report 50202 "Sales Invoice With Comment"
         DocumentText: Text[20];
         USText000: Label 'INVOICE';
         USText001: Label 'PREPAYMENT REQUEST';
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         BillCaptionLbl: Label 'Sold To:';
@@ -1131,8 +1131,10 @@ report 50202 "Sales Invoice With Comment"
 
 
     procedure InitLogInteraction()
+    var
+        DocumentType: Enum "Interaction Log Entry Document Type";
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
+        LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Sales Inv.") <> '';
     end;
 
 

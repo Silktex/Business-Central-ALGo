@@ -88,6 +88,14 @@ pageextension 50209 "Vendor List_Ext" extends "Vendor List"
             }
         }
     }
+
+    trigger OnOpenPage()
+    begin
+        Rec.SetCurrentKey("No.");
+        Rec.Ascending(false);
+        if Rec.FindFirst() then;
+    end;
+
     procedure MailCountFN(RecNo: Code[20]): Integer
     var
         RecMailDetail: Record "Mail Detail";

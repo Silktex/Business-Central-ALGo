@@ -614,12 +614,11 @@ report 50001 "Return Authorization new"
         end;
 
         trigger OnOpenPage()
-        begin
-            /* reactivate when HQ comes up with a code number for return authorizations
-            LogInteraction := SegManagement.FindInteractTmplCode(2) <> '';
-            */
-            LogInteractionEnable := LogInteraction;
+        var
+            DocumentType: Enum "Interaction Log Entry Document Type";
 
+        begin
+            LogInteractionEnable := LogInteraction;
         end;
     }
 
@@ -655,7 +654,7 @@ report 50001 "Return Authorization new"
         LogInteraction: Boolean;
         TaxRegNo: Text[30];
         TaxRegLabel: Text[30];
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         SoldCaptionLbl: Label 'Sold';
         To_CaptionLbl: Label 'To:';

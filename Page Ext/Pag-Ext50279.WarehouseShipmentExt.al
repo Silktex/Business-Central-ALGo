@@ -771,7 +771,7 @@ pageextension 50279 "Warehouse Shipment_Ext" extends "Warehouse Shipment"
                         ControlTotal: Decimal;
                         Result: Boolean;
                         LastPurchaseAmount: Decimal;
-                        NoSeriesMgt: Codeunit NoSeriesManagement;
+                        NoSeriesMgt: Codeunit "No. Series";
                         CompInfo: Record "Company Information";
                         IntegratorTxID: Code[20];
                     begin
@@ -779,7 +779,8 @@ pageextension 50279 "Warehouse Shipment_Ext" extends "Warehouse Shipment"
                         IF IntegratorTxID = '' THEN BEGIN
                             CompInfo.GET();
                             CompInfo.TESTFIELD("Stamp Postage Nos.");
-                            NoSeriesMgt.InitSeries(CompInfo."Stamp Postage Nos.", CompInfo."Stamp Postage Nos.", TODAY, IntegratorTxID, CompInfo."Stamp Postage Nos.");
+                            //NoSeriesMgt.InitSeries(CompInfo."Stamp Postage Nos.", CompInfo."Stamp Postage Nos.", TODAY, IntegratorTxID, CompInfo."Stamp Postage Nos.");
+                            IntegratorTxID := NoSeriesMgt.GetNextNo(CompInfo."Stamp Postage Nos.", Today);
                             COMMIT;
                         END;
 
@@ -926,8 +927,6 @@ pageextension 50279 "Warehouse Shipment_Ext" extends "Warehouse Shipment"
         recSalesLine: Record "Sales Line";
         TotalAmount: Decimal;
         txtBox: Text;
-        [InDataSet]
-
         LabelBool: Boolean;
         recWhseShipLine1: Record "Warehouse Shipment Line";
         recSalesHeader: Record "Sales Header";

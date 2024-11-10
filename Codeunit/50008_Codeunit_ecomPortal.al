@@ -2213,7 +2213,7 @@ codeunit 50008 ecomPortal
         WarehouseJournalLine: Record "Warehouse Journal Line";
         WhseJnlBatch: Record "Warehouse Journal Batch";
         NextDocNo: Code[20];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         LineNo: Integer;
         Location: Record Location;
         Bin: Record Bin;
@@ -2383,7 +2383,7 @@ codeunit 50008 ecomPortal
         WarehouseJournalLine: Record "Warehouse Journal Line";
         WhseJnlBatch: Record "Warehouse Journal Batch";
         NextDocNo: Code[20];
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         LineNo: Integer;
         Location: Record Location;
         Bin: Record Bin;

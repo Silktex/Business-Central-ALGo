@@ -1,5 +1,6 @@
 pageextension 50206 CustomerList extends "Customer List"
 {
+
     layout
     {
         addafter(Contact)
@@ -118,8 +119,6 @@ pageextension 50206 CustomerList extends "Customer List"
             {
                 Caption = 'Expired Prices';
                 Image = Price;
-                Promoted = true;
-                PromotedCategory = "Report";
                 ApplicationArea = all;
 
                 trigger OnAction()
@@ -139,8 +138,6 @@ pageextension 50206 CustomerList extends "Customer List"
             {
                 Caption = 'Expired Prices(Disc)';
                 Image = Price;
-                Promoted = true;
-                PromotedCategory = "Report";
                 ApplicationArea = all;
 
                 trigger OnAction()
@@ -161,8 +158,6 @@ pageextension 50206 CustomerList extends "Customer List"
                 ApplicationArea = all;
                 Caption = 'BACKING TABLE FOR NAV';
                 Image = Resource;
-                Promoted = true;
-                PromotedCategory = "Report";
                 RunObject = Page "BACKING TABLE FOR NAV";
                 RunPageLink = "Customer Type" = CONST(Customer),
                                   "Customer Code" = FIELD("No.");
@@ -176,8 +171,6 @@ pageextension 50206 CustomerList extends "Customer List"
             {
                 Caption = 'Sale Detail';
                 Image = LedgerEntries;
-                Promoted = true;
-                PromotedCategory = Process;
                 RunObject = Page "Ecom Customer List";
                 RunPageOnRec = true;
                 ApplicationArea = all;
@@ -266,8 +259,6 @@ pageextension 50206 CustomerList extends "Customer List"
             }
             action(SalesDiscountRecoveryReport)
             {
-                Image = Report;
-                Promoted = true;
                 RunObject = Report "Sales Discount Recovery Report";
                 ApplicationArea = all;
             }
@@ -301,10 +292,41 @@ pageextension 50206 CustomerList extends "Customer List"
 
             }
 
+
         }
+
+        addafter(PriceLines)
+        {
+            action(CustomerPriceLines)
+            {
+                AccessByPermission = TableData "Sales Price Access" = R;
+                ApplicationArea = All;
+                Caption = 'Customer Sales Prices';
+                Image = Price;
+                Scope = Repeater;
+                ToolTip = 'View or set up sales price lines for products that you sell to the customer. A product price is automatically granted on invoice lines when the specified criteria are met, such as customer, quantity, or ending date.';
+
+                RunObject = page "Price List Line New";
+                RunPageLink = "Assign-to No." = field("No.");
+            }
+        }
+
+
+        addafter(PriceLines_Promoted)
+        {
+            actionref(CustomerPriceLines_P; CustomerPriceLines)
+            {
+            }
+        }
+
     }
 
-
+    trigger OnOpenPage()
+    begin
+        Rec.SetCurrentKey("No.");
+        Rec.Ascending(false);
+        if Rec.FindFirst() then;
+    end;
 
     var
         ExpirePriceContactEmail: Text[100];

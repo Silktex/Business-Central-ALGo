@@ -28,6 +28,10 @@ pageextension 50236 "Posted Sales Shipments_Ext" extends "Posted Sales Shipments
             {
                 ApplicationArea = all;
             }
+            field("Project Location"; Rec."Project Location")
+            {
+                ApplicationArea = all;
+            }
         }
         addafter("Shipment Date")
         {

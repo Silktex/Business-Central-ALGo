@@ -774,7 +774,7 @@ report 60503 "Sales Shipment Ext"
         ShipToAddress: array[8] of Text[50];
         CopyTxt: Text[10];
 
-        [InDataSet]
+
         PrintCompany: Boolean;
         PrintFooter: Boolean;
         NoCopies: Integer;
@@ -801,7 +801,7 @@ report 60503 "Sales Shipment Ext"
         TaxRegNo: Text[30];
         TaxRegLabel: Text[30];
         Text009: Label 'VOID SHIPMENT';
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         AsmHeaderExists: Boolean;
@@ -831,8 +831,11 @@ report 60503 "Sales Shipment Ext"
 
 
     procedure InitLogInteraction()
+    var
+        DocumentType: Enum "Interaction Log Entry Document Type";
+
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(5) <> '';
+        LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Sales Shpt. Note") <> '';
     end;
 
 

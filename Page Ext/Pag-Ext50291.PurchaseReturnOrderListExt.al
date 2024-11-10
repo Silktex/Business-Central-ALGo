@@ -39,6 +39,14 @@ pageextension 50291 "Purchase Return Order List_Ext" extends "Purchase Return Or
             }
         }
     }
+
+    trigger OnOpenPage()
+    begin
+        Rec.SetCurrentKey("Document Type", "No.");
+        Rec.Ascending(false);
+        if Rec.FindFirst() then;
+    end;
+
     var
         recPurchaseHeader: Record "Purchase Header";
 }

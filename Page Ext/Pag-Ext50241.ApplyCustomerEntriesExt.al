@@ -58,7 +58,7 @@ pageextension 50241 "Apply Customer Entries_Ext" extends "Apply Customer Entries
         LineNo: Integer;
         cdAppcmNo: Code[20];
         recGJB: Record "Gen. Journal Batch";
-        cuNoSeries: Codeunit NoSeriesManagement;
+        cuNoSeries: Codeunit "No. Series";
         recCLE1: Record "Cust. Ledger Entry";
         decAmnt: Decimal;
         Bool1: Boolean;

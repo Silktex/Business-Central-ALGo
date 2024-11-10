@@ -632,9 +632,11 @@ report 60502 "Sales Quote Ext"
         end;
 
         trigger OnOpenPage()
+        var
+            DocumentType: Enum "Interaction Log Entry Document Type";
         begin
             ArchiveDocument := ArchiveManagement.SalesDocArchiveGranule;
-            LogInteraction := SegManagement.FindInteractTmplCode(1) <> '';
+            LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Sales Qte.") <> '';
 
             ArchiveDocumentEnable := ArchiveDocument;
             LogInteractionEnable := LogInteraction;
@@ -758,9 +760,9 @@ report 60502 "Sales Quote Ext"
         Text007: Label 'Total Tax:';
         Text008: Label 'Tax:';
         UseExternalTaxEngine: Boolean;
-        [InDataSet]
+
         ArchiveDocumentEnable: Boolean;
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         SellCaptionLbl: Label 'Sell';
         ToCaptionLbl: Label 'To:';

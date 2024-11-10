@@ -219,9 +219,9 @@ report 60001 "Cleanup Utility"
                 Win.UPDATE(1, i);
                 TariffNumber.DELETEALL;
 
-                i += 1;
-                Win.UPDATE(1, i);
-                IntrastatJnlLine.DELETEALL;
+                // i += 1;
+                // Win.UPDATE(1, i);
+                // IntrastatJnlLine.DELETEALL;
 
                 i += 1;
                 Win.UPDATE(1, i);
@@ -1290,7 +1290,7 @@ report 60001 "Cleanup Utility"
         RequisitionLine: Record "Requisition Line";
         VATStatementLine: Record "VAT Statement Line";
         TariffNumber: Record "Tariff Number";
-        IntrastatJnlLine: Record "Intrastat Jnl. Line";
+        //IntrastatJnlLine: Record "Intrastat Jnl. Line";
         BankAccount: Record "Bank Account";
         BankAccountLedgerEntry: Record "Bank Account Ledger Entry";
         CheckLedgerEntry: Record "Check Ledger Entry";

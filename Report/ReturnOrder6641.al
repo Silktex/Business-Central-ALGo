@@ -931,8 +931,10 @@ report 60500 "Return Order Ext"
         end;
 
         trigger OnOpenPage()
+        var
+            DocumentType: Enum "Interaction Log Entry Document Type";
         begin
-            LogInteraction := SegManagement.FindInteractTmplCode(22) <> '';
+            LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Purch. Return Ord. Cnfrmn.") <> '';
             LogInteractionEnable := LogInteraction;
         end;
     }
@@ -1007,7 +1009,7 @@ report 60500 "Return Order Ext"
         Text009: Label 'Exchange rate: %1/%2';
         OutputNo: Integer;
         TypeInt: Integer;
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         TotalSubTotal: Decimal;
         TotalAmount: Decimal;

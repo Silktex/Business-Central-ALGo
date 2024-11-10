@@ -135,7 +135,9 @@ page 50033 "Sales Lines New"
                     end;
                 }
             }
+
         }
+
     }
 
     trigger OnAfterGetRecord()

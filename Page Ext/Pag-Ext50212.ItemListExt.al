@@ -278,7 +278,7 @@ pageextension 50212 ItemList_Ext extends "Item List"
                 end;
             }
         }
-        addafter(Sales_Prices)
+        addafter(SalesPriceLists)
         {
             action("<Page Item Customer Catalog>")
             {

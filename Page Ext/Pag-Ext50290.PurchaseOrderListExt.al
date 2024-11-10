@@ -169,6 +169,13 @@ pageextension 50290 "Purchase Order List_Ext" extends "Purchase Order List"
         }
     }
 
+    trigger OnOpenPage()
+    begin
+        Rec.SetCurrentKey("Document Type", "No.");
+        Rec.Ascending(false);
+        if Rec.FindFirst() then;
+    end;
+
     procedure MailCountFN(RecNo: Code[20]): Integer
     var
         RecMailDetail: Record "Mail Detail";

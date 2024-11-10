@@ -70,6 +70,10 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
             {
                 ApplicationArea = all;
             }
+            field("Project Location"; Rec."Project Location")
+            {
+                ApplicationArea = all;
+            }
             field(Specifier; Rec.Specifier)
             {
                 ApplicationArea = all;

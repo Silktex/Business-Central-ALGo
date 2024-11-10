@@ -12,7 +12,8 @@
             "launchBrowser": true,
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true,
-            "schemaUpdateMode": "Synchronize"
+            "schemaUpdateMode": "Synchronize",
+            "dependencyPublishingOption": "Ignore"
         }
     ]
 }

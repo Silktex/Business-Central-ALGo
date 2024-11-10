@@ -156,5 +156,10 @@ tableextension 50220 "Sales Shipment Header_Ext" extends "Sales Shipment Header"
             Caption = 'Project Description';
             DataClassification = ToBeClassified;
         }
+        field(50505; "Project Location"; Text[50])
+        {
+            Caption = 'Project Location';
+            DataClassification = ToBeClassified;
+        }
     }
 }

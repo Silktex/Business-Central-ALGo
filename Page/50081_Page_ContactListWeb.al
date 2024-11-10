@@ -123,9 +123,9 @@ page 50082 "Contact List-Web"
 
     var
         Cont: Record Contact;
-        [InDataSet]
+
         StyleIsStrong: Boolean;
-        [InDataSet]
+
         NameIndent: Integer;
         CompanyGroupEnabled: Boolean;
         PersonGroupEnabled: Boolean;

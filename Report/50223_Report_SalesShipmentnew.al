@@ -732,7 +732,7 @@ report 50223 "Sales Shipment new"
         TaxRegNo: Text[30];
         TaxRegLabel: Text[30];
         Text009: Label 'VOID SHIPMENT';
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         AsmHeaderExists: Boolean;
@@ -759,8 +759,11 @@ report 50223 "Sales Shipment new"
 
 
     procedure InitLogInteraction()
+    var
+        DocumentType: Enum "Interaction Log Entry Document Type";
+
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(5) <> '';
+        LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Sales Shpt. Note") <> '';
     end;
 
 

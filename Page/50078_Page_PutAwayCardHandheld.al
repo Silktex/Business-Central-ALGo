@@ -384,9 +384,9 @@ page 50078 "Put Away Card Handheld"
     var
         ItemAvailFormsMgt: Codeunit "Item Availability Forms Mgt";
         WMSMgt: Codeunit "WMS Management";
-        [InDataSet]
+
         "Zone CodeEditable": Boolean;
-        [InDataSet]
+
         "Bin CodeEditable": Boolean;
 
     procedure ShowSourceLine()

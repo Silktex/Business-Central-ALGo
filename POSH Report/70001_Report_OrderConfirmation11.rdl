@@ -2439,7 +2439,9 @@ Cstr(Fields!PrepmtPmtTermsDescCaption.Value)
                                 <TextRun>
                                   <Value>=Fields!Comment_SalesHeaderComment.Value</Value>
                                   <Style>
-                                    <FontWeight>=IIF(Fields!LineCmtBold.Value,"Bold","Default")</FontWeight>
+                                    <FontSize>=IIF(Fields!HdrCmtBold.Value,"12pt","10pt")</FontSize>
+                                    <FontWeight>=IIF(Fields!HdrCmtBold.Value,"Bold","Default")</FontWeight>
+                                    <Color>=IIF(Fields!HdrCmtBold.Value,"Red","Black")</Color>
                                   </Style>
                                 </TextRun>
                               </TextRuns>
@@ -4790,6 +4792,12 @@ End Function</Code>
         </Field>
         <Field Name="PricesIncVAT_SalesHeader">
           <DataField>PricesIncVAT_SalesHeader</DataField>
+        </Field>
+        <Field Name="PrePaymentPer">
+          <DataField>PrePaymentPer</DataField>
+        </Field>
+        <Field Name="PrePaymentPerFormat">
+          <DataField>PrePaymentPerFormat</DataField>
         </Field>
         <Field Name="PageCaption">
           <DataField>PageCaption</DataField>

@@ -127,7 +127,7 @@ pageextension 50275 "Sales Prices_Ext" extends "Price List Lines"
         //A/17.04.2019/SCST000001
         ContinuityStartDate := 0D;
         ContinuityEndDate := 0D;
-        IF Rec."Asset Type".AsInteger() = Rec."Asset Type"::Item THEN BEGIN
+        IF Rec."Asset Type" = Rec."Asset Type"::Item THEN BEGIN
             ItemCrossReference.RESET;
             ItemCrossReference.SETRANGE(ItemCrossReference."Item No.", Rec."Asset No.");
             IF ItemCrossReference.FINDFIRST THEN BEGIN
@@ -136,7 +136,7 @@ pageextension 50275 "Sales Prices_Ext" extends "Price List Lines"
             END;
         END;
 
-        IF Rec."Asset Type".AsInteger() = Rec."Asset Type"::"Item Category" THEN BEGIN
+        IF Rec."Asset Type" = Rec."Asset Type"::"Item Category" THEN BEGIN
             recItem.RESET;
             //recItem.SETRANGE("Product Group Code","Item No.");
             recItem.SETRANGE("Item Category Code", Rec."Asset No.");
@@ -181,5 +181,6 @@ pageextension 50275 "Sales Prices_Ext" extends "Price List Lines"
         recItem: Record Item;
         RecordFound: Boolean;
         ItemCrossReference1: Record "Item Reference";
+        PriceListType: ENUM "Price Asset Type";
 
 }

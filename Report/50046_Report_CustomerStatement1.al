@@ -690,11 +690,14 @@ report 50046 "Customer Statement1"
         end;
 
         trigger OnOpenPage()
+        var
+            DocumentType: Enum "Interaction Log Entry Document Type";
+
         begin
             IF (NOT AllHavingEntries) AND (NOT AllHavingBalance) THEN
                 AllHavingBalance := TRUE;
 
-            LogInteraction := SegManagement.FindInteractTmplCode(7) <> '';
+            LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Sales Stmnt.") <> '';
             LogInteractionEnable := LogInteraction;
         end;
     }
@@ -804,7 +807,7 @@ report 50046 "Customer Statement1"
         TempAmountDue: array[4] of Decimal;
         AgingMethod_Int: Integer;
         StatementStyle_Int: Integer;
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         Text014: Label 'You must enter a Length of Aging Periods if you select aging.';
         STATEMENTCaptionLbl: Label 'STATEMENT';

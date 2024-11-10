@@ -28,6 +28,10 @@ pageextension 50250 "Contact Card_Ext" extends "Contact Card"
                 Visible = false;
                 ApplicationArea = all;
             }
+            field("Entity ID"; Rec."Entity ID")
+            {
+                ApplicationArea = all;
+            }
             field("Sales Order"; Rec."Sales Order")
             {
                 ApplicationArea = all;

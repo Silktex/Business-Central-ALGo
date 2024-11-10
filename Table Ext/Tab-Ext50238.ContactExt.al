@@ -86,5 +86,9 @@ tableextension 50238 Contact_Ext extends Contact
                     until ContBussRel.Next() = 0;
             end;
         }
+        field(50051; "Entity ID"; code[20])
+        {
+            caption = 'Entity Id';
+        }
     }
 }

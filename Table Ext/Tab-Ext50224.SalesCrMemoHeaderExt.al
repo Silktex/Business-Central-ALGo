@@ -53,6 +53,7 @@ tableextension 50224 "Sales Cr.Memo Header_Ext" extends "Sales Cr.Memo Header"
             DataClassification = ToBeClassified;
             Description = 'RS - Name of Project';
         }
+
         field(50065; Specifier; Code[20])
         {
             DataClassification = ToBeClassified;
@@ -126,6 +127,11 @@ tableextension 50224 "Sales Cr.Memo Header_Ext" extends "Sales Cr.Memo Header"
                 Opportunity: Record Opportunity;
             begin
             end;
+        }
+        field(50505; "Project Location"; Text[50])
+        {
+            Caption = 'Project Location';
+            DataClassification = ToBeClassified;
         }
         field(60001; "Credit Card No."; Code[20])
         {

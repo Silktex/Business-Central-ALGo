@@ -643,7 +643,7 @@ codeunit 60001 "DO Payment Mgt."
         DOPaymentTransLogMgt: Codeunit "DO Payment Trans. Log Mgt.";
     begin
         IF NOT DOPaymentTransLogMgt.FindValidAuthorizationEntry(
-             SalesHeader."Document Type",
+             SalesHeader."Document Type".AsInteger(),
              SalesHeader."No.",
              DOPaymentTransLogEntry)
         THEN
@@ -709,7 +709,7 @@ codeunit 60001 "DO Payment Mgt."
                             SalesShptLine.GET(SalesLine."Shipment No.", SalesLine."Shipment Line No.");
                             IF SalesHeader2.GET(SalesHeader2."Document Type"::Order, SalesShptLine."Order No.") THEN BEGIN
                                 IF DOPaymentTransLogMgt.FindPostingNotFinishedEntry(
-                                     SalesHeader."Document Type", SalesHeader."No.",
+                                     SalesHeader."Document Type".AsInteger(), SalesHeader."No.",
                                      DOPaymentTransLogEntry)
                                 THEN
                                     ERROR(
@@ -743,7 +743,7 @@ codeunit 60001 "DO Payment Mgt."
                                     IF SalesLine2.FINDFIRST THEN
                                         IF SalesHeader2.GET(SalesHeader2."Document Type"::Invoice, SalesLine2."Document No.") THEN BEGIN
                                             IF DOPaymentTransLogMgt.FindPostingNotFinishedEntry(
-                                                 SalesHeader."Document Type",
+                                                 SalesHeader."Document Type".AsInteger(),
                                                  SalesHeader."No.",
                                                  DOPaymentTransLogEntry)
                                             THEN

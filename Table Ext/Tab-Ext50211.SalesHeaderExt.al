@@ -293,6 +293,16 @@ tableextension 50211 "Sales Header_Ext" extends "Sales Header"
             Caption = 'Project Description';
             DataClassification = ToBeClassified;
         }
+        field(50505; "Project Location"; Text[50])
+        {
+            Caption = 'Project Location';
+            DataClassification = ToBeClassified;
+        }
+        field(50900; "Additional Info"; Text[50])
+        {
+            Caption = 'Additional Info';
+            DataClassification = ToBeClassified;
+        }
         field(60000; "Authorization Required"; Boolean)
         {
             Caption = 'Authorization Required';

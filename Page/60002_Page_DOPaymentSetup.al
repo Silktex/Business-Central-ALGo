@@ -78,7 +78,7 @@ page 60002 "DO Payment Setup"
     end;
 
     var
-        [InDataSet]
+
         MCAIsEnabled: Boolean;
 }
 

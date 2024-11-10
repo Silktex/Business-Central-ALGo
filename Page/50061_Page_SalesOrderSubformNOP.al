@@ -488,7 +488,7 @@ page 50061 "Sales Order Subform NOP"
         ItemAvailFormsMgt: Codeunit "Item Availability Forms Mgt";
         ShortcutDimCode: array[8] of Code[20];
         Text001: Label 'You cannot use the Explode BOM function because a prepayment of the sales order has been invoiced.';
-        [InDataSet]
+
         ItemPanelVisible: Boolean;
 
 
@@ -605,7 +605,7 @@ page 50061 "Sales Order Subform NOP"
         OrderPromisingLine.SetRange("Source ID", Rec."Document No.");
         OrderPromisingLine.SetRange("Source Line No.", Rec."Line No.");
 
-        OrderPromisingLines.SetSourceType(OrderPromisingLine."Source Type"::Sales.AsInteger());
+        OrderPromisingLines.SetSource(OrderPromisingLine."Source Type"::Sales);
         OrderPromisingLines.SetTableView(OrderPromisingLine);
         OrderPromisingLines.RunModal;
     end;

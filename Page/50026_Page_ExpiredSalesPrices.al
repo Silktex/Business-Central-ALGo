@@ -547,9 +547,7 @@ page 50026 "Expired Sales Prices"
         CurrencyCodeFilter: Text[250];
         Text000: Label 'All Customers';
         Text001: Label 'No %1 within the filter %2.';
-        [InDataSet]
         "Sales CodeEditable": Boolean;
-        [InDataSet]
         SalesCodeFilterCtrlEnable: Boolean;
         txtSalesCodeDesc: Text[50];
         recCustPrice: Record "Customer Price Group";

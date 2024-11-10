@@ -824,7 +824,7 @@ page 50080 "Completed Sales Order List"
         ReportPrint: Codeunit "Test Report-Print";
         UserMgt: Codeunit "User Setup Management";
         Usage: Option "Order Confirmation","Work Order","Pick Instruction";
-        [InDataSet]
+
         JobQueueActive: Boolean;
         SalesPersonName: Text[100];
         Text001: Label 'Order Import Format';

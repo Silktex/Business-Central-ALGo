@@ -1465,7 +1465,7 @@ page 50060 "Ecom Sales Order"
         recSalesLine1: Record "Sales Line";
         LineNo: Integer;
         Usage: Option "Order Confirmation","Work Order","Pick Instruction";
-        [InDataSet]
+
         JobQueueVisible: Boolean;
         Text001: Label 'Do you want to change %1 in all related records in the warehouse?';
         Text002: Label 'The update has been interrupted to respect the warning.';

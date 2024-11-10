@@ -487,7 +487,7 @@ report 50011 "Open PO Report"
         StrText: Text[5];
         ItemCrossReference: Record "Item Reference";
         ItemCrossReferenceNo: Code[20];
-        [InDataSet]
+
         ForVendor: Boolean;
 
 

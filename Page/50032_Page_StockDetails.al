@@ -238,7 +238,7 @@ page 50032 "Stock Details"
                         PAGE.Run(PAGE::"Item Ledger Entries", ILE);
                     end;
                 }
-                field(BACKINGQTY; LocACF + LocPFI)
+                field(BACKINGQTY; LocACF + LocPFI + LocAPPLIED + LocSBI())
                 {
                     ApplicationArea = All;
                     Caption = 'BACKING QTY';
@@ -251,7 +251,7 @@ page 50032 "Stock Details"
                         ILE.SetCurrentKey("Item No.", "Entry Type");
                         ILE.SetRange(ILE."Item No.", Rec."No.");
                         ILE.SetFilter(ILE."Remaining Quantity", '>%1', 0);
-                        ILE.SetFilter(ILE."Location Code", '%1|%2', 'ACF', 'PFI');
+                        ILE.SetFilter(ILE."Location Code", '%1|%2|%3|%4', 'ACF', 'PFI', 'APPLIED', 'SBI');
                         PAGE.Run(PAGE::"Item Ledger Entries", ILE);
                     end;
                 }
@@ -662,6 +662,23 @@ page 50032 "Stock Details"
         exit(ACFQTY);
     end;
 
+    procedure LocSBI(): Decimal
+    var
+        ILE: Record "Item Ledger Entry";
+        SBIQTY: Decimal;
+    begin
+        ACFQTY := 0;
+        ILE.Reset;
+        ILE.SetRange("Item No.", Rec."No.");
+        ILE.SetFilter(ILE."Remaining Quantity", '>%1', 0);
+        ILE.SetFilter(ILE."Location Code", 'SBI');
+        if ILE.Find('-') then
+            repeat
+                SBIQTY += ILE."Remaining Quantity";
+            until ILE.Next = 0;
+        exit(SBIQTY);
+    end;
+
     procedure LocPFI(): Decimal
     var
         ILE: Record "Item Ledger Entry";
@@ -672,6 +689,23 @@ page 50032 "Stock Details"
         ILE.SetRange("Item No.", Rec."No.");
         ILE.SetFilter(ILE."Remaining Quantity", '>%1', 0);
         ILE.SetFilter(ILE."Location Code", 'PFI');
+        if ILE.Find('-') then
+            repeat
+                ACFQTY += ILE."Remaining Quantity";
+            until ILE.Next = 0;
+        exit(ACFQTY);
+    end;
+
+    procedure LocAPPLIED(): Decimal
+    var
+        ILE: Record "Item Ledger Entry";
+        ACFQTY: Decimal;
+    begin
+        ACFQTY := 0;
+        ILE.Reset;
+        ILE.SetRange("Item No.", Rec."No.");
+        ILE.SetFilter(ILE."Remaining Quantity", '>%1', 0);
+        ILE.SetFilter(ILE."Location Code", 'APPLIED');
         if ILE.Find('-') then
             repeat
                 ACFQTY += ILE."Remaining Quantity";

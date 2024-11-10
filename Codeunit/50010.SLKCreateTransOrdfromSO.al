@@ -44,6 +44,7 @@ codeunit 50010 "SLK Create Trans. Ord. from SO"
                 end;
 
             until SalesLine.Next() = 0;
+            Commit();
 
             if not FromBatch then
                 if GuiAllowed then
@@ -54,7 +55,7 @@ codeunit 50010 "SLK Create Trans. Ord. from SO"
         end;
     end;
 
-    procedure InsertTransHeader(SalesHeadere: Record "Sales Header"; var TransferHeader: Record "Transfer Header")
+    procedure InsertTransHeader(var SalesHeadere: Record "Sales Header"; var TransferHeader: Record "Transfer Header")
     var
         InventorySetup: Record "Inventory Setup";
         TransferRoute: Record "Transfer Route";
@@ -88,6 +89,10 @@ codeunit 50010 "SLK Create Trans. Ord. from SO"
         // end;
         //TransferHeader."Sales Order No" := SalesHeadere."No.";
         TransferHeader.Modify();
+        TransOrderNo := TransferHeader."No.";
+
+        SalesHeadere."Additional Info" := TransOrderNo;
+        SalesHeadere.Modify(false);
     end;
 
     procedure InsertTransLine(SalesLine: Record "Sales Line"; var TransferHeader: Record "Transfer Header")
@@ -136,9 +141,15 @@ codeunit 50010 "SLK Create Trans. Ord. from SO"
         FromBatch := BatchReq;
     end;
 
+    procedure GetTransferOrderNo(): Code[20]
+    begin
+        exit(TransOrderNo);
+    end;
+
     var
         TransferNo: Code[20];
         FromBatch: Boolean;
+        TransOrderNo: Code[20];
 
 
 }

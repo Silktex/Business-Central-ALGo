@@ -30,6 +30,14 @@ pageextension 50288 "Sales Return Order List_Ext" extends "Sales Return Order Li
             }
         }
     }
+
+    trigger OnOpenPage()
+    begin
+        Rec.SetCurrentKey("Document Type", "No.");
+        Rec.Ascending(false);
+        if Rec.FindFirst() then;
+    end;
+
     var
         ReservationEntry: Record "Reservation Entry";
 }

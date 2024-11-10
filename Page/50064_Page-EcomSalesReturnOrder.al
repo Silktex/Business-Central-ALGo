@@ -1800,7 +1800,7 @@ page 50064 "Ecom Sales Return Order"
         recSalesLine1: Record "Sales Line";
         LineNo: Integer;
         Usage: Option "Order Confirmation","Work Order","Pick Instruction";
-        [InDataSet]
+
 
         JobQueueVisible: Boolean;
         Text001: Label 'Do you want to change %1 in all related records in the warehouse?';

@@ -498,7 +498,7 @@ page 70000 "Sales Prices SC"
         PageCaption: Text;
         Text000: Label 'All Customers';
         Text001: Label 'No %1 within the filter %2.';
-        [InDataSet]
+
         SalesCodeFilterCtrlEnable: Boolean;
         IsOnMobile: Boolean;
         IsLookupMode: Boolean;

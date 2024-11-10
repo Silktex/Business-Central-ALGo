@@ -16,13 +16,5 @@ pageextension 50220 "Purchase Invoice_Ext" extends "Purchase Invoice"
         {
             Visible = false;
         }
-        modify(CreateFlow)
-        {
-            Visible = false;
-        }
-        modify(SeeFlows)
-        {
-            Visible = false;
-        }
     }
 }

@@ -1236,9 +1236,11 @@ report 50207 "Sales Order With Comment New"
         end;
 
         trigger OnOpenPage()
+        var
+            DocumentType: Enum "Interaction Log Entry Document Type";
         begin
             ArchiveDocument := ArchiveManagement.SalesDocArchiveGranule;
-            LogInteraction := SegManagement.FindInteractTmplCode(3) <> '';
+            LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Sales Ord. Cnfrmn.") <> '';
 
             ArchiveDocumentEnable := ArchiveDocument;
             LogInteractionEnable := LogInteraction;
@@ -1342,9 +1344,9 @@ report 50207 "Sales Order With Comment New"
         PrevTaxPercent: Decimal;
         UseDate: Date;
         UseExternalTaxEngine: Boolean;
-        [InDataSet]
+
         ArchiveDocumentEnable: Boolean;
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         AsmInfoExistsForLine: Boolean;

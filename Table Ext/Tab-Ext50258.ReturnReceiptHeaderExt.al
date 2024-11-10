@@ -93,5 +93,10 @@ tableextension 50258 "Return Receipt Header_Ext" extends "Return Receipt Header"
             begin
             end;
         }
+        field(50505; "Project Location"; Text[50])
+        {
+            Caption = 'Project Location';
+            DataClassification = ToBeClassified;
+        }
     }
 }

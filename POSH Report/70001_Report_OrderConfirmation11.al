@@ -302,6 +302,9 @@ report 70001 "Order Confirmation11 POSH"
                     column(PricesIncVAT_SalesHeader; "Sales Header"."Prices Including VAT")
                     {
                     }
+                    column(PrePaymentPer; PrePaymentPer)
+                    {
+                    }
                     column(PageCaption; PageCaptionCap)
                     {
                     }
@@ -1204,7 +1207,7 @@ report 70001 "Order Confirmation11 POSH"
                     dataitem(Comment; "Integer")
                     {
                         DataItemTableView = SORTING(Number);
-                        column(NewComment; txtComment[intCommentLine])
+                        column(NewComment; txtComment[Number])
                         {
                         }
                         column(CommentGroup; Number)
@@ -1327,11 +1330,16 @@ report 70001 "Order Confirmation11 POSH"
                 Symbology: Enum "Barcode Symbology 2D";
                 FontProvider: Interface "Barcode Font Provider 2D";
                 TypeHelper: Codeunit "Type Helper";
+                PrePayAmt: Decimal;
             //SC-TIC-62 End
             begin
                 //SC-TIC-62 Begin
+                PrePaymentPer := 0;
+                PrePayAmt := 0;
+                PrePaymentPer := "Sales Header"."Prepayment %";
+
                 EncodedTotals := '';
-                BarcodeString := "Sales Header"."No.";
+                BarcodeString := 'P' + "Sales Header"."No.";
                 FontProvider := Enum::"Barcode Font Provider 2D"::IDAutomation2D;
                 Symbology := Enum::"Barcode Symbology 2D"::"QR-Code";
 
@@ -1476,7 +1484,11 @@ report 70001 "Order Confirmation11 POSH"
                         CreditCardType := DOPaymentCreditCard.Type;
                     END;
                 END;
-                //MESSAGE('%1',CreditCardType);
+
+                if PrePaymentPer <> 0 then begin
+                    PrePayAmt := Round((LineAmtTot + Freight) * PrePaymentPer / 100, 0.01);
+                    LOGENTRYAMOUNT := LOGENTRYAMOUNT + PrePayAmt;
+                end;
 
                 IF PaymentTerms.GET("Prepmt. Payment Terms Code") THEN
                     BillToPhoneNo := '';
@@ -1506,6 +1518,7 @@ report 70001 "Order Confirmation11 POSH"
                 FOR intLineCount := 1 TO 50 DO BEGIN
                     txtComment[intLineCount] := '';
                 END;
+
                 intLineCount := 0;
                 //txtComment:='';
                 txtProductGroup := '';
@@ -1716,9 +1729,11 @@ report 70001 "Order Confirmation11 POSH"
         end;
 
         trigger OnOpenPage()
+        var
+            DocumentType: Enum "Interaction Log Entry Document Type";
         begin
             ArchiveDocument := SalesSetup."Archive Orders";
-            LogInteraction := SegManagement.FindInteractTmplCode(3) <> '';
+            LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Sales Ord. Cnfrmn.") <> '';
 
             LogInteractionEnable := LogInteraction;
             LogInteraction := FALSE;
@@ -1762,6 +1777,7 @@ report 70001 "Order Confirmation11 POSH"
     end;
 
     var
+        PrePaymentPer: Decimal;
         EncodedTotals: Text;//SC-TIC-62 Begin
         BarcodeString: Text; //SC-TIC-62 Begin
         Text000: Label 'Salesperson';
@@ -1857,9 +1873,9 @@ report 70001 "Order Confirmation11 POSH"
         NNC_SalesLineInvDiscAmt: Decimal;
         Print: Boolean;
         Cust: Record Customer;
-        [InDataSet]
+
         ArchiveDocumentEnable: Boolean;
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         AsmInfoExistsForLine: Boolean;

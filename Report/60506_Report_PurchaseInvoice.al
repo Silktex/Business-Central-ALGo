@@ -501,8 +501,10 @@ report 60506 "Purchase Invoice Ext"
         end;
 
         trigger OnOpenPage()
+        var
+            DocumentType: Enum "Interaction Log Entry Document Type";
         begin
-            LogInteraction := SegManagement.FindInteractTmplCode(14) <> '';
+            LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Purch. Inv.") <> '';
             LogInteractionEnable := LogInteraction;
         end;
     }
@@ -564,7 +566,7 @@ report 60506 "Purchase Invoice Ext"
         Text007: Label 'Total Tax:';
         Text008: Label 'Tax:';
         Text009: Label 'VOID INVOICE';
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         ToCaptionLbl: Label 'To:';
         ReceiveByCaptionLbl: Label 'Receive By';

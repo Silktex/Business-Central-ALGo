@@ -1381,7 +1381,7 @@ report 70000 "Sales Invoice Com POSH"
         DocumentText: Text[20];
         USText000: Label 'INVOICE';
         USText001: Label 'PREPAYMENT REQUEST';
-        [InDataSet]
+
         LogInteractionEnable: Boolean;
         DisplayAssemblyInformation: Boolean;
         BillCaptionLbl: Label 'Sold To:';
@@ -1452,9 +1452,12 @@ report 70000 "Sales Invoice Com POSH"
         ProjectOwner1: Text[100];
 
 
+
     procedure InitLogInteraction()
+    var
+        DocumentType: Enum "Interaction Log Entry Document Type";
     begin
-        LogInteraction := SegManagement.FindInteractTmplCode(4) <> '';
+        LogInteraction := SegManagement.FindInteractionTemplateCode(DocumentType::"Sales Inv.") <> '';
     end;
 
 

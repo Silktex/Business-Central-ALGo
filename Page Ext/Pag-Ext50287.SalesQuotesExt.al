@@ -52,6 +52,9 @@ pageextension 50287 "Sales Quotes_Ext" extends "Sales Quotes"
     var
         compInfo: Record "Company Information";
     begin
+        Rec.SetCurrentKey("Document Type", "No.");
+        Rec.Ascending(false);
+        if Rec.FindFirst() then;
 
         compInfo.get();
         IF compInfo."Report Selection" = compInfo."Report Selection"::Slik then

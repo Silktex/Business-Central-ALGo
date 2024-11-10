@@ -118,7 +118,7 @@ pageextension 50214 "General Journal_Ext" extends "General Journal"
         recPF1: Record "Payment Future Old Inv";
         decAmtToApply: Decimal;
         recGLSetup: Record "General Ledger Setup";
-        cuNoSeries: Codeunit NoSeriesManagement;
+        cuNoSeries: Codeunit "No. Series";
         cdAppDocNo: array[50] of Code[20];
         i: Integer;
         cdAppcmNo: Code[20];
