@@ -311,6 +311,9 @@ report 70003 "Purchase Order2 POSH"
                         column(QuantityReceived_PurchaseLine; "Purchase Line"."Quantity Received")
                         {
                         }
+                        column(MinOrderQty; "Purchase Line"."Min. Order Qty.")
+                        {
+                        }
                         column(PrintFooter; PrintFooter)
                         {
                         }
@@ -800,7 +803,7 @@ report 70003 "Purchase Order2 POSH"
         "-----VK------": Integer;
         recLocation: Record Location;
         recCountry: Record "Country/Region";
-        ExpectedDateCap: Label 'Expected Date';
+        ExpectedDateCap: Label 'Exp. Date';
         ReceivedCap: Label 'Received';
         recVendor: Record Vendor;
         recCountry2: Record "Country/Region";

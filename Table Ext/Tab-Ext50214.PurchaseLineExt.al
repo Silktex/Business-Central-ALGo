@@ -87,5 +87,9 @@ tableextension 50214 PurchaseLine_Ext extends "Purchase Line"
         field(50101; "Balance Qty Date"; Date)
         {
         }
+        field(50199; "Min. Order Qty."; Decimal)
+        {
+            Caption = 'Minimum Order Quantity';
+        }
     }
 }

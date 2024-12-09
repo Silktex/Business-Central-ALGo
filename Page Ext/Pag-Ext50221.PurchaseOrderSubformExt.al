@@ -28,6 +28,10 @@ pageextension 50221 "Purchase Order Subform_Ext" extends "Purchase Order Subform
             {
                 ApplicationArea = all;
             }
+            field("Min. Order Qty."; Rec."Min. Order Qty.")
+            {
+                ApplicationArea = all;
+            }
         }
         addafter("Over-Receipt Code")
         {
