@@ -179,6 +179,9 @@ report 70001 "Order Confirmation11 POSH"
             column(EmailCaption; EmailCaptionLbl)
             {
             }
+            column(LessDepCap; LessDepCap)
+            {
+            }
             dataitem(CopyLoop; "Integer")
             {
                 DataItemTableView = SORTING(Number);
@@ -1471,6 +1474,7 @@ report 70001 "Order Confirmation11 POSH"
 
                 //MESSAGE('%1',Freight);
                 LOGENTRYAMOUNT := 0;
+                LessDepCap := true;
                 CreditCardNo := '';
                 CreditCardType := '';
                 DOPaymentTransLoEntry.RESET;
@@ -1488,6 +1492,19 @@ report 70001 "Order Confirmation11 POSH"
                 if PrePaymentPer <> 0 then begin
                     PrePayAmt := Round((LineAmtTot + Freight) * PrePaymentPer / 100, 0.01);
                     LOGENTRYAMOUNT := LOGENTRYAMOUNT + PrePayAmt;
+
+                    // if Status = Status::"Pending Prepayment" then
+                    //     LessDepCap := false
+                    // else begin
+                    PostedSalesInvoice.Reset();
+                    PostedSalesInvoice.SetRange("Prepayment Order No.", "No.");
+                    if PostedSalesInvoice.FindFirst() then begin
+                        PostedSalesInvoice.CalcFields("Remaining Amount");
+                        if PostedSalesInvoice."Remaining Amount" <> 0 then
+                            LessDepCap := false;
+                    end else
+                        LessDepCap := false;
+                    //end;
                 end;
 
                 IF PaymentTerms.GET("Prepmt. Payment Terms Code") THEN
@@ -1653,6 +1670,38 @@ report 70001 "Order Confirmation11 POSH"
                         txtComment[intLineCount] := recStandardComment."Comment 5";//+' '+recStandardComment."Comment 2";
                     END;
                 END;
+                //end;
+
+                //Added 07-Jan-2025
+                recStandardComment.RESET;
+                recStandardComment.SETRANGE("Product Code", '');
+                recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Posting Date");
+                recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::"All Customer");
+                recStandardComment.SETRANGE(recStandardComment."Sales Code", '');
+                //recStandardComment.SETRANGE(Internal,TRUE);
+                IF recStandardComment.FIND('-') THEN
+                    Repeat
+                        IF recStandardComment.Comment <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment.Comment;//+' '+recStandardComment."Comment 2";
+                        END;
+                        IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment."Comment 2";//+' '+recStandardComment."Comment 2";
+                        END;
+                        IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment."Comment 3";//+' '+recStandardComment."Comment 2";
+                        END;
+                        IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment."Comment 4";//+' '+recStandardComment."Comment 2";
+                        END;
+                        IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment."Comment 5";//+' '+recStandardComment."Comment 2";
+                        END;
+                    until recStandardComment.Next() = 0;
             end;
 
             trigger OnPreDataItem()
@@ -1777,6 +1826,7 @@ report 70001 "Order Confirmation11 POSH"
     end;
 
     var
+        PostedSalesInvoice: Record "Sales Invoice Header";
         PrePaymentPer: Decimal;
         EncodedTotals: Text;//SC-TIC-62 Begin
         BarcodeString: Text; //SC-TIC-62 Begin
@@ -1867,13 +1917,12 @@ report 70001 "Order Confirmation11 POSH"
         TotalAmount: Decimal;
         AmountExclInvDisc: Decimal;
         //SC-TI-53 End
-
         InvDisc: Decimal;//SC-TI-59 Begin
         DiscountAmount: Decimal;//SC-TI-59 Begin
         NNC_SalesLineInvDiscAmt: Decimal;
         Print: Boolean;
         Cust: Record Customer;
-
+        LessDepCap: Boolean;
         ArchiveDocumentEnable: Boolean;
 
         LogInteractionEnable: Boolean;

@@ -43,5 +43,17 @@ codeunit 50006 "Whse.-Act.-RegisterWe (Yes/No)"
     begin
         HHUsr := UsrId;
     end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Warehouse Activity Line", OnBeforeConfirmWhseActivLinesDeletionRecreate, '', false, false)]
+    local procedure KGOnBeforeConfirmWhseActivLinesDeletionRecreate(WarehouseActivityLine: Record "Warehouse Activity Line"; var IsHandled: Boolean)
+    begin
+        IsHandled := true;
+    end;
+
+    [EventSubscriber(ObjectType::Table, Database::"Warehouse Activity Line", OnDeleteRelatedWhseActivLinesOnBeforeConfirmWhseActivLinesDeletionOutOfBalance, '', false, false)]
+    local procedure KGOnDeleteRelatedWhseActivLinesOnBeforeConfirmWhseActivLinesDeletionOutOfBalance(WhseActivLine: Record "Warehouse Activity Line"; CalledFromHeader: Boolean; var DeleteLineConfirmed: Boolean)
+    begin
+        DeleteLineConfirmed := true;
+    end;
 }
 

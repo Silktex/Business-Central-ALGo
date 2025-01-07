@@ -463,6 +463,10 @@ report 70002 "CFA Request Form POSH"
                             column(NewComment; txtComment[intCommentLine])
                             {
                             }
+
+                            column(txtBold; (strpos(txtComment[intCommentLine], '~') <> 0))
+                            {
+                            }
                             column(CommentGroup; Number)
                             {
                             }
@@ -483,6 +487,9 @@ report 70002 "CFA Request Form POSH"
                             DataItemLinkReference = SalesLine;
                             DataItemTableView = SORTING(Number);
                             column(recSalesLineComments_Comment; recSalesLineComments.Comment)
+                            {
+                            }
+                            column(LineCmtBold; (strpos(recSalesLineComments.Comment, '~') <> 0))
                             {
                             }
 
@@ -589,6 +596,9 @@ report 70002 "CFA Request Form POSH"
                     {
                         DataItemTableView = SORTING(Number);
                         column(recSalesHeaderComments_Comment; recSalesHeaderComments.Comment)
+                        {
+                        }
+                        column(HdrCmtBold; (strpos(recSalesHeaderComments.Comment, '~') <> 0))
                         {
                         }
 
@@ -766,8 +776,8 @@ report 70002 "CFA Request Form POSH"
                 END;
 
                 recStandardComment.RESET;
-                recStandardComment.SETFILTER("Product Code", '');
-                recStandardComment.SETFILTER(recStandardComment."From Date", '%1|>%2', 0D, "Posting Date");
+                recStandardComment.SetRange("Product Code", '');
+                recStandardComment.SETFILTER(recStandardComment."From Date", '%1|>%2', 0D, "Document Date");
                 recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::Customer);
                 recStandardComment.SETRANGE(recStandardComment."Sales Code", "Sell-to Customer No.");
                 recStandardComment.SETRANGE(Internal, TRUE);
@@ -792,10 +802,38 @@ report 70002 "CFA Request Form POSH"
                         intLineCount := intLineCount + 1;
                         txtComment[intLineCount] := recStandardComment."Comment 5";//+' '+recStandardComment."Comment 2";
                     END;
-
-
                 END;
 
+                //Added 07-Jan-2025
+                recStandardComment.RESET;
+                recStandardComment.SetRange("Product Code", '');
+                recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Document Date");
+                recStandardComment.SETRANGE(recStandardComment."Sales Type", recStandardComment."Sales Type"::"All Customer");
+                recStandardComment.SETRANGE(recStandardComment."Sales Code", '');
+                //recStandardComment.SETRANGE(Internal,TRUE);
+                IF recStandardComment.FIND('-') THEN
+                    repeat
+                        IF recStandardComment.Comment <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment.Comment;//+' '+recStandardComment."Comment 2";
+                        END;
+                        IF recStandardComment."Comment 2" <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment."Comment 2";//+' '+recStandardComment."Comment 2";
+                        END;
+                        IF recStandardComment."Comment 3" <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment."Comment 3";//+' '+recStandardComment."Comment 2";
+                        END;
+                        IF recStandardComment."Comment 4" <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment."Comment 4";//+' '+recStandardComment."Comment 2";
+                        END;
+                        IF recStandardComment."Comment 5" <> '' THEN BEGIN
+                            intLineCount := intLineCount + 1;
+                            txtComment[intLineCount] := recStandardComment."Comment 5";//+' '+recStandardComment."Comment 2";
+                        END;
+                    until recStandardComment.Next() = 0;
 
                 //SPD MS
                 IF PrintCompany THEN BEGIN

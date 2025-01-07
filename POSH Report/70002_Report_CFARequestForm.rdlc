@@ -1778,7 +1778,7 @@ Cstr(Fields!SH_ExtDocNo.Value)</Value>
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>4.25211in</Width>
+                                <Width>6.22565in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1799,7 +1799,9 @@ Cstr(Fields!SH_ExtDocNo.Value)</Value>
                                                     <Value>=Fields!NewComment.Value</Value>
                                                     <Style>
                                                       <FontFamily>Segoe UI</FontFamily>
-                                                      <FontSize>8pt</FontSize>
+                                                      <FontSize>=IIf(InStr(Fields!NewComment.Value,"~") &gt; 0,"10pt","8pt")</FontSize>
+                                                      <FontWeight>=IIf(InStr(Fields!NewComment.Value,"~") &gt; 0,"Bold","Default")</FontWeight>
+                                                      <Color>=IIf(InStr(Fields!NewComment.Value,"~") &gt; 0 ,"Red","Black")</Color>
                                                     </Style>
                                                   </TextRun>
                                                 </TextRuns>
@@ -1810,7 +1812,7 @@ Cstr(Fields!SH_ExtDocNo.Value)</Value>
                                             </Paragraphs>
                                             <rd:DefaultName>Textbox21</rd:DefaultName>
                                             <Height>0.15625in</Height>
-                                            <Width>3.81685in</Width>
+                                            <Width>6.21522in</Width>
                                             <Style>
                                               <VerticalAlign>Top</VerticalAlign>
                                               <PaddingRight>5pt</PaddingRight>
@@ -1864,97 +1866,16 @@ Cstr(Fields!SH_ExtDocNo.Value)</Value>
                             </Border>
                           </Style>
                         </Tablix>
-                        <ColSpan>5</ColSpan>
+                        <ColSpan>8</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox58">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style>
-                                <TextAlign>Left</TextAlign>
-                              </Style>
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox58</rd:DefaultName>
-                          <Style>
-                            <VerticalAlign>Top</VerticalAlign>
-                            <PaddingRight>5pt</PaddingRight>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox28">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox28</rd:DefaultName>
-                          <Style>
-                            <VerticalAlign>Top</VerticalAlign>
-                            <PaddingLeft>5pt</PaddingLeft>
-                            <PaddingRight>5pt</PaddingRight>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox29">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox29</rd:DefaultName>
-                          <Style>
-                            <VerticalAlign>Top</VerticalAlign>
-                            <PaddingLeft>5pt</PaddingLeft>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -1966,7 +1887,7 @@ Cstr(Fields!SH_ExtDocNo.Value)</Value>
                           <TablixBody>
                             <TablixColumns>
                               <TablixColumn>
-                                <Width>4.25211in</Width>
+                                <Width>6.22565in</Width>
                               </TablixColumn>
                             </TablixColumns>
                             <TablixRows>
@@ -1999,7 +1920,7 @@ Cstr(Fields!SH_ExtDocNo.Value)</Value>
                                             <rd:DefaultName>recSalesHeaderComments_Comment</rd:DefaultName>
                                             <Top>0.02431in</Top>
                                             <Height>0.13541in</Height>
-                                            <Width>3.81685in</Width>
+                                            <Width>6.21522in</Width>
                                             <Style>
                                               <VerticalAlign>Top</VerticalAlign>
                                               <PaddingLeft>5pt</PaddingLeft>
@@ -2047,96 +1968,16 @@ Cstr(Fields!SH_ExtDocNo.Value)</Value>
                             </Border>
                           </Style>
                         </Tablix>
-                        <ColSpan>5</ColSpan>
+                        <ColSpan>8</ColSpan>
                       </CellContents>
                     </TablixCell>
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
                     <TablixCell />
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox64">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox64</rd:DefaultName>
-                          <Style>
-                            <VerticalAlign>Top</VerticalAlign>
-                            <PaddingLeft>5pt</PaddingLeft>
-                            <PaddingRight>5pt</PaddingRight>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox35">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox35</rd:DefaultName>
-                          <Style>
-                            <VerticalAlign>Top</VerticalAlign>
-                            <PaddingLeft>5pt</PaddingLeft>
-                            <PaddingRight>5pt</PaddingRight>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
-                    <TablixCell>
-                      <CellContents>
-                        <Textbox Name="Textbox36">
-                          <CanGrow>true</CanGrow>
-                          <KeepTogether>true</KeepTogether>
-                          <Paragraphs>
-                            <Paragraph>
-                              <TextRuns>
-                                <TextRun>
-                                  <Value />
-                                  <Style>
-                                    <FontFamily>Segoe UI</FontFamily>
-                                    <FontSize>8pt</FontSize>
-                                  </Style>
-                                </TextRun>
-                              </TextRuns>
-                              <Style />
-                            </Paragraph>
-                          </Paragraphs>
-                          <rd:DefaultName>Textbox36</rd:DefaultName>
-                          <Style>
-                            <VerticalAlign>Top</VerticalAlign>
-                            <PaddingLeft>5pt</PaddingLeft>
-                          </Style>
-                        </Textbox>
-                      </CellContents>
-                    </TablixCell>
+                    <TablixCell />
+                    <TablixCell />
+                    <TablixCell />
                   </TablixCells>
                 </TablixRow>
                 <TablixRow>
@@ -2414,6 +2255,7 @@ Cstr(Fields!AmtExemptfromSalesTaxCptn.Value)
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet_Result</DataSetName>
+            <Top>0cm</Top>
             <Left>0.01389in</Left>
             <Height>1.47926in</Height>
             <Width>6.22565in</Width>
@@ -4283,14 +4125,23 @@ End Function
         <Field Name="NewComment">
           <DataField>NewComment</DataField>
         </Field>
+        <Field Name="txtBold">
+          <DataField>txtBold</DataField>
+        </Field>
         <Field Name="CommentGroup">
           <DataField>CommentGroup</DataField>
         </Field>
         <Field Name="recSalesLineComments_Comment">
           <DataField>recSalesLineComments_Comment</DataField>
         </Field>
+        <Field Name="LineCmtBold">
+          <DataField>LineCmtBold</DataField>
+        </Field>
         <Field Name="recSalesHeaderComments_Comment">
           <DataField>recSalesHeaderComments_Comment</DataField>
+        </Field>
+        <Field Name="HdrCmtBold">
+          <DataField>HdrCmtBold</DataField>
         </Field>
       </Fields>
       <Query>

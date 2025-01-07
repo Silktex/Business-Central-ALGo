@@ -4088,7 +4088,7 @@ Cstr(Fields!PrepmtPmtTermsDescCaption.Value)
                 <Paragraph>
                   <TextRuns>
                     <TextRun>
-                      <Value>Less Deposit: </Value>
+                      <Value>=IIF(Fields!LessDepCap.Value ,"Less Deposit:","Deposit Required:")</Value>
                       <Style>
                         <FontSize>11pt</FontSize>
                         <FontWeight>Bold</FontWeight>
@@ -4675,6 +4675,9 @@ End Function</Code>
         </Field>
         <Field Name="EmailCaption">
           <DataField>EmailCaption</DataField>
+        </Field>
+        <Field Name="LessDepCap">
+          <DataField>LessDepCap</DataField>
         </Field>
         <Field Name="TexComment1">
           <DataField>TexComment1</DataField>
