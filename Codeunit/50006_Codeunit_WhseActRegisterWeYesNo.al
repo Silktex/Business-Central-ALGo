@@ -53,7 +53,8 @@ codeunit 50006 "Whse.-Act.-RegisterWe (Yes/No)"
     [EventSubscriber(ObjectType::Table, Database::"Warehouse Activity Line", OnDeleteRelatedWhseActivLinesOnBeforeConfirmWhseActivLinesDeletionOutOfBalance, '', false, false)]
     local procedure KGOnDeleteRelatedWhseActivLinesOnBeforeConfirmWhseActivLinesDeletionOutOfBalance(WhseActivLine: Record "Warehouse Activity Line"; CalledFromHeader: Boolean; var DeleteLineConfirmed: Boolean)
     begin
-        DeleteLineConfirmed := true;
+        if not CalledFromHeader then
+            DeleteLineConfirmed := true;
     end;
 }
 
