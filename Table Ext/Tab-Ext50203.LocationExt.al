@@ -47,8 +47,27 @@ tableextension 50203 Location_Ext extends Location
 
         field(50012; "Fedex URL"; Text[100])
         {
-
         }
+
+        field(50050; "USPS Role Name"; Text[50])
+        {
+        }
+        field(50051; "USPS CRID"; Text[15])
+        {
+        }
+        field(50052; "USPS MID"; Text[10])
+        {
+        }
+        field(50053; "USPS Manifest MID"; Text[10])
+        {
+        }
+        field(50054; "USPS Account Type"; Text[20])
+        {
+        }
+        field(50055; "USPS Account No."; Text[10])
+        {
+        }
+
 
     }
 }

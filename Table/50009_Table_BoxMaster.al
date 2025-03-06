@@ -39,6 +39,14 @@ table 50009 "Box Master"
         {
             Description = 'Handheld';
         }
+        field(9; "Max Weight Limit"; Decimal)
+        {
+            Caption = 'Max Weight Limit';
+        }
+        field(11; "Max Quantity Limit"; Integer)
+        {
+            Caption = 'Max Quantity Limit';
+        }
     }
 
     keys

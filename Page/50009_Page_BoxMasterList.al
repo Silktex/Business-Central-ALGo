@@ -45,6 +45,16 @@ page 50009 "Box Master List"
                 {
                     ApplicationArea = all;
                 }
+                field("Max Weight Limit"; Rec."Max Weight Limit")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Max Weight Limit field.', Comment = '%';
+                }
+                field("Max Quantity Limit"; Rec."Max Quantity Limit")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Max Quantity Limit field.', Comment = '%';
+                }
             }
         }
     }
