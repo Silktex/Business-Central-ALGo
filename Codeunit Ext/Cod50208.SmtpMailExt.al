@@ -175,6 +175,7 @@ codeunit 50208 SmtpMail_Ext
         UserSetup: Record "User Setup";
         SalesReceivablesSetup: Record "Sales & Receivables Setup";
         ContactBusinessRelation: Record "Contact Business Relation";
+        StaxPaymentLinks: Record "TLI Stax Payment Link";
         Contact: Record Contact;
         MailDetail: Record "Mail Detail";
         SalespersonPurchaser: Record "Salesperson/Purchaser";
@@ -186,6 +187,7 @@ codeunit 50208 SmtpMail_Ext
         CCAddress: Text[250];
         Text001: Label 'Please find enclosed a copy of your invoice.';
         Text002: Label 'Regards,';
+        Text003: Label 'Please follow link to pay invoice: ';
         BCCAddress: Text[250];
         LocationAdd1: Text[100];
         LocationAdd2: Text[100];
@@ -195,6 +197,7 @@ codeunit 50208 SmtpMail_Ext
         ReportSelection: Record "Report Selections";
         rptSalesInvoice: Report "Sales Invoice Com";
         SalesInvoiceHeader: Record "Sales Invoice Header";
+        StaxPayLink: text;
     begin
         BodyText := '';
         Clear(AddBCC);
@@ -204,6 +207,7 @@ codeunit 50208 SmtpMail_Ext
         Clear(RecRef);
         Clear(OutStreamValue);
         Clear(InStreamValue);
+        Clear(StaxPayLink);
         CompanyInfo.GET;
         IF LocationInfo.GET(recSalesInvoiceHeader."Location Code") THEN BEGIN
             LocationAdd1 := LocationInfo.Address;
@@ -234,6 +238,12 @@ codeunit 50208 SmtpMail_Ext
         ///RS 170222
 
         //ToFile := DownloadToClientFileName(FileName, ToFile);
+
+        StaxPaymentLinks.SetRange("Document Type", StaxPaymentLinks."Document Type"::Invoice);
+        StaxPaymentLinks.SetRange("Document No.", recSalesInvoiceHeader."No.");
+        if StaxPaymentLinks.FindFirst() then
+            if StaxPaymentLinks."Tiny Url" <> '' then
+                StaxPayLink := StaxPaymentLinks."Tiny Url";
 
         IF UserSetup.GET(USERID) THEN
             FromMailID := UserSetup."E-Mail";
@@ -303,6 +313,11 @@ codeunit 50208 SmtpMail_Ext
             BodyText += ('<p>');
             BodyText += (Text001);
             BodyText += ('</p>');
+            if StaxPayLink <> '' then begin
+                BodyText += ('<p>');
+                BodyText += (Text003 + StaxPayLink);
+                BodyText += ('</p>');
+            end;
             BodyText += ('<p>');
             BodyText += (Text002);
             BodyText += ('<br>');

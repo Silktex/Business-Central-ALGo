@@ -138,8 +138,11 @@ table 60005 "DO Payment Trans. Log Entry"
         }
         field(50007; "Payment Entry No."; Integer)
         {
-
         }
+        field(50010; "Service Provider"; Text[100])
+        {
+        }
+
     }
 
     keys

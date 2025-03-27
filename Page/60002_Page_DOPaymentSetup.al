@@ -42,6 +42,12 @@ page 60002 "DO Payment Setup"
                     Enabled = MCAIsEnabled;
                     ApplicationArea = all;
                 }
+                field("Admin User ID"; Rec."Admin User ID")
+                {
+                    ApplicationArea = All;
+                    ToolTip = 'Specifies the value of the Admin User ID field.', Comment = '%';
+                }
+
             }
             group(Numbering)
             {

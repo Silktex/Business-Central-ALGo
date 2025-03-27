@@ -172,5 +172,9 @@ tableextension 50205 Customer_Ext extends Customer
         {
             Description = 'ECOM';
         }
+        field(50150; "Stax Customer ID"; Text[50])
+        {
+            Caption = 'Stax Customer ID';
+        }
     }
 }

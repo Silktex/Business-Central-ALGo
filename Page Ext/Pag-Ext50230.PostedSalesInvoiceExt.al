@@ -100,87 +100,126 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
         }
         addafter(ShowCreditMemo)
         {
-            action(MakePayment)
+            Group(AuthorizeDotNet)
             {
-                ApplicationArea = all;
+                Caption = 'Authorize.Net';
 
-                trigger OnAction()
-                begin
-                    if DOPaymentMgt.IsValidPaymentMethod(Rec."Payment Method Code") then begin
-                        Rec.TestField("Credit Card No.");
-                        Rec.CalcFields(Amount);
-                        DPTLE.Reset;
-                        //DPTLE.SETRANGE("Document Type",DPTLE."Document Type"::Payment);
-                        DPTLE.SetRange("Document No.", Rec."No.");
-                        DPTLE.SetRange(DPTLE."Transaction Status", DPTLE."Transaction Status"::Captured);
-                        if DPTLE.Find('-') then
-                            Error('Already Captured')
-                        else begin
+                action(MakePayment)
+                {
+                    ApplicationArea = all;
+
+                    trigger OnAction()
+                    begin
+                        if DOPaymentMgt.IsValidPaymentMethod(Rec."Payment Method Code") then begin
+                            Rec.TestField("Credit Card No.");
+                            Rec.CalcFields(Amount);
                             DPTLE.Reset;
                             //DPTLE.SETRANGE("Document Type",DPTLE."Document Type"::Payment);
                             DPTLE.SetRange("Document No.", Rec."No.");
-
+                            DPTLE.SetRange(DPTLE."Transaction Status", DPTLE."Transaction Status"::Captured);
                             if DPTLE.Find('-') then
-                                AuthenticationID := Format(DPTLE."Entry No.")
+                                Error('Already Captured')
                             else begin
                                 DPTLE.Reset;
-                                if DPTLE.Find('+') then
-                                    EntryNo := DPTLE."Entry No." + 1
-                                else
-                                    EntryNo := 1;
-                                decAmount := 0;
-                                recCLE.Reset;
-                                recCLE.SetRange("Document No.", Rec."No.");
-                                recCLE.SetRange("Document Type", recCLE."Document Type"::Invoice);
-                                recCLE.SetRange("Customer No.", Rec."Bill-to Customer No.");
-                                recCLE.SetRange("Posting Date", Rec."Posting Date");
-                                if recCLE.Find('-') then begin
-                                    recCLE.CalcFields(Amount);
-                                    decAmount := Abs(recCLE.Amount);
+                                //DPTLE.SETRANGE("Document Type",DPTLE."Document Type"::Payment);
+                                DPTLE.SetRange("Document No.", Rec."No.");
+
+                                if DPTLE.Find('-') then
+                                    AuthenticationID := Format(DPTLE."Entry No.")
+                                else begin
+                                    DPTLE.Reset;
+                                    if DPTLE.Find('+') then
+                                        EntryNo := DPTLE."Entry No." + 1
+                                    else
+                                        EntryNo := 1;
+                                    decAmount := 0;
+                                    recCLE.Reset;
+                                    recCLE.SetRange("Document No.", Rec."No.");
+                                    recCLE.SetRange("Document Type", recCLE."Document Type"::Invoice);
+                                    recCLE.SetRange("Customer No.", Rec."Bill-to Customer No.");
+                                    recCLE.SetRange("Posting Date", Rec."Posting Date");
+                                    if recCLE.Find('-') then begin
+                                        recCLE.CalcFields(Amount);
+                                        decAmount := Abs(recCLE.Amount);
+                                    end;
+                                    decAmount := Round(decAmount);
+                                    DPTLE.Init;
+                                    DPTLE.Validate("Entry No.", EntryNo);
+                                    DPTLE."Document Type" := DPTLE."Document Type"::Order;
+                                    DPTLE."Document No." := Rec."No.";
+                                    DPTLE."Customer No." := Rec."Sell-to Customer No.";
+                                    DPTLE."Credit Card No." := Rec."Credit Card No.";
+                                    DPTLE."Transaction Type" := DPTLE."Transaction Type"::Capture;
+                                    DPTLE."Transaction Description" := Rec."No.";
+                                    DPTLE.Amount := decAmount;
+                                    DPTLE."Transaction Date-Time" := CurrentDateTime;
+                                    DPTLE."Currency Code" := Rec."Currency Code";
+                                    DPTLE."Transaction Result" := DPTLE."Transaction Result"::Failed;
+                                    DPTLE.Insert;
+                                    AuthenticationID := Format(DPTLE."Entry No.");
                                 end;
-                                decAmount := Round(decAmount);
-                                DPTLE.Init;
-                                DPTLE.Validate("Entry No.", EntryNo);
-                                DPTLE."Document Type" := DPTLE."Document Type"::Order;
-                                DPTLE."Document No." := Rec."No.";
-                                DPTLE."Customer No." := Rec."Sell-to Customer No.";
-                                DPTLE."Credit Card No." := Rec."Credit Card No.";
-                                DPTLE."Transaction Type" := DPTLE."Transaction Type"::Capture;
-                                DPTLE."Transaction Description" := Rec."No.";
-                                DPTLE.Amount := decAmount;
-                                DPTLE."Transaction Date-Time" := CurrentDateTime;
-                                DPTLE."Currency Code" := Rec."Currency Code";
-                                DPTLE."Transaction Result" := DPTLE."Transaction Result"::Failed;
-                                DPTLE.Insert;
-                                AuthenticationID := Format(DPTLE."Entry No.");
                             end;
+                            Clear(DataText);
+                            DataText.AddText(Encrypt(Format(AuthenticationID))); //Vishal
+                            IntLength := DataText.Length;
+                            //FOR i:=1 to 8 DO BEGIN
+                            DataText.GetSubText(Authentication, 1);
+                            //Authentication
+
+                            HyperLink('http://192.168.1.11:57474/PayNow.aspx?PayId=' + Authentication);
+                        end else begin
+                            Error('Payment Method Code is not defined for online Payment');
                         end;
-                        Clear(DataText);
-                        DataText.AddText(Encrypt(Format(AuthenticationID))); //Vishal
-                        IntLength := DataText.Length;
-                        //FOR i:=1 to 8 DO BEGIN
-                        DataText.GetSubText(Authentication, 1);
-                        //Authentication
-
-                        HyperLink('http://192.168.1.11:57474/PayNow.aspx?PayId=' + Authentication);
-                    end else begin
-                        Error('Payment Method Code is not defined for online Payment');
                     end;
-                end;
-            }
-            action(ApplyPayment)
-            {
-                ApplicationArea = all;
+                }
+                action(ApplyPayment)
+                {
+                    ApplicationArea = all;
 
-                trigger OnAction()
-                begin
-                    DPTLE.Reset;
-                    DPTLE.SetRange("Document Type", DPTLE."Document Type"::Order);
-                    DPTLE.SetRange("Document No.", Rec."No.");
-                    DPTLE.SetRange(DPTLE."Transaction Status", DPTLE."Transaction Status"::Captured);
-                    if DPTLE.Find('-') then
-                        PostBalanceEntry(DPTLE."Entry No.");
-                end;
+                    trigger OnAction()
+                    begin
+                        DPTLE.Reset;
+                        DPTLE.SetRange("Document Type", DPTLE."Document Type"::Order);
+                        DPTLE.SetRange("Document No.", Rec."No.");
+                        DPTLE.SetRange(DPTLE."Transaction Status", DPTLE."Transaction Status"::Captured);
+                        if DPTLE.Find('-') then
+                            PostBalanceEntry(DPTLE."Entry No.");
+                    end;
+                }
+            }
+
+            group(Stax)
+            {
+                Caption = 'Stax';
+
+                action(CreatePayLink)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Create Payment Link';
+                    Image = SetupPayment;
+
+                    trigger OnAction()
+                    var
+                        StaxPaymentMgmt: Codeunit "TLI Stax Payment Handler";
+                    begin
+                        Clear(StaxPaymentMgmt);
+                        if StaxPaymentMgmt.PaymentLinkIsEmpty(2, Rec."No.") then begin
+                            if StaxPaymentMgmt.GeneratePaymentLink(2, Rec."No.") then
+                                Message('Payment link created.');
+                        end else
+                            error('Payment link already exist.');
+                    end;
+                }
+                action(PaymentLink)
+                {
+                    ApplicationArea = All;
+                    Image = ElectronicPayment;
+                    Caption = 'Payment Link';
+
+                    RunObject = page "TLI Stax Payment Links";
+                    RunPageLink = "Document Type" = filter(2), "Document No." = field("No.");
+                    RunPageMode = View;
+                }
             }
         }
 

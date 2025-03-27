@@ -106,6 +106,9 @@ table 50010 "Multiple Payment"
             OptionCaption = ' ,Voided,Expired,Captured,Refunded,Posting Not Finished';
             OptionMembers = " ",Voided,Expired,Captured,Refunded,"Posting Not Finished";
         }
+        field(50010; "Service Provider"; Text[100])
+        {
+        }
     }
 
     keys

@@ -117,6 +117,10 @@ table 60003 "DO Payment Credit Card"
         field(50000; "Correct credit Card"; Boolean)
         {
         }
+        field(50050; "Token No."; Text[250])
+        {
+            Caption = 'Token No.';
+        }
     }
 
     keys
@@ -139,8 +143,10 @@ table 60003 "DO Payment Credit Card"
 
     trigger OnDelete()
     begin
-        IF DOPaymentTransLogEntry.HasTransaction(Rec) THEN
-            ERROR(Text010, TABLECAPTION, "No.");
+        DOPaymentSetup.Get();
+        if DOPaymentSetup."Admin User ID" <> UserId then
+            IF DOPaymentTransLogEntry.HasTransaction(Rec) THEN
+                ERROR(Text010, TABLECAPTION, "No.");
         DeleteCreditCardNumber;
     end;
 

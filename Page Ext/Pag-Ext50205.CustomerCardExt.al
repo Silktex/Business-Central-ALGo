@@ -143,6 +143,13 @@ pageextension 50205 CustomerCard_Ext extends "Customer Card"
                 ApplicationArea = all;
             }
         }
+        addlast(Payments)
+        {
+            field("Stax Customer ID"; Rec."Stax Customer ID")
+            {
+                ApplicationArea = All;
+            }
+        }
     }
     actions
     {

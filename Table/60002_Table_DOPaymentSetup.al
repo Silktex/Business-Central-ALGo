@@ -48,6 +48,18 @@ table 60002 "DO Payment Setup"
             DecimalPlaces = 2 : 2;
             MinValue = 0;
         }
+        field(10; "Admin User ID"; Code[50])
+        {
+            TableRelation = User."User Name";
+            ValidateTableRelation = false;
+
+            trigger OnValidate()
+            var
+                UserSelection: Codeunit "User Selection";
+            begin
+                UserSelection.ValidateUserName("Admin User ID");
+            end;
+        }
     }
 
     keys
@@ -61,5 +73,8 @@ table 60002 "DO Payment Setup"
     fieldgroups
     {
     }
+
+    var
+        Usersetup: Record "User Setup";
 }
 

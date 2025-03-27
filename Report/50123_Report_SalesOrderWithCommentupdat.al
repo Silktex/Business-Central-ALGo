@@ -1015,7 +1015,7 @@ report 50123 "Sales Order With Comment updat"
 
                                     txtProductGroup := recSalesLine."Item Category Code";
                                 END ELSE BEGIN
-                                    CLEAR(txtComment);//Ashwini
+                                    //CLEAR(txtComment);//Ashwini
                                     recStandardComment.RESET;
                                     recStandardComment.SETRANGE("Product Code", recSalesLine."Item Category Code");
                                     recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Posting Date");
@@ -1087,6 +1087,7 @@ report 50123 "Sales Order With Comment updat"
                             END;
                     UNTIL recSalesLine.NEXT = 0;
                 END;
+
                 recStandardComment.RESET;
                 recStandardComment.SetRange("Product Code", '');
                 recStandardComment.SETFILTER(recStandardComment."From Date", '%1|<%2', 0D, "Posting Date");

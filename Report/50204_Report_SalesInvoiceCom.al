@@ -1020,7 +1020,7 @@ report 50204 "Sales Invoice Com"
                 IF "Bill-to Name 2" = '' THEN
                     "Bill-to Name 2" := ' ';
                 //VK
-                recCustomer.GET("Sales Invoice Header"."Bill-to Customer No.");
+                recCustomer.GET("Bill-to Customer No.");
 
                 AccountCodetxt := '';
                 AccountCode := '';
