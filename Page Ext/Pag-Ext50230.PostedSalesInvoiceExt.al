@@ -204,7 +204,7 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                     begin
                         Clear(StaxPaymentMgmt);
                         if StaxPaymentMgmt.PaymentLinkIsEmpty(2, Rec."No.") then begin
-                            if StaxPaymentMgmt.GeneratePaymentLink(2, Rec."No.") then
+                            if StaxPaymentMgmt.GeneratePaymentLink(2, Rec."No.", 0) then
                                 Message('Payment link created.');
                         end else
                             error('Payment link already exist.');

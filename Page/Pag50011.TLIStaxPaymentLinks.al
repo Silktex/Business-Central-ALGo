@@ -139,6 +139,28 @@ page 50011 "TLI Stax Payment Links"
                     CurrPage.Update(false);
                 end;
             }
+
+            action(DeleteLine)
+            {
+                ApplicationArea = All;
+                Caption = 'Delete Line';
+                Image = Delete;
+
+                trigger OnAction()
+                var
+                    StaxPaymentMgmt: Codeunit "TLI Stax Payment Handler";
+                    ConfirmDelMsg: Label 'Are you sure to delete selected line?', Locked = true;
+                begin
+                    if not Confirm(ConfirmDelMsg) then
+                        exit;
+
+                    Clear(StaxPaymentMgmt);
+                    if StaxPaymentMgmt.DelPaymentLinkInfo(Rec) then begin
+                        Rec.Delete(true);
+                        CurrPage.Update(false);
+                    end;
+                end;
+            }
         }
         area(Promoted)
         {

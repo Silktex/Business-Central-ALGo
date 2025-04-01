@@ -1,6 +1,6 @@
 codeunit 50015 "TLI Stax Payment Handler"
 {
-    procedure GeneratePaymentLink(DocumentType: Option " ","Order",Invoice,Payment,Refund; DocumentNo: code[20]): Boolean
+    procedure GeneratePaymentLink(DocumentType: Option " ","Order",Invoice,Payment,Refund; DocumentNo: code[20]; RequiredAmount: Decimal): Boolean
     var
         StaxPaymentSetup: Record "TLI Stax Payment Setup";
         StaxPaymentLink: Record "TLI Stax Payment Link";
@@ -44,6 +44,8 @@ codeunit 50015 "TLI Stax Payment Handler"
                     MemoText := 'Advance Payment against Order No. ' + DocumentNo;
                     SalesHeader.CalcFields("Amount Including VAT");
                     ReqAmount := SalesHeader."Amount Including VAT";
+                    if RequiredAmount <> 0 then
+                        ReqAmount := RequiredAmount;
                 end;
             DocumentType::Invoice:
                 begin
@@ -220,6 +222,92 @@ codeunit 50015 "TLI Stax Payment Handler"
                 StaxPaymentLink.Modify();
                 exit(true);
             end else
+                exit(false);
+
+        end else
+            Error('Authorization failed.');
+
+        exit(false);
+    end;
+
+    procedure DelPaymentLinkInfo(var StaxPaymentLink: Record "TLI Stax Payment Link"): Boolean
+    var
+        StaxPaymentSetup: Record "TLI Stax Payment Setup";
+        Client: HttpClient;
+        Content: HttpContent;
+        ContentHeaders: HttpHeaders;
+        RequestMessage: HttpRequestMessage;
+        RequestHeaders: HttpHeaders;
+        ResponseMessage: HttpResponseMessage;
+        APIUrl: Text;
+        JArray: JsonArray;
+        JChildObj: JsonObject;
+        JObject: JsonObject;
+        JToken: JsonToken;
+        Authoriztion: Text;
+        JsonResponse: Text;
+        ResponseCode: Text[10];
+        ReqAmount: Decimal;
+        MemoText: Text[250];
+        ConnectionMsg: Label 'The web service returned an error message:\\Status code: %1\Description: %2';
+        PaidByClientLbl: Label 'Paid by client.', Locked = true;
+    begin
+        StaxPaymentSetup.Get();
+        if not StaxPaymentSetup.Enabled then
+            exit(false);
+
+        StaxPaymentSetup.TestField("Auth Token / Password");
+        StaxPaymentSetup.TestField("Base URL");
+        StaxPaymentSetup.TestField("Payment Link API");
+        StaxPaymentSetup.TestField("Payment Token");
+
+        Clear(JObject);
+        Clear(JChildObj);
+        Clear(ReqAmount);
+        Clear(MemoText);
+
+        Authoriztion := 'Bearer ' + StaxPaymentSetup."Auth Token / Password";
+        APIUrl := StaxPaymentSetup."Base URL" + StaxPaymentSetup."Payment Link API" + '/$' + StaxPaymentLink."Payment Link Id";
+        if Authoriztion <> '' then begin
+            Content.GetHeaders(ContentHeaders);
+            ContentHeaders.Clear();
+            ContentHeaders.Add('Content-Type', 'application/json');
+            //ContentHeaders.Add('Authorization', Authoriztion);
+            Client.DefaultRequestHeaders().Add('Authorization', Authoriztion);
+            RequestMessage.GetHeaders(RequestHeaders);
+            RequestHeaders.Add('Accept', 'application/json');
+            RequestHeaders.Add('Accept-Encoding', 'utf-8');
+            RequestHeaders.Add('Connection', 'Keep-alive');
+
+            RequestMessage.SetRequestUri(APIUrl);
+            RequestMessage.Method('DELETE');
+            Client.Send(RequestMessage, ResponseMessage);
+
+            if not ResponseMessage.IsSuccessStatusCode then
+                error(ConnectionMsg,
+                      ResponseMessage.HttpStatusCode,
+                      ResponseMessage.ReasonPhrase);
+            Content := ResponseMessage.Content;
+
+            Content.ReadAs(JsonResponse);
+
+            //CreateAPILogs('Invoice Details', ReqPayload, JsonResponse);
+
+            Clear(JArray);
+            Clear(JObject);
+            Clear(JChildObj);
+
+            if GuiAllowed then
+                if StaxPaymentSetup."Show Payload" then
+                    Message(JsonResponse);
+
+            JObject.ReadFrom(JsonResponse);
+            if JObject.SelectToken('status', JToken) then
+                ResponseCode := Format(JToken.AsValue().AsText());
+
+            if Uppercase(ResponseCode) = '200' then
+                exit(true)
+            else
                 exit(false);
 
         end else

@@ -656,6 +656,7 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
                     pgMP.Run;
                 end;
             }
+
         }
         addafter("Create &Warehouse Shipment")
         {
@@ -866,6 +867,41 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
                         TransDocFromSalesDoc.Run(Rec);
                     end;
                 end;
+            }
+        }
+
+        addlast(processing)
+        {
+            group(Stax)
+            {
+                Caption = 'Stax';
+                Image = Payment;
+
+                action(CreatePayLink)
+                {
+                    ApplicationArea = All;
+                    Caption = 'Create Payment Link';
+                    Image = SetupPayment;
+
+                    trigger OnAction()
+                    var
+                        StaxPayLinkRep: Report "SLK Create Stax Payment Link";
+                    begin
+                        Clear(StaxPayLinkRep);
+                        StaxPayLinkRep.SetInitReport(1, Rec."No.");
+                        StaxPayLinkRep.RunModal();
+                    end;
+                }
+                action(PaymentLink)
+                {
+                    ApplicationArea = All;
+                    Image = ElectronicPayment;
+                    Caption = 'Payment Link';
+
+                    RunObject = page "TLI Stax Payment Links";
+                    RunPageLink = "Document Type" = filter(1), "Document No." = field("No.");
+                    RunPageMode = View;
+                }
             }
         }
     }
