@@ -802,7 +802,7 @@ report 50015 "Return Order new"
                     UNTIL recPurchCommentLine.NEXT = 0;
                 END;
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 CompanyInfo.GET;
 
@@ -948,7 +948,7 @@ report 50015 "Return Order new"
         DimSetEntry1: Record "Dimension Set Entry";
         DimSetEntry2: Record "Dimension Set Entry";
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         CurrExchRate: Record "Currency Exchange Rate";
         Vend: Record Vendor;
         PurchCountPrinted: Codeunit "Purch.Header-Printed";

@@ -68,7 +68,7 @@ tableextension 50260 "Sales Price_Ext" extends "Price List Line"
 
     keys
     {
-        key(10; Key20; "Source Type", "Source No.", "Asset Type", "Asset No.")
+        key(Key20; "Source Type", "Source No.", "Asset Type", "Asset No.")
         {
 
         }

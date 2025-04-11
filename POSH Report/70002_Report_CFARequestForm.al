@@ -844,7 +844,7 @@ report 70002 "CFA Request Form POSH"
                     END;
                 END;
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)
@@ -1076,7 +1076,7 @@ report 70002 "CFA Request Form POSH"
         SalesSetup: Record "Sales & Receivables Setup";
         TempSalesLine: Record "Sales Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Cust: Record Customer;

@@ -1,7 +1,7 @@
 page 70000 "Sales Prices SC"
 {
     Caption = 'Sales Prices SC';
-    DataCaptionExpression = PageCaption;
+    DataCaptionExpression = PageCaptionSC;
     DelayedInsert = true;
     PageType = List;
     SaveValues = true;
@@ -381,10 +381,10 @@ page 70000 "Sales Prices SC"
     end;
 
     trigger OnInit()
-    var
-        FeaturePriceCalculation: Codeunit "Feature - Price Calculation";
+    // var
+    //     FeaturePriceCalculation: Codeunit "Feature - Price Calculation";
     begin
-        FeaturePriceCalculation.FailIfFeatureEnabled();
+        // FeaturePriceCalculation.FailIfFeatureEnabled();
         SalesCodeFilterCtrlEnable := true;
         SalesCodeControlEditable := true;
         IsLookupMode := CurrPage.LookupMode;
@@ -495,7 +495,7 @@ page 70000 "Sales Prices SC"
         ClientTypeManagement: Codeunit "Client Type Management";
         StartingDateFilter: Text[30];
         CurrencyCodeFilter: Text;
-        PageCaption: Text;
+        PageCaptionSC: Text;
         Text000: Label 'All Customers';
         Text001: Label 'No %1 within the filter %2.';
 
@@ -599,9 +599,9 @@ page 70000 "Sales Prices SC"
     local procedure SetCaption()
     begin
         if IsOnMobile then
-            PageCaption := ''
+            PageCaptionSC := ''
         else
-            PageCaption := GetFilterDescription();
+            PageCaptionSC := GetFilterDescription();
     end;
 
     local procedure GetFilterDescription(): Text

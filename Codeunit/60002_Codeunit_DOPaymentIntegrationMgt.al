@@ -226,7 +226,7 @@ codeunit 60002 "DO Payment Integration Mgt."
         // var
         //     DOPaymentConnectionSetup: Record "DO Payment Connection Setup";
         //     DOPaymentConnectionDetails: Record "DO Payment Connection Details";
-        //     Language: Record "Windows Language";
+        //     Languagemgmt: Record "Windows Language";
         //     EncryptionMgt: Codeunit "Encryption Management";
         //     [RunOnClient]
         //     UserManagement: DotNet UserManagement;

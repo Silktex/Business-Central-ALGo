@@ -694,7 +694,7 @@ report 50010 "Purchase Order2"
                 end;
 
                 if "Language Code" <> '' then
-                    CurrReport.Language := Language.GetLanguageID("Language Code");
+                    CurrReport.Language := LanguageMgmt.GetLanguageID("Language Code");
 
                 //VK-SPDSPL
 
@@ -848,7 +848,7 @@ report 50010 "Purchase Order2"
         recStandardComment: Record "Standard Comment";
         intLineCount: Integer;
         txtComment: array[256] of Text[250];
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Vend: Record Vendor;

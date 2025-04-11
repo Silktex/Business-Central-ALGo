@@ -214,7 +214,7 @@ report 60002 "Calculate Whse. Ajst Handheld"
         SourceCodeSetup: Record "Source Code Setup";
         AdjmtBinQuantityBuffer: Record "Bin Content Buffer" temporary;
         TempReservationEntryBuffer: Record "Reservation Entry" temporary;
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         UOMMgt: Codeunit "Unit of Measure Management";
         Window: Dialog;
         PostingDate: Date;
@@ -372,7 +372,7 @@ report 60002 "Calculate Whse. Ajst Handheld"
                 ForReservationEntry."Serial No." := WarehouseEntry."Serial No.";
 
                 CreateReservEntry.CreateReservEntryFor(
-                  DATABASE::"Item Journal Line", ItemJournalLine."Entry Type", ItemJournalLine."Journal Template Name",
+                  DATABASE::"Item Journal Line", ItemJournalLine."Entry Type".AsInteger(), ItemJournalLine."Journal Template Name",
                   ItemJournalLine."Journal Batch Name", OrderLineNo, ItemJournalLine."Line No.", ItemJournalLine."Qty. per Unit of Measure",
                   ABS(WarehouseEntry.Quantity), ABS(WarehouseEntry."Qty. (Base)"), ForReservationEntry);
                 //WarehouseEntry."Serial No.", WarehouseEntry."Lot No.");

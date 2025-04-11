@@ -506,7 +506,7 @@ report 50046 "Customer Statement1"
             trigger OnAfterGetRecord()
             begin
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 DebitBalance := 0;
                 CreditBalance := 0;
@@ -761,7 +761,7 @@ report 50046 "Customer Statement1"
         SalesSetup: Record "Sales & Receivables Setup";
         Currency: Record Currency;
         CurrExchRate: Record "Currency Exchange Rate";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         TempCustLedgEntry: Record "Cust. Ledger Entry" temporary;
         TempAppliedCustLedgEntry: Record "Cust. Ledger Entry" temporary;
         FormatAddress: Codeunit "Format Address";

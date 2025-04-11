@@ -561,7 +561,7 @@ report 60503 "Sales Shipment Ext"
                     END;
 
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)
@@ -764,7 +764,7 @@ report 60503 "Sales Shipment Ext"
         TempSalesShipmentLine: Record "Sales Shipment Line" temporary;
         TempSalesShipmentLineAsm: Record "Sales Shipment Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         TaxArea: Record "Tax Area";
         Cust: Record Customer;
         PostedAsmHeader: Record "Posted Assembly Header";

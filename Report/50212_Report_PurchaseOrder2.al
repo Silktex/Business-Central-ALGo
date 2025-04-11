@@ -562,7 +562,7 @@ report 50212 "Purchase Order2."
                     END;
                 END;
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 //VK-SPDSPL
 
@@ -710,7 +710,7 @@ report 50212 "Purchase Order2."
         SalesPurchPerson: Record "Salesperson/Purchaser";
         CompanyInformation: Record "Company Information";
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Vend: Record Vendor;

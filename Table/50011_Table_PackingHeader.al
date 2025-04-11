@@ -288,19 +288,24 @@ table 50011 "Packing Header"
         IF "Packing No." = '' THEN BEGIN
             recSalesSetup.GET();
             recSalesSetup.TESTFIELD("Packing No.");
-            NoSeriesMgt.InitSeries(recSalesSetup."Packing No.", xRec."No. Series", TODAY, "Packing No.", "No. Series");
+            if NoSeriesMgt.AreRelated(recSalesSetup."Packing No.", xRec."No. Series") then
+                "No. Series" := xRec."No. Series"
+            else
+                "No. Series" := recSalesSetup."Packing No.";
+            "Packing No." := NoSeriesMgt.GetNextNo("No. Series");
         END;
     end;
 
     var
         recSalesSetup: Record "Warehouse Setup";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
         recPackingHeader: Record "Packing Header";
         recSalesHeader: Record "Sales Header";
         recTransferHeader: Record "Transfer Header";
         recWarehouseHeader: Record "Warehouse Shipment Header";
         recWarehouseLine: Record "Warehouse Shipment Line";
         recPackLine: Record "Packing Line";
+        Employee: Record Employee;
 
 
     procedure AssistEdit(OldPackingHeader: Record "Packing Header"): Boolean
@@ -312,13 +317,18 @@ table 50011 "Packing Header"
         recSalesSetup.GET;
         recSalesSetup.TESTFIELD("Packing No.");
 
-        IF NoSeriesMgt.SelectSeries(recSalesSetup."Packing No.", OldPackingHeader."No. Series", recPackingHeader."No. Series") THEN BEGIN
-            NoSeriesMgt.SetSeries(recPackingHeader."Packing No.");
-            IF PackingHeader2.GET(recPackingHeader."Packing No.") THEN
-                ERROR('Packing No. %1 Already Exist', recPackingHeader."Packing No.");
-            Rec := recPackingHeader;
-            EXIT(TRUE);
-        END;
+        // IF NoSeriesMgt.SelectSeries(recSalesSetup."Packing No.", OldPackingHeader."No. Series", recPackingHeader."No. Series") THEN BEGIN
+        //     NoSeriesMgt.SetSeries(recPackingHeader."Packing No.");
+        //     IF PackingHeader2.GET(recPackingHeader."Packing No.") THEN
+        //         ERROR('Packing No. %1 Already Exist', recPackingHeader."Packing No.");
+        //     Rec := recPackingHeader;
+        //     EXIT(TRUE);
+        // END;
+
+        if NoSeriesMgt.LookupRelatedNoSeries(recSalesSetup."Packing No.", xRec."No. Series", "No. Series") then begin
+            "Packing No." := NoSeriesMgt.GetNextNo("No. Series");
+            exit(true);
+        end;
         //END;
     end;
 

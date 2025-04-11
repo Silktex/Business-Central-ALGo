@@ -1349,7 +1349,7 @@ report 70001 "Order Confirmation11 POSH"
                 EncodedTotals := FontProvider.EncodeFont(BarcodeString, Symbology);
                 //SC-TIC-62 End
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 //Vikaram
                 /*
@@ -1857,7 +1857,7 @@ report 70001 "Order Confirmation11 POSH"
         TempPrepmtDimSetEntry: Record "Dimension Set Entry" temporary;
         PrepmtInvBuf: Record "Prepayment Inv. Line Buffer" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         CurrExchRate: Record "Currency Exchange Rate";
         AsmHeader: Record "Assembly Header";
         AsmLine: Record "Assembly Line";

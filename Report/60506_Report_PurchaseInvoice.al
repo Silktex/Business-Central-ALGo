@@ -359,7 +359,7 @@ report 60506 "Purchase Invoice Ext"
                     END;
                 END;
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 IF "Purchaser Code" = '' THEN
                     CLEAR(SalesPurchPerson)
@@ -527,7 +527,7 @@ report 60506 "Purchase Invoice Ext"
         SalesPurchPerson: Record "Salesperson/Purchaser";
         CompanyInformation: Record "Company Information";
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Vend: Record Vendor;

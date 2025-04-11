@@ -526,8 +526,9 @@ report 50001 "Return Authorization new"
                         CompanyInformation."Fax No." := RespCenter."Fax No.";
                     END;
                 END;
+
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)
@@ -633,7 +634,9 @@ report 50001 "Return Authorization new"
         CompanyInformation: Record "Company Information";
         TempSalesLine: Record "Sales Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        ReportSaleOrd: Report "Sales Order";
+        LanguageMgmt: Codeunit Language;
+
         CompanyAddress: array[8] of Text[50];
         BillToAddress: array[8] of Text[50];
         ShipToAddress: array[8] of Text[50];

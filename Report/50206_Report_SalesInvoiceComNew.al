@@ -1090,7 +1090,7 @@ report 50206 "Sales Invoice Com New"
                     END;
                 END;
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)
@@ -1326,7 +1326,7 @@ report 50206 "Sales Invoice Com New"
         TempSalesInvoiceLine: Record "Sales Invoice Line" temporary;
         TempSalesInvoiceLineAsm: Record "Sales Invoice Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         TempSalesTaxAmtLine: Record "Sales Tax Amount Line" temporary;
         TaxArea: Record "Tax Area";
         Cust: Record Customer;

@@ -7,8 +7,27 @@ codeunit 50217 "Whse. Validate Source Line_Ext"
         TableCaptionValue: Text[100];
         Text000: Label 'must not be changed when a %1 for this %2 exists: ';
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse. Validate Source Line", 'OnBeforeSalesLineVerifyChange', '', false, false)]
-    local procedure OnBeforeSalesLineVerifyChange(var NewSalesLine: Record "Sales Line"; var OldSalesLine: Record "Sales Line"; var IsHandled: Boolean)
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse. Validate Source Line", 'OnBeforeSalesLineVerifyChange', '', false, false)]
+    // local procedure OnBeforeSalesLineVerifyChange(var NewSalesLine: Record "Sales Line"; var OldSalesLine: Record "Sales Line"; var IsHandled: Boolean)
+    // begin
+    //     recSalesSetup.Get();
+    //     if not WhseLinesExist(
+    //          DATABASE::"Sales Line", NewSalesLine."Document Type".AsInteger(), NewSalesLine."Document No.", NewSalesLine."Line No.", 0,
+    //          NewSalesLine.Quantity)
+    //     then
+    //         exit;
+
+    //     IF (recSalesSetup."Allow Quantity Variance") AND (recSalesSetup."Define % for Variance") THEN
+    //         IF NewSalesLine.Quantity > OldSalesLine.Quantity + (OldSalesLine.Quantity * OldSalesLine."Quantity Variance %" / 100) THEN
+    //             NewSalesLine.FIELDERROR(
+    //               Quantity,
+    //               STRSUBSTNO(Text000,
+    //                 TableCaptionValue,
+    //                 NewSalesLine.TABLECAPTION));
+    // end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Sales Warehouse Mgt.", 'OnBeforeSalesLineVerifyChange', '', false, false)]
+    local procedure OnBeforeSalesLineVerifyChangeNew(var NewSalesLine: Record "Sales Line"; var OldSalesLine: Record "Sales Line"; var IsHandled: Boolean)
     begin
         recSalesSetup.Get();
         if not WhseLinesExist(
@@ -94,27 +113,61 @@ codeunit 50217 "Whse. Validate Source Line_Ext"
             end;
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse. Validate Source Line", 'OnBeforePurchaseLineVerifyChange', '', false, false)]
-    local procedure OnBeforePurchaseLineVerifyChange(var NewPurchLine: Record "Purchase Line"; var OldPurchLine: Record "Purchase Line"; var IsHandled: Boolean)
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse. Validate Source Line", 'OnBeforePurchaseLineVerifyChange', '', false, false)]
+    // local procedure OnBeforePurchaseLineVerifyChange(var NewPurchLine: Record "Purchase Line"; var OldPurchLine: Record "Purchase Line"; var IsHandled: Boolean)
+    // begin
+    //     if not WhseLinesExist(
+    //                  DATABASE::"Purchase Line", NewPurchLine."Document Type".AsInteger(), NewPurchLine."Document No.",
+    //                  NewPurchLine."Line No.", 0, NewPurchLine.Quantity)
+    //             then
+    //         exit;
+
+    //     IF NewPurchLine.Quantity > OldPurchLine.Quantity + (OldPurchLine.Quantity * OldPurchLine."Quantity Variance %" / 100) THEN
+    //         NewPurchLine.FIELDERROR(
+    //          NewPurchLine.Quantity,
+    //           STRSUBSTNO(Text000,
+    //             TableCaptionValue,
+    //            NewPurchLine.TABLECAPTION));
+    //     //SPDSAUQV001 END Old
+    //     //SPDSAUQV001 Begin
+    // end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Purchases Warehouse Mgt.", 'OnBeforePurchaseLineVerifyChange', '', false, false)]
+    local procedure OnBeforePurchaseLineVerifyChangeNew(var NewPurchaseLine: Record "Purchase Line"; var OldPurchaseLine: Record "Purchase Line"; var IsHandled: Boolean)
     begin
         if not WhseLinesExist(
-                     DATABASE::"Purchase Line", NewPurchLine."Document Type".AsInteger(), NewPurchLine."Document No.",
-                     NewPurchLine."Line No.", 0, NewPurchLine.Quantity)
+                     DATABASE::"Purchase Line", NewPurchaseLine."Document Type".AsInteger(), NewPurchaseLine."Document No.",
+                     NewPurchaseLine."Line No.", 0, NewPurchaseLine.Quantity)
                 then
             exit;
 
-        IF NewPurchLine.Quantity > OldPurchLine.Quantity + (OldPurchLine.Quantity * OldPurchLine."Quantity Variance %" / 100) THEN
-            NewPurchLine.FIELDERROR(
-             NewPurchLine.Quantity,
+        IF NewPurchaseLine.Quantity > OldPurchaseLine.Quantity + (OldPurchaseLine.Quantity * OldPurchaseLine."Quantity Variance %" / 100) THEN
+            NewPurchaseLine.FIELDERROR(
+             NewPurchaseLine.Quantity,
               STRSUBSTNO(Text000,
                 TableCaptionValue,
-               NewPurchLine.TABLECAPTION));
+               NewPurchaseLine.TABLECAPTION));
         //SPDSAUQV001 END Old
         //SPDSAUQV001 Begin
     end;
 
-    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Post Shipment", 'OnBeforeValidateTransferLineQtyToShip', '', false, false)]
-    local procedure SLKOnBeforeValidateTransferLineQtyToShip(var TransferLine: Record "Transfer Line"; WarehouseShipmentLine: Record "Warehouse Shipment Line"; var IsHandled: Boolean)
+    // [EventSubscriber(ObjectType::Codeunit, Codeunit::"Whse.-Post Shipment", 'OnBeforeValidateTransferLineQtyToShip', '', false, false)]
+    // local procedure SLKOnBeforeValidateTransferLineQtyToShip(var TransferLine: Record "Transfer Line"; WarehouseShipmentLine: Record "Warehouse Shipment Line"; var IsHandled: Boolean)
+    // var
+    //     UOMMgt: Codeunit "Unit of Measure Management";
+    // begin
+    //     if WarehouseShipmentLine."Qty. to Ship" > TransferLine."Outstanding Quantity" then begin
+    //         TransferLine.Quantity := UOMMgt.RoundAndValidateQty((WarehouseShipmentLine."Qty. to Ship" + TransferLine."Quantity Shipped"), TransferLine."Qty. Rounding Precision", TransferLine.FieldCaption(Quantity));
+    //         TransferLine."Quantity (Base)" := UOMMgt.CalcBaseQty(TransferLine."Item No.", TransferLine."Variant Code", TransferLine."Unit of Measure Code", WarehouseShipmentLine."Qty. to Ship", TransferLine."Qty. per Unit of Measure", TransferLine."Qty. Rounding Precision (Base)", TransferLine.FieldCaption("Qty. Rounding Precision"), TransferLine.FieldCaption(Quantity), TransferLine.FieldCaption("Quantity (Base)"));
+    //         TransferLine.InitQtyInTransit();
+    //         TransferLine.InitOutstandingQty();
+    //         TransferLine.InitQtyToShip();
+    //         TransferLine.InitQtyToReceive();
+    //     end;
+    // end;
+
+    [EventSubscriber(ObjectType::Codeunit, Codeunit::"Transfer Whse. Post Shipment", 'OnBeforeValidateTransferLineQtyToShip', '', false, false)]
+    local procedure SLKOnBeforeValidateTransferLineQtyToShipNew(var TransferLine: Record "Transfer Line"; WarehouseShipmentLine: Record "Warehouse Shipment Line"; var IsHandled: Boolean)
     var
         UOMMgt: Codeunit "Unit of Measure Management";
     begin

@@ -543,7 +543,7 @@ report 60504 "Return Authorization Ext"
                     END;
                 END;
                 if "Language Code" <> '' then
-                    CurrReport.LANGUAGE := Language.GetLanguageID("Language Code");
+                    CurrReport.LANGUAGE := LanguageMgmt.GetLanguageID("Language Code");
 
                 IF "Salesperson Code" = '' THEN
                     CLEAR(SalesPurchPerson)
@@ -646,7 +646,7 @@ report 60504 "Return Authorization Ext"
         CompanyInformation: Record "Company Information";
         TempSalesLine: Record "Sales Line" temporary;
         RespCenter: Record "Responsibility Center";
-        Language: Codeunit Language;
+        Languagemgmt: Codeunit Language;
         CompanyAddress: array[8] of Text[50];
         BillToAddress: array[8] of Text[50];
         ShipToAddress: array[8] of Text[50];

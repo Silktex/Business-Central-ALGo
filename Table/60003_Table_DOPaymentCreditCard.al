@@ -155,7 +155,12 @@ table 60003 "DO Payment Credit Card"
         IF "No." = '' THEN BEGIN
             DOPaymentSetup.GET;
             DOPaymentSetup.TESTFIELD("Credit Card Nos.");
-            NoSeriesMgt.InitSeries(DOPaymentSetup."Credit Card Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            //NoSeriesMgt.InitSeries(DOPaymentSetup."Credit Card Nos.", xRec."No. Series", 0D, "No.", "No. Series");
+            if NoSeriesMgt.AreRelated(DOPaymentSetup."Credit Card Nos.", xRec."No. Series") then
+                "No. Series" := xRec."No. Series"
+            else
+                "No. Series" := DOPaymentSetup."Credit Card Nos.";
+            "No." := NoSeriesMgt.GetNextNo("No. Series");
         END;
 
         VALIDATE("Customer No.", GETFILTER("Customer No."));
@@ -174,7 +179,7 @@ table 60003 "DO Payment Credit Card"
         Text011: Label '%1 must be a number.';
         DOPaymentSetup: Record "DO Payment Setup";
         DOPaymentTransLogEntry: Record "DO Payment Trans. Log Entry";
-        NoSeriesMgt: Codeunit NoSeriesManagement;
+        NoSeriesMgt: Codeunit "No. Series";
 
 
     procedure AssistEdit(OldDOPaymentCreditCard: Record "DO Payment Credit Card"): Boolean
@@ -185,12 +190,17 @@ table 60003 "DO Payment Credit Card"
         DOPaymentCreditCard := Rec;
         DOPaymentSetup.GET;
         DOPaymentSetup.TESTFIELD("Credit Card Nos.");
-        IF NoSeriesMgt.SelectSeries(DOPaymentSetup."Credit Card Nos.", OldDOPaymentCreditCard."No. Series", DOPaymentCreditCard."No. Series") THEN BEGIN
-            NoSeriesMgt.SetSeries(DOPaymentCreditCard."No.");
-            Rec := DOPaymentCreditCard;
-            EXIT(TRUE);
-        END;
+        // IF NoSeriesMgt.SelectSeries(DOPaymentSetup."Credit Card Nos.", OldDOPaymentCreditCard."No. Series", DOPaymentCreditCard."No. Series") THEN BEGIN
+        //     NoSeriesMgt.SetSeries(DOPaymentCreditCard."No.");
+        //     Rec := DOPaymentCreditCard;
+        //     EXIT(TRUE);
+        // END;
         //END;
+
+        if NoSeriesMgt.LookupRelatedNoSeries(DOPaymentSetup."Credit Card Nos.", xRec."No. Series", "No. Series") then begin
+            "No." := NoSeriesMgt.GetNextNo("No. Series");
+            exit(true);
+        end;
     end;
 
 
