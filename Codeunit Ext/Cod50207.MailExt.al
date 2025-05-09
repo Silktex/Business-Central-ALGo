@@ -98,7 +98,7 @@ codeunit 50207 Mail_Ext
             REPEAT
                 BodyText += ('<tr><td style="border:1px solid black;">' + FORMAT(I) + '</td>');
                 BodyText += ('<td style="border:1px solid black;">' + recPurchaseLine.Description + '</td>');
-                BodyText += ('<td align=right style="border:1px solid black;">' + recPurchaseLine."Vendor Item No." + '</td>');
+                BodyText += ('<td align=right style="border:1px solid black;">' + recPurchaseLine."Description 2" + '</td>');
                 BodyText += ('<td style="border:1px solid black;">' + FORMAT(recPurchaseLine."Requested Receipt Date") + '</td>');
                 BodyText += ('<td style="border:1px solid black;">' + FORMAT(recPurchaseLine.Quantity) + '</td>');
                 IF recPurchaseLine."Priority Qty" = 0 THEN
@@ -314,7 +314,7 @@ codeunit 50207 Mail_Ext
             REPEAT
                 BodyText += ('<tr><td style="border:1px solid black;">' + FORMAT(I) + '</td>');
                 BodyText += ('<td style="border:1px solid black;">' + recPurchaseLine.Description + '</td>');
-                BodyText += ('<td align=right style="border:1px solid black;">' + recPurchaseLine."Vendor Item No." + '</td>');
+                BodyText += ('<td align=right style="border:1px solid black;">' + recPurchaseLine."Description 2" + '</td>');
                 //BodyText += ('<td style="border:1px solid black;">'+FORMAT(recPurchaseLine."Requested Receipt Date")+'</td>');
                 BodyText += ('<td style="border:1px solid black;">' + FORMAT(recPurchaseLine.Quantity) + '</td>');
                 //IF recPurchaseLine."Priority Qty" = 0 THEN
@@ -539,7 +539,7 @@ codeunit 50207 Mail_Ext
             REPEAT
                 BodyText += ('<tr><td style="border:1px solid black;">' + FORMAT(I) + '</td>');
                 BodyText += ('<td style="border:1px solid black;">' + recPurchaseLine.Description + '</td>');
-                BodyText += ('<td align=right style="border:1px solid black;">' + recPurchaseLine."Vendor Item No." + '</td>');
+                BodyText += ('<td align=right style="border:1px solid black;">' + recPurchaseLine."Description 2" + '</td>');
                 BodyText += ('<td style="border:1px solid black;">' + FORMAT(recPurchaseLine."Requested Receipt Date") + '</td>');
                 BodyText += ('<td style="border:1px solid black;">' + FORMAT(recPurchaseLine.Quantity) + '</td>');
                 IF recPurchaseLine."Priority Qty" = 0 THEN
