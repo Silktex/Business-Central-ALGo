@@ -71,6 +71,11 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
+            field("MB Order ID"; Rec."MB Order ID")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
             field("Project Description"; Rec."Project Description")
             {
                 ApplicationArea = All;

@@ -152,6 +152,11 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
+            field("MB Order ID"; Rec."MB Order ID")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
             field("Project Description"; Rec."Project Description")
             {
                 ApplicationArea = All;
