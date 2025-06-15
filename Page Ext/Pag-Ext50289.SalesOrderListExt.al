@@ -312,7 +312,18 @@ pageextension 50289 "Sales Order List_Ext" extends "Sales Order List"
                 ToolTip = 'Shipped Sample Report Manual';
                 ApplicationArea = all;
             }
-
+            action(ShippedSampleReportwithoutMB)
+            {
+                Caption = 'Shipped Samples Report WO MB';
+                Description = 'Shipped Samples Report WO MB';
+                Image = "Report";
+                Visible = ShowPoshReport;
+                Promoted = true;
+                PromotedCategory = "Report";
+                RunObject = Report "Shipped Samples Without MB";
+                ToolTip = 'Shipped Samples Report WO MB';
+                ApplicationArea = all;
+            }
         }
 
     }

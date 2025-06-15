@@ -13,4 +13,8 @@ enumextension 50001 "Correspondence Type Ext" extends "Correspondence Type"
     {
         Caption = 'Any';
     }
+    value(50003; Mobile)
+    {
+        Caption = 'Mobile';
+    }
 }

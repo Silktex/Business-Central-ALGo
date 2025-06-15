@@ -46,6 +46,19 @@ pageextension 50287 "Sales Quotes_Ext" extends "Sales Quotes"
                 RunObject = Report "Open SQ Report POSH";
                 ApplicationArea = all;
             }
+
+            action(SalesQuoteLastWeek)
+            {
+                Caption = 'Sales Quote Last Week';
+                Description = 'Sales Quote Last Week';
+                Image = "Report";
+                Visible = ShowPoshReport;
+                Promoted = true;
+                PromotedCategory = "Report";
+                RunObject = Report "Sales Quote Last Week";
+                ToolTip = 'Sales Quote Last Week';
+                ApplicationArea = all;
+            }
         }
     }
     trigger OnOpenPage()
