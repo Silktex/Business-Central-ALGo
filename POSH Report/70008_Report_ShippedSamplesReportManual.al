@@ -88,6 +88,24 @@ report 70008 "Shipped Samples Report Manual"
             column(Project_Phase; "Project Phase")
             {
             }
+            column(Project_Location; "Project Location")
+            {
+            }
+            column(Project_City; "Project City")
+            {
+            }
+            column(Project_Size; "Project Size")
+            {
+            }
+            column(Project_Budget; "Project Budget")
+            {
+            }
+            column(ExpectedProjectCompletionMonth; ExpectedProjectCompletionMonth)
+            {
+            }
+            column(ExpectedProjectCompletionYear; ExpectedProjectCompletionYear)
+            {
+            }
             dataitem("Sales Invoice Line"; "Sales Invoice Line")
             {
                 DataItemLink = "Document No." = FIELD("No.");

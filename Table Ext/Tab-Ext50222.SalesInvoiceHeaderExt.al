@@ -152,6 +152,31 @@ tableextension 50222 "Sales Invoice Header_Ext" extends "Sales Invoice Header"
             Caption = 'MB Order ID';
             DataClassification = ToBeClassified;
         }
+        field(50503; "Project City"; Text[100])
+        {
+            Caption = 'Project City';
+            DataClassification = ToBeClassified;
+        }
+        field(50506; "Project Size"; Option)
+        {
+            OptionCaption = ' ,0 - 5K sq ft,5K - 20K sq ft,20K - 50K sq ft,50K - 100K sq ft,100K - 500K sq ft,500K+ sq ft,Unknown';
+            OptionMembers = " ","0 - 5K sq ft","5K - 20K sq ft","20K - 50K sq ft","50K - 100K sq ft","100K - 500K sq ft","500K+ sq ft",Unknown;
+        }
+        field(50507; "Project Budget"; Option)
+        {
+            OptionCaption = ' , $0 - $10K,$10K - $50K,$50K - $100K,$100K - $250K, $250K - $500K, $500K+,Unknown';
+            OptionMembers = " ","$0 - $10K","$10K - $50K","$50K - $100K","$100K - $250K"," $250K - $500K","$500K+",Unknown;
+        }
+        field(50508; "ExpectedProjectCompletionMonth"; Text[50])
+        {
+            Caption = 'Expected Project Completion Month';
+            DataClassification = ToBeClassified;
+        }
+        field(50509; "ExpectedProjectCompletionYear"; Integer)
+        {
+            Caption = 'Expected Project Completion Year';
+            DataClassification = ToBeClassified;
+        }
         field(60001; "Credit Card No."; Code[20])
         {
             Caption = 'Credit Card No.';

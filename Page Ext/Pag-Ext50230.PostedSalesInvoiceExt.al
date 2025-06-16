@@ -76,6 +76,31 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
+            field("Project City"; Rec."Project City")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
+            field("Project Size"; Rec."Project Size")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
+            field("Project Budget"; Rec."Project Budget")
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
+            field("Expected Project Completion Month"; Rec.ExpectedProjectCompletionMonth)
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
+            field("Expected Project Completion Year"; Rec.ExpectedProjectCompletionYear)
+            {
+                ApplicationArea = All;
+                Visible = ShowProjectInfo;
+            }
             field("Project Description"; Rec."Project Description")
             {
                 ApplicationArea = All;
