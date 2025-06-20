@@ -161,7 +161,7 @@ tableextension 50220 "Sales Shipment Header_Ext" extends "Sales Shipment Header"
             Caption = 'Project Location';
             DataClassification = ToBeClassified;
         }
-        field(50504; "MB Order ID"; Integer)
+        field(50504; "MB Order ID"; BigInteger)
         {
             Caption = 'MB Order ID';
             DataClassification = ToBeClassified;

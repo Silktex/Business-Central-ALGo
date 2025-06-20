@@ -58,19 +58,11 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
         }
         addafter("CFDI Relation")
         {
-            field("Project Name"; Rec."Project Name")
-            {
-                ApplicationArea = all;
-            }
             field("Proj Owner 1"; Rec."Proj Owner 1")
             {
                 ApplicationArea = all;
             }
             field("Proj Owner 2"; Rec."Proj Owner 2")
-            {
-                ApplicationArea = all;
-            }
-            field("Project Location"; Rec."Project Location")
             {
                 ApplicationArea = all;
             }
@@ -142,6 +134,10 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
 
         addlast(General)
         {
+            field("Project Name"; Rec."Project Name")
+            {
+                ApplicationArea = all;
+            }
             field("Project Type"; Rec."Project Type")
             {
                 ApplicationArea = All;
@@ -152,10 +148,15 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
-            field("MB Order ID"; Rec."MB Order ID")
+            field("Project Description"; Rec."Project Description")
             {
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
+                MultiLine = true;
+            }
+            field("Project Location"; Rec."Project Location")
+            {
+                ApplicationArea = all;
             }
             field("Project City"; Rec."Project City")
             {
@@ -182,11 +183,10 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
-            field("Project Description"; Rec."Project Description")
+            field("MB Order ID"; Rec."MB Order ID")
             {
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
-                MultiLine = true;
             }
             field("Third Party"; Rec."Third Party")
             {

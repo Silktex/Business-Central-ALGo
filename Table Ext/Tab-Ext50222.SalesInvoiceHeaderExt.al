@@ -147,7 +147,7 @@ tableextension 50222 "Sales Invoice Header_Ext" extends "Sales Invoice Header"
             Caption = 'Project Location';
             DataClassification = ToBeClassified;
         }
-        field(50504; "MB Order ID"; Integer)
+        field(50504; "MB Order ID"; BigInteger)
         {
             Caption = 'MB Order ID';
             DataClassification = ToBeClassified;

@@ -40,17 +40,6 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                 ApplicationArea = all;
             }
         }
-        addafter(Closed)
-        {
-            field("Project Name"; Rec."Project Name")
-            {
-                ApplicationArea = all;
-            }
-            field("Project Location"; Rec."Project Location")
-            {
-                ApplicationArea = all;
-            }
-        }
         addafter("Payment Terms Code")
         {
             field("Tracking No."; Rec."Tracking No.")
@@ -61,6 +50,10 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
         }
         addlast(General)
         {
+            field("Project Name"; Rec."Project Name")
+            {
+                ApplicationArea = all;
+            }
             field("Project Type"; Rec."Project Type")
             {
                 ApplicationArea = All;
@@ -71,10 +64,15 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
-            field("MB Order ID"; Rec."MB Order ID")
+            field("Project Description"; Rec."Project Description")
             {
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
+                MultiLine = true;
+            }
+            field("Project Location"; Rec."Project Location")
+            {
+                ApplicationArea = all;
             }
             field("Project City"; Rec."Project City")
             {
@@ -101,11 +99,10 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
-            field("Project Description"; Rec."Project Description")
+            field("MB Order ID"; Rec."MB Order ID")
             {
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
-                MultiLine = true;
             }
         }
     }
