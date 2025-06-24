@@ -302,6 +302,14 @@ tableextension 50211 "Sales Header_Ext" extends "Sales Header"
         {
             Caption = 'MB Order ID';
             DataClassification = ToBeClassified;
+            ObsoleteState = Removed;
+            ObsoleteReason = 'Replaced with a new Text[100] field "MBOrderID"';
+            ObsoleteTag = '1.0.0.0';
+        }
+        field(50510; "MBOrderID"; Text[100])
+        {
+            Caption = 'MB Order ID';
+            DataClassification = ToBeClassified;
         }
         field(50503; "Project City"; Text[100])
         {
@@ -324,6 +332,14 @@ tableextension 50211 "Sales Header_Ext" extends "Sales Header"
             DataClassification = ToBeClassified;
         }
         field(50509; "ExpectedProjectCompletionYear"; Integer)
+        {
+            Caption = 'Expected Project Completion Year';
+            DataClassification = ToBeClassified;
+            ObsoleteState = Removed;
+            ObsoleteReason = 'Replaced with new Text field "Expected_ProjectCompletionYear".';
+            ObsoleteTag = '1.0.0.0';
+        }
+        field(50511; "Expected_ProjectCompletionYear"; Text[100])
         {
             Caption = 'Expected Project Completion Year';
             DataClassification = ToBeClassified;

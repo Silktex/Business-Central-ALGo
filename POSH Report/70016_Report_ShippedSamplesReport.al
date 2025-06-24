@@ -103,7 +103,7 @@ report 70016 "Shipped Samples Report"
             column(ExpectedProjectCompletionMonth; ExpectedProjectCompletionMonth)
             {
             }
-            column(ExpectedProjectCompletionYear; ExpectedProjectCompletionYear)
+            column(ExpectedProjectCompletionYear; Expected_ProjectCompletionYear)
             {
             }
             dataitem("Sales Invoice Line"; "Sales Invoice Line")

@@ -94,12 +94,12 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
-            field("Expected Project Completion Year"; Rec.ExpectedProjectCompletionYear)
+            field("Expected Project Completion Year"; Rec.Expected_ProjectCompletionYear)
             {
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;
             }
-            field("MB Order ID"; Rec."MB Order ID")
+            field("MB Order ID"; Rec."MBOrderID")
             {
                 ApplicationArea = All;
                 Visible = ShowProjectInfo;

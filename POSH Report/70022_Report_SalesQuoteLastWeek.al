@@ -114,7 +114,7 @@ report 70022 "Sales Quote Last Week"
             column(ExpectedProjectCompletionMonth; ExpectedProjectCompletionMonth)
             {
             }
-            column(ExpectedProjectCompletionYear; ExpectedProjectCompletionYear)
+            column(ExpectedProjectCompletionYear; Expected_ProjectCompletionYear)
             {
             }
             dataitem("Sales Line"; "Sales Line")

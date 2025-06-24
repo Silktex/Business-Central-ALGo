@@ -57,7 +57,7 @@ pageextension 50215 "Sales Quote_Ext" extends "Sales Quote"
             {
                 ApplicationArea = All;
             }
-            field("Expected Project Completion Year"; Rec.ExpectedProjectCompletionYear)
+            field("Expected Project Completion Year"; Rec.Expected_ProjectCompletionYear)
             {
                 ApplicationArea = All;
             }

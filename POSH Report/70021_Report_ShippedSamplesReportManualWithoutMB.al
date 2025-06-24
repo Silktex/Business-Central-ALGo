@@ -103,7 +103,7 @@ report 70021 "Shipped Samples Without MB"
             column(ExpectedProjectCompletionMonth; ExpectedProjectCompletionMonth)
             {
             }
-            column(ExpectedProjectCompletionYear; ExpectedProjectCompletionYear)
+            column(ExpectedProjectCompletionYear; Expected_ProjectCompletionYear)
             {
             }
             dataitem("Sales Invoice Line"; "Sales Invoice Line")
