@@ -13,6 +13,7 @@
             "enableLongRunningSqlStatements": true,
             "enableSqlInformationDebugger": true,
             "schemaUpdateMode": "Synchronize",
+            // "schemaUpdateMode": "Recreate",
             "dependencyPublishingOption": "Ignore"
         }
     ]

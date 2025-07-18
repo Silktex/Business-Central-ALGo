@@ -50,6 +50,18 @@ pageextension 50230 "Posted Sales Invoice_Ext" extends "Posted Sales Invoice"
         }
         addlast(General)
         {
+            field("Specifier Designer Contact No."; Rec."Specifier Designer Contact No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Specifier Designer Name"; Rec."Specifier Designer Name")
+            {
+                ApplicationArea = All;
+            }
+            field("Specifier Designer Email"; Rec."Specifier Designer Email")
+            {
+                ApplicationArea = All;
+            }
             field("Project Name"; Rec."Project Name")
             {
                 ApplicationArea = all;

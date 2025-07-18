@@ -689,8 +689,8 @@ codeunit 50005 "Portal CU"
                             //TransferLine.VALIDATE("Transfer-to Code",TransferHeader."Transfer-to Code");
                             TransferLine.VALIDATE("Line No.", LineNo);
                             TransferLine.VALIDATE("Item No.", PurchRcptLine."No.");
+                            TransferLine.VALIDATE("Variant Code", PurchRcptLine."Variant Code");
                             TransferLine.VALIDATE(Quantity, PurchRcptLine.Quantity);
-
                             TransferLine.VALIDATE("Purchase Receipt No.", PurchRcptLine."Document No.");
                             TransferLine.VALIDATE("Purchase Receipt Line No.", PurchRcptLine."Line No.");
                             TransferLine.INSERT;
@@ -709,6 +709,7 @@ codeunit 50005 "Portal CU"
                             //TransferLine.VALIDATE("Transfer-to Code",TransferHeader."Transfer-to Code");
                             TransferLine.VALIDATE("Line No.", LineNo);
                             TransferLine.VALIDATE("Item No.", PurchRcptLine."No.");
+                            TransferLine.VALIDATE("Variant Code", PurchRcptLine."Variant Code");
                             TransferLine.VALIDATE(Quantity, PurchRcptLine.Quantity);
 
                             TransferLine.VALIDATE("Purchase Receipt No.", PurchRcptLine."Document No.");
@@ -1525,8 +1526,8 @@ codeunit 50005 "Portal CU"
                             //TransferLine.VALIDATE("Transfer-to Code",TransferHeader."Transfer-to Code");
                             TransferLine.VALIDATE("Line No.", LineNo);
                             TransferLine.VALIDATE("Item No.", PurchRcptLine."No.");
+                            TransferLine.VALIDATE("Variant Code", PurchRcptLine."Variant Code");
                             TransferLine.VALIDATE(Quantity, PurchRcptLine.Quantity);
-
                             TransferLine.VALIDATE("Purchase Receipt No.", PurchRcptLine."Document No.");
                             TransferLine.VALIDATE("Purchase Receipt Line No.", PurchRcptLine."Line No.");
                             TransferLine.INSERT;
@@ -1549,6 +1550,7 @@ codeunit 50005 "Portal CU"
                                     TORRE.VALIDATE("Source Subtype", 0);
                                     TORRE.VALIDATE("Reservation Status", TORRE."Reservation Status"::Surplus);
                                     TORRE.VALIDATE("Item No.", TransferLine."Item No.");
+                                    TORRE.VALIDATE("Variant Code", TransferLine."Variant Code");
                                     TORRE.VALIDATE("Location Code", TransferHeader."Transfer-from Code");
                                     TORRE.VALIDATE("Quantity (Base)", -ILE.Quantity);
                                     TORRE.VALIDATE("Lot No.", ILE."Lot No.");
@@ -1567,6 +1569,7 @@ codeunit 50005 "Portal CU"
                                     TORRE.VALIDATE("Source Subtype", 1);
                                     TORRE.VALIDATE("Reservation Status", TORRE."Reservation Status"::Surplus);
                                     TORRE.VALIDATE("Item No.", TransferLine."Item No.");
+                                    TORRE.VALIDATE("Variant Code", TransferLine."Variant Code");
                                     TORRE.VALIDATE("Location Code", TransferHeader."Transfer-to Code");
                                     TORRE.VALIDATE("Quantity (Base)", ILE.Quantity);
                                     TORRE.VALIDATE("Lot No.", ILE."Lot No.");
@@ -1588,6 +1591,7 @@ codeunit 50005 "Portal CU"
                             //TransferLine.VALIDATE("Transfer-to Code",TransferHeader."Transfer-to Code");
                             TransferLine.VALIDATE("Line No.", LineNo);
                             TransferLine.VALIDATE("Item No.", PurchRcptLine."No.");
+                            TransferLine.VALIDATE("Variant Code", PurchRcptLine."Variant Code");
                             TransferLine.VALIDATE(Quantity, PurchRcptLine.Quantity);
                             TransferLine.VALIDATE("Purchase Receipt No.", PurchRcptLine."Document No.");
                             TransferLine.VALIDATE("Purchase Receipt Line No.", PurchRcptLine."Line No.");
@@ -1610,6 +1614,7 @@ codeunit 50005 "Portal CU"
                                     TORRE.VALIDATE("Source Subtype", 0);
                                     TORRE.VALIDATE("Reservation Status", TORRE."Reservation Status"::Surplus);
                                     TORRE.VALIDATE("Item No.", TransferLine."Item No.");
+                                    TORRE.VALIDATE("Variant Code", TransferLine."Variant Code");
                                     TORRE.VALIDATE("Location Code", TransferHeader."Transfer-from Code");
                                     TORRE.VALIDATE("Quantity (Base)", -ILE.Quantity);
                                     TORRE.VALIDATE("Lot No.", ILE."Lot No.");
@@ -1628,6 +1633,7 @@ codeunit 50005 "Portal CU"
                                     TORRE.VALIDATE("Source Subtype", 1);
                                     TORRE.VALIDATE("Reservation Status", TORRE."Reservation Status"::Surplus);
                                     TORRE.VALIDATE("Item No.", TransferLine."Item No.");
+                                    TORRE.VALIDATE("Variant Code", TransferLine."Variant Code");
                                     TORRE.VALIDATE("Location Code", TransferHeader."Transfer-to Code");
                                     TORRE.VALIDATE("Quantity (Base)", ILE.Quantity);
                                     TORRE.VALIDATE("Lot No.", ILE."Lot No.");

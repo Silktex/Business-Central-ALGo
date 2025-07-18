@@ -205,6 +205,7 @@ report 50240 "Create Transfer Order"
                 CuPortal.InsertTrackingSpecificationPurNAV(DocNo, DocLineNo, Qty, SerialNo, LotNo, DocketNo, ShipVia, PostingDate, ETADate);
             END ELSE BEGIN
                 recPurchLine.VALIDATE("Qty. to Receive", Qty / recPurchLine."Qty. per Unit of Measure");
+                recPurchLine.VALIDATE("Variant Code", recPurchLine."Variant Code");
                 recPurchLine.MODIFY;
 
                 recPurchHeader.RESET;

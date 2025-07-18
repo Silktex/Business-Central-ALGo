@@ -73,6 +73,18 @@ pageextension 50215 "Sales Quote_Ext" extends "Sales Quote"
             {
                 ApplicationArea = all;
             }
+            field("Specifier Designer Contact No."; Rec."Specifier Designer Contact No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Specifier Designer Name"; Rec."Specifier Designer Name")
+            {
+                ApplicationArea = All;
+            }
+            field("Specifier Designer Email"; Rec."Specifier Designer Email")
+            {
+                ApplicationArea = All;
+            }
             field("Quote Status"; Rec."Quote Status")
             {
                 ApplicationArea = all;

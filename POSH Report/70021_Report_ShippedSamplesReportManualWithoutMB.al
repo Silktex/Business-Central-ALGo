@@ -133,7 +133,8 @@ report 70021 "Shipped Samples Without MB"
                 var
                     recCustomer: Record Customer;
                 begin
-
+                    if COPYSTR("No.", 1, 1) = 'P' then
+                        CurrReport.SKIP;
                     SOQuantity := QuantityOnSO("Document No.", "No.", "Variant Code", "Location Code");
 
                     IF recCustomer.GET("Sell-to Customer No.") THEN

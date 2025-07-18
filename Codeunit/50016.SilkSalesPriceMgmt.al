@@ -1,6 +1,5 @@
 codeunit 50016 "Silk Sales Price Mgmt."
 {
-
     [EventSubscriber(ObjectType::Table, Database::"Sales Line", 'OnAfterUpdateUnitPrice', '', false, false)]
     local procedure CustomSalesPriceCalcMgmt(var SalesLine: Record "Sales Line"; xSalesLine: Record "Sales Line"; CalledByFieldNo: Integer; CurrFieldNo: Integer)
     var
@@ -23,6 +22,10 @@ codeunit 50016 "Silk Sales Price Mgmt."
             SalesPriceList.SetRange("Source No.", SalesLine."Sell-to Customer No.");
             SalesPriceList.SetRange("Asset Type", SalesPriceList."Asset Type"::Item);
             SalesPriceList.SetRange("Asset No.", SalesLine."No.");
+            if SalesLine."Variant Code" <> '' then
+                SalesPriceList.SetRange("Variant Code", SalesLine."Variant Code")
+            else
+                SalesPriceList.SetRange("Variant Code", ''); // blank variant only
             SalesPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, SalesLine."Posting Date");
             SalesPriceList.SetRange("Starting Date", 0D, SalesLine."Posting Date");
             if SalesPriceList.FindLast() then begin
@@ -37,6 +40,10 @@ codeunit 50016 "Silk Sales Price Mgmt."
                 SalesPriceList.SetRange("Source No.", SalesLine."Sell-to Customer No.");
                 SalesPriceList.SetRange("Asset Type", SalesPriceList."Asset Type"::"Item Category");
                 SalesPriceList.SetRange("Asset No.", SalesLine."Item Category Code");
+                if SalesLine."Variant Code" <> '' then
+                    SalesPriceList.SetRange("Variant Code", SalesLine."Variant Code")
+                else
+                    SalesPriceList.SetRange("Variant Code", ''); // blank variant only
                 SalesPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, SalesLine."Posting Date");
                 SalesPriceList.SetRange("Starting Date", 0D, SalesLine."Posting Date");
                 if SalesPriceList.FindLast() then begin
@@ -52,6 +59,10 @@ codeunit 50016 "Silk Sales Price Mgmt."
                 SalesPriceList.SetRange("Source No.", SalesLine."Customer Price Group");
                 SalesPriceList.SetRange("Asset Type", SalesPriceList."Asset Type"::Item);
                 SalesPriceList.SetRange("Asset No.", SalesLine."No.");
+                if SalesLine."Variant Code" <> '' then
+                    SalesPriceList.SetRange("Variant Code", SalesLine."Variant Code")
+                else
+                    SalesPriceList.SetRange("Variant Code", ''); // blank variant only
                 SalesPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, SalesLine."Posting Date");
                 SalesPriceList.SetRange("Starting Date", 0D, SalesLine."Posting Date");
                 if SalesPriceList.FindLast() then begin
@@ -67,6 +78,10 @@ codeunit 50016 "Silk Sales Price Mgmt."
                 SalesPriceList.SetRange("Source No.", SalesLine."Customer Price Group");
                 SalesPriceList.SetRange("Asset Type", SalesPriceList."Asset Type"::"Item Category");
                 SalesPriceList.SetRange("Asset No.", SalesLine."Item Category Code");
+                if SalesLine."Variant Code" <> '' then
+                    SalesPriceList.SetRange("Variant Code", SalesLine."Variant Code")
+                else
+                    SalesPriceList.SetRange("Variant Code", ''); // blank variant only
                 SalesPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, SalesLine."Posting Date");
                 SalesPriceList.SetRange("Starting Date", 0D, SalesLine."Posting Date");
                 if SalesPriceList.FindLast() then begin
@@ -82,6 +97,10 @@ codeunit 50016 "Silk Sales Price Mgmt."
                 SalesPriceList.SetRange("Source No.");
                 SalesPriceList.SetRange("Asset Type", SalesPriceList."Asset Type"::Item);
                 SalesPriceList.SetRange("Asset No.", SalesLine."No.");
+                if SalesLine."Variant Code" <> '' then
+                    SalesPriceList.SetRange("Variant Code", SalesLine."Variant Code")
+                else
+                    SalesPriceList.SetRange("Variant Code", ''); // blank variant only
                 SalesPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, SalesLine."Posting Date");
                 SalesPriceList.SetRange("Starting Date", 0D, SalesLine."Posting Date");
                 if SalesPriceList.FindLast() then begin
@@ -97,6 +116,10 @@ codeunit 50016 "Silk Sales Price Mgmt."
                 SalesPriceList.SetRange("Source No.");
                 SalesPriceList.SetRange("Asset Type", SalesPriceList."Asset Type"::"Item Category");
                 SalesPriceList.SetRange("Asset No.", SalesLine."Item Category Code");
+                if SalesLine."Variant Code" <> '' then
+                    SalesPriceList.SetRange("Variant Code", SalesLine."Variant Code")
+                else
+                    SalesPriceList.SetRange("Variant Code", ''); // blank variant only
                 SalesPriceList.SetFilter("Ending Date", '%1|>=%2', 0D, SalesLine."Posting Date");
                 SalesPriceList.SetRange("Starting Date", 0D, SalesLine."Posting Date");
                 if SalesPriceList.FindLast() then begin

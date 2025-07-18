@@ -136,6 +136,33 @@ tableextension 50220 "Sales Shipment Header_Ext" extends "Sales Shipment Header"
             begin
             end;
         }
+        field(50075; "Specifier Designer Contact No."; Code[20])
+        {
+            Caption = 'Specifier Designer Contact No.';
+            TableRelation = Contact WHERE(Type = CONST(Person));
+            trigger OnValidate()
+            var
+                Cont: Record Contact;
+            begin
+                if Cont.Get("Specifier Designer Contact No.") then begin
+                    "Specifier Designer Name" := Cont.Name;
+                    "Specifier Designer Email" := Cont."E-Mail";
+                end else begin
+                    Clear("Specifier Designer Name");
+                    Clear("Specifier Designer Email");
+                end;
+            end;
+        }
+        field(50076; "Specifier Designer Name"; Text[100])
+        {
+            Caption = 'Specifier Designer Name';
+            Editable = false;
+        }
+        field(50077; "Specifier Designer Email"; Text[100])
+        {
+            Caption = 'Specifier Designer Email';
+            Editable = false;
+        }
         field(50080; "Warehouse Shipment No."; Code[20])
         {
             Description = 'Handheld';

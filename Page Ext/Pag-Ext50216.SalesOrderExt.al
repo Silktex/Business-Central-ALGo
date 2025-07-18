@@ -74,6 +74,18 @@ pageextension 50216 SalesOrder_Ext extends "Sales Order"
             {
                 ApplicationArea = all;
             }
+            field("Specifier Designer Contact No."; Rec."Specifier Designer Contact No.")
+            {
+                ApplicationArea = All;
+            }
+            field("Specifier Designer Name"; Rec."Specifier Designer Name")
+            {
+                ApplicationArea = All;
+            }
+            field("Specifier Designer Email"; Rec."Specifier Designer Email")
+            {
+                ApplicationArea = All;
+            }
             field("Physical Order Loc"; Rec."Physical Order Loc")
             {
                 ApplicationArea = all;
