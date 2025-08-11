@@ -194,6 +194,18 @@ report 50240 "Create Transfer Order"
         END;
         */
 
+        recPurchHeader.RESET;
+        recPurchHeader.SETRANGE("Document Type", recPurchHeader."Document Type"::Order);
+        recPurchHeader.SETRANGE("No.", DocNo);
+        IF recPurchHeader.FINDFIRST THEN BEGIN
+            cuSalesRelease.Reopen(recPurchHeader);
+            recPurchHeader.SetHideValidationDialog(TRUE);
+            recPurchHeader."Consignment No." := DocketNo;
+            recPurchHeader."Ship Via" := ShipVia;
+            recPurchHeader.Validate("Posting Date", PostingDate);
+            recPurchHeader.Validate("ETA Date", ETADate);
+            recPurchHeader.MODIFY(FALSE);
+        END;
         recPurchLine.RESET;
         recPurchLine.SETRANGE("Document Type", recPurchLine."Document Type"::Order);
         recPurchLine.SETRANGE("Document No.", DocNo);
@@ -207,24 +219,13 @@ report 50240 "Create Transfer Order"
                 recPurchLine.VALIDATE("Qty. to Receive", Qty / recPurchLine."Qty. per Unit of Measure");
                 recPurchLine.VALIDATE("Variant Code", recPurchLine."Variant Code");
                 recPurchLine.MODIFY;
-
-                recPurchHeader.RESET;
-                recPurchHeader.SETRANGE("Document Type", recPurchLine."Document Type"::Order);
-                recPurchHeader.SETRANGE("No.", DocNo);
-                IF recPurchHeader.FIND('-') THEN BEGIN
-                    recPurchHeader.SetHideValidationDialog(TRUE);
-                    cuSalesRelease.Reopen(recPurchHeader);
-                    recPurchHeader."Consignment No." := DocketNo;
-                    recPurchHeader."Ship Via" := ShipVia;
-                    recPurchHeader.Validate("Posting Date", PostingDate);
-                    recPurchHeader.Validate("ETA Date", ETADate);
-                    recPurchHeader.MODIFY(FALSE);
-                    recPurchHeader.SetHideValidationDialog(TRUE);
-                    cuSalesRelease.RUN(recPurchHeader);
-                END;
             END;
         END;
-
+        // Optional: release it again
+        IF recPurchHeader."No." <> '' THEN BEGIN
+            recPurchHeader.SetHideValidationDialog(TRUE);
+            cuSalesRelease.RUN(recPurchHeader);
+        END;
     end;
 
     procedure GetValueAtCell(RowNo: Integer; ColNo: Integer): Text
@@ -240,4 +241,3 @@ report 50240 "Create Transfer Order"
             EXIT('');
     end;
 }
-
