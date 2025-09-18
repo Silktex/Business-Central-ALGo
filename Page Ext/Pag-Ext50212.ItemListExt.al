@@ -178,6 +178,17 @@ pageextension 50212 ItemList_Ext extends "Item List"
                 //     BackOrder.SaveAs('',ReportFormat::Excel)
                 // end;
             }
+            action(ItemAttributeMapping)
+            {
+                Caption = 'Item Attribute Report';
+                Ellipsis = true;
+                Visible = ShowPoshReport;
+                Image = "Report";
+                Promoted = true;
+                PromotedCategory = "Report";
+                RunObject = Report "Item Attribute Report";
+                ApplicationArea = all;
+            }
             action(StockDetails)
             {
                 Caption = 'Stock Details';
