@@ -1,0 +1,64 @@
+table 50009 "Box Master"
+{
+    DataCaptionFields = "Box Code", Description;
+    DrillDownPageID = 50009;
+    LookupPageID = 50009;
+
+    fields
+    {
+        field(1; "Box Code"; Code[20])
+        {
+        }
+        field(2; Description; Text[50])
+        {
+        }
+        field(3; Height; Decimal)
+        {
+        }
+        field(4; Width; Decimal)
+        {
+        }
+        field(5; Length; Decimal)
+        {
+        }
+        field(6; "Box Weight"; Decimal)
+        {
+        }
+        field(10; "Shipping Agent Code"; Code[10])
+        {
+            AccessByPermission = TableData "Shipping Agent Services" = R;
+            Caption = 'Shipping Agent Code';
+            TableRelation = "Shipping Agent";
+        }
+        field(7; "Shipping Agent Service Code"; Code[20])
+        {
+            TableRelation = "Shipping Agent Services".Code where("Shipping Agent Code" = field("Shipping Agent Code"));
+
+        }
+        field(8; "Show in Handheld"; Boolean)
+        {
+            Description = 'Handheld';
+        }
+        field(9; "Max Weight Limit"; Decimal)
+        {
+            Caption = 'Max Weight Limit';
+        }
+        field(11; "Max Quantity Limit"; Integer)
+        {
+            Caption = 'Max Quantity Limit';
+        }
+    }
+
+    keys
+    {
+        key(Key1; "Box Code")
+        {
+            Clustered = true;
+        }
+    }
+
+    fieldgroups
+    {
+    }
+}
+
